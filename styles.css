@@ -1,0 +1,359 @@
+
+:root{
+  --primary:#2661F9; 
+}
+
+/* Reset some default styles */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Use Poppins font for all text content */
+
+}
+
+h1{
+  color: var(--dark-text, #243561);
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 90px;
+  text-transform: capitalize;}
+.container{
+  background: linear-gradient(90deg, rgba(252, 92, 125, 0.10) 0%, rgba(235, 97, 140, 0.10) 11.98%, rgba(106, 130, 251, 0.10) 100%);
+}
+
+p{
+  color: var(--dark-text, #243561);
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 35px; /* 175% */
+}
+
+h1 a, p a{
+  color: var(--primary);
+
+}
+/* Navbar styles */
+.navbar {
+  color: var(--dark-text, #243561);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: transparent; /* Initially transparent background */
+  transition: background-color 0.3s;
+  z-index: 1000;
+  
+}
+
+.navbar.scroll {
+  background-color: rgba(255, 255, 255, 1); /* Change to a semi-transparent black background on scroll */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.logo img {
+  height: 40px; /* Adjust the height as needed */
+  margin-left: 5vw;
+}
+
+.menu {
+  list-style-type: none;
+  display: flex;
+  align-items: center; /* Center vertically within the navbar */
+  margin-right: 5vw; /* To counteract the default margin on the last menu item */
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu a {
+  color: var(--dark-text, #243561);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu a:hover {
+  color: var(--primary);
+}
+
+/* Section styles */
+.section {
+  padding: 1rem 4rem;
+  text-align: center;
+}
+
+.sectionTitle{
+  color: var(--dark-text, #243561);
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+text-align: left;
+line-height: 80px; /* 145.455% */
+margin: auto;
+width: 90vw;
+}
+.section h1, .section h2 {
+  margin-bottom: 20px;
+}
+/* Scroll progress bar styles */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background:linear-gradient(90deg, #FC5C7D 0%, #6A82FB 100%);
+  width: 0;
+  z-index: 1500;
+  transition: width 0.3s;
+}
+
+/* ... Previous CSS rules ... */
+
+/* Home section styles */
+.home-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 50px;
+}
+
+.left-column {
+  width: 40vw;
+  padding: 1rem ;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.left-image{
+  max-width: 25vw;
+  
+}
+
+.left-column img {
+  height: auto;
+}
+
+.right-column {
+  /*flex: 1;*/
+  padding: 1rem;
+  text-align: left;
+
+}
+
+.home-section h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+ color: var(--dark-text, #243561);
+ 
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  background: var(--primary);
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background: var(--primary-dark-1, #1E4DC7);
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+/* ... Previous CSS rules ... */
+
+/* About section styles */
+.about-section {
+  padding: 100px 0;
+  text-align: center;
+  display: block; 
+}
+
+.banner {
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(81, 68, 255, 0.1);
+  border-radius: 0.5rem;
+}
+
+.experienceNumber{
+  margin-bottom: 10px;
+    line-height: 0.75;
+}
+
+.experienceYearsText{
+  line-height:1.5;
+}
+
+.experienceText{
+  color: var(--dark-text, #243561);
+  font-weight: 200;
+  padding: 1rem;
+
+}
+
+.expLeft{
+  width: 20vw;
+}
+.about-section h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.about-section p {
+  font-size: 18px;
+  color: #555;
+}
+
+/* ... Remaining CSS rules ... */
+/* ... Previous CSS rules ... */
+
+/* Services section styles */
+/* ... Previous CSS rules ... */
+
+/* Services section styles */
+.services-section {
+  padding: 0.5rem 0;
+}
+
+.services-container {
+  max-width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  flex-basis: calc(25% - 40px);
+ /* padding: 20px;*/
+  background-color: #FFF;
+stroke-width: 1px;
+stroke: rgba(121, 134, 159, 0.40);
+  text-align: center;
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: left;
+  border-radius: 1rem;
+}
+
+/* Add a hover state for the service cards */
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-card img {
+width: 62px;
+height: 62px;  height: auto;
+}
+
+.service-card h3 {
+
+    margin:  0rem 2rem 1rem 2rem; 
+    color: #243561;
+
+font-size: 28px;
+font-style: normal;
+font-weight: 500;
+line-height: 36px 
+}
+
+.service-card p {
+ color: var(--light-gray, rgba(37, 40, 58, 0.50));
+font-size: 20px;
+font-style: normal;
+font-weight: 300;
+line-height: 35px; /* 175% */
+    margin:  0rem 2rem 2rem 2rem;
+
+}
+
+.service-card .icon {
+  font-size: 36px;
+  width: 40px;
+  height: 38px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #fff;
+  background-color: var(--primary);
+  padding: 20px;
+  border-radius: 120px;
+  margin:  2rem 2rem 1rem 2rem;
+
+}
+
+
+/* Cards section styles */
+.cards-section {
+  padding: 1rem;
+}
+
+.containerforCards {
+  max-width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Card styles */
+.card {
+  padding: 20px;
+  flex-basis: calc(25% - 20px); /* Three cards in a row with 20px margin between them */
+  max-width: 30vw;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card img {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* ... Other styles ... */

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/microsoft-ui-xaml/2.3.1910/fonts/Segoe-UI-2.3.1910.01.ttf">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Navigation Menu Example</title>
+</head>
+
+<body>
+    <div class="scroll-progress"></div>
+    <!-- The element that represents the scroll progress -->
+    <script src="script.js"></script>
+    <div class="container">
+
+        <nav class="navbar">
+                <div class="logo">
+                    <img src="Images/Logo.png" alt="Logo">
+                </div>
+                <ul class="menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+        </nav>
+        <section id="home" class="section">
+            <table>
+                <tr>
+                    <td>
+                        <div class="left-column">
+                            <img class="left-image" src="Images/left-image.png" alt="Left Image">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="right-column">
+                            <h1>Hey, I’m <br>
+                                <a>Sujith Anand</a> <br> Product Designer</h1>
+                            <p class="subtitle">Innovative digital product designer with <a>6+ years</a> of experience. Skilled in end-to-end software design, passionate about improving lives through impactful design solutions.</p>
+                            <a href="#contact" class="cta-button">Get Started</a>
+                            <div class="social-icons">
+                                <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+                                <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                                <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="banner">
+                <table>
+                    <tr>
+                        <td class="expLeft">
+                            <h1 class="experienceNumber">6+</h1>
+                            <p class="experienceYearsText">Years of experience</p>
+                        </td>
+                        <td class="right-column">
+                            <h2 class="experienceText">Product Designer specialized in UI/UX Designs, user research, digital design and mentoring designers.</h2>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="services" class="section services-section">
+            <h2 class="sectionTitle"> Explore My Works</h2>
+            <div class="services-container" id="servicesContainer">
+                <!-- Cards will be populated here using JavaScript -->
+            </div>
+        </section>
+
+        <section id="cards" class="section cards-section">
+            <h2 class="sectionTitle"> Recent Works</h2>
+
+            <div class="containerforCards" id="cardsContainer">
+              <!-- Cards will be populated here using JavaScript -->
+            </div>
+          </section>
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us.</p>
+        </section>
+        <span class="mdi2 mdi2-home"></span>
+
+    </div>
+</body>
+
+</html>
