@@ -88,20 +88,16 @@ h1 a, p a{
 /* ... Previous CSS rules ... */
 
 /* Social section styles */
-.social-section {
-  background-color: #fff;
-  padding: 50px 0;
-}
 
 .social-icons {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 .social-icon {
   display: inline-block;
   font-size: 24px;
-  color: #333;
+  color:  var(--dark-text, #243561);
   margin: 0 10px;
   transition: color 0.3s;
 }
