@@ -93,3 +93,35 @@ window.addEventListener("DOMContentLoaded", function () {
     cardsContainer.appendChild(cardElement);
   });
 });
+
+// JavaScript code
+window.addEventListener("DOMContentLoaded", function () {
+  // ... Your other code ...
+
+  const socialIconsData = [
+    {
+      iconClass: "fab fa-facebook-f",
+      link: "https://www.facebook.com/yourpage",
+    },
+    {
+      iconClass: "fab fa-twitter",
+      link: "https://twitter.com/yourhandle",
+    },
+    {
+      iconClass: "fab fa-instagram",
+      link: "https://www.instagram.com/youraccount",
+    },
+    // Add more social icon data objects as needed
+  ];
+
+  const socialIconsContainer = document.getElementById("socialIcons");
+
+  socialIconsData.forEach((icon) => {
+    const iconElement = document.createElement("a");
+    iconElement.classList.add("social-icon");
+    iconElement.href = icon.link;
+    iconElement.target = "_blank"; // Open link in new tab
+    iconElement.innerHTML = `<i class="${icon.iconClass}"></i>`;
+    socialIconsContainer.appendChild(iconElement);
+  });
+});
