@@ -100,11 +100,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const socialIconsData = [
     {
-      iconClass: "fab fa-facebook-f",
+      iconClass: "fab fa-basketball",
       link: "https://www.facebook.com/yourpage",
     },
     {
-      iconClass: "fab fa-twitter",
+      iconClass: "fab fa-behance",
       link: "https://twitter.com/yourhandle",
     },
     {
