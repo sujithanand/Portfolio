@@ -12,7 +12,7 @@
 	--white: #fff;
 	--gray: #868e96;
 	--gray-dark: #343a40;
-	--primary-drak: #004D9E;
+	
 	--secondary: #868e96;
 	--success: #28a745;
 	--info: #17a2b8;
@@ -23,6 +23,7 @@
 
 	/* This is dark theme values*/
 	 --primary: var(--cyan);
+	 --primary-drak: #067283;
 	--heading-color:#fff;
 	--paragraph-color:#dadce0;
 	--background: #212327;
