@@ -2,7 +2,7 @@
 	--blue: #0067D2;
 	--indigo: #6610f2;
 	--purple: #6f42c1;
-	--pink: #e83e8c;
+	--pink: #FF6E86;
 	--red: #dc3545;
 	--orange: #fd7e14;
 	--yellow: #ffc107;
@@ -12,7 +12,6 @@
 	--white: #fff;
 	--gray: #868e96;
 	--gray-dark: #343a40;
-	--primary: var(--blue);
 	--primary-drak: #004D9E;
 	--secondary: #868e96;
 	--success: #28a745;
@@ -21,11 +20,24 @@
 	--danger: #dc3545;
 	--light: #f8f9fa;
 	--dark: #343a40;
-	--heading-color:#001A35;
+
+	/* This is dark theme values*/
+	 --primary: var(--cyan);
+	--heading-color:#fff;
+	--paragraph-color:#dadce0;
+	--background: #212327;
+	--background-secondary:#303238;
+
+
+/*this is blue theme values*/
+/*
+--primary: var(--blue);
+--heading-color:#001A35;
 	--paragraph-color:#47535F;
 	--background: #fff;
 	--background-secondary:#F9FAFC;
-;
+;*/
+
 	--breakpoint-xs: 0;
 	--breakpoint-sm: 576px;
 	--breakpoint-md: 768px;
@@ -34,4 +46,3 @@
 	--font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	--font-family-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
 }
-
