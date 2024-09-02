@@ -982,16 +982,17 @@ body {
 }
 
 .Feautes .single-features::before {
+	/*
 	position: absolute;
 	content: "";
 	right: -72px;
 	top: 60px;
 	width: 118px;
-	border-bottom: 3px dotted var(--primary);
+	border-bottom: 3px dotted var(--primary);*/
 }
 
 .Feautes .single-features.last::before {
-	display: none;
+	display: none !important;
 }
 
 .Feautes .single-features .signle-icon {
@@ -2317,7 +2318,7 @@ body {
 }
 
 .blog .single-news {
-	background: var(--background);
+	background: var(--background-secondary) !important;
 	position: relative;
 	-webkit-transition: all 0.4s ease;
 	-moz-transition: all 0.4s ease;
@@ -2341,7 +2342,7 @@ body {
 
 .blog .single-news .news-content {
 	text-align: left;
-	background: var(--background);
+	background: var(--background-secondary);
 	z-index: 99;
 	position: relative;
 	padding: 30px;
@@ -2884,7 +2885,7 @@ body {
 .news-single .single-comments {
 	overflow: hidden;
 	margin: 0.5rem;
-	background: var(--background-secondary);
+	background: var(--background-tertiary);
 	border-radius: 0.25rem;
 	padding: 1rem;
 }
@@ -4876,3 +4877,10 @@ body {
 /*=========================
 	Cursor End
 ===========================*/
+
+/*Experience Heading*/
+.experienceHeading {
+	background: var(--background-secondary) !important;
+	position: relative;
+	padding: 2rem 1rem !important;
+}

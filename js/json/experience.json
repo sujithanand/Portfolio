@@ -1,0 +1,68 @@
+[
+    {
+        "type": "company",
+        "logo": "https://media.licdn.com/dms/image/v2/C4E0BAQEHfBgZBNynOg/company-logo_100_100/company-logo_100_100/0/1635897505360/mitratech_logo?e=1733356800&v=beta&t=uVCSV3U8EpNGHp18nQ8LBFYv0izQVnY4e5PFWAXoBPA",
+        "companyName": "Mitratech",
+        "duration": "4 Years",
+        "description": "Mitratech is a leading provider of legal, compliance, and operational risk management software, empowering organizations to streamline processes, reduce risk, and drive operational excellence. With innovative solutions, Mitratech supports businesses in navigating complex challenges and achieving greater efficiency."
+    },
+    {
+        "type": "position",
+        "title": "UX Team Lead",
+        "dateRange": "Mar 2023 - Present",
+        "responsibilities": [
+            "Lead and manage a team of 2 UX designers, ensuring they meet their goals and timelines.",
+            "Oversee and work on various design projects as the lead designer.",
+            "Act as a proxy product manager for key projects, coordinating with stakeholders and ensuring project alignment with business objectives.",
+            "Continuously improve design processes and foster a collaborative team environment."
+        ]
+    },
+    {
+        "type": "position",
+        "title": "Senior UX Designer",
+        "dateRange": "Sep 2021 - Mar 2023",
+        "responsibilities": [
+            "Involved in the hiring process of junior UX designers, contributing to talent acquisition.",
+            "Trained and mentored 2 junior designers, guiding them through project work and skill development.",
+            "Led and contributed to multiple design projects, ensuring high-quality user experiences.",
+            "Collaborated with cross-functional teams to deliver user-centered solutions."
+        ]
+    },
+    {
+        "type": "position",
+        "title": "UX Designer",
+        "dateRange": "Oct 2020 - Sep 2021",
+        "responsibilities": [
+            "Executed a comprehensive UI refresh project, designing and coding the frontend using CSS.",
+            "Partnered with product managers to run client working groups, gathering feedback and aligning design with user needs.",
+            "Managed the discovery and development phases of 2 projects simultaneously, ensuring timely delivery and effective project management.",
+            "Focused on creating mockups and user-centered designs to enhance user satisfaction and engagement."
+        ]
+    },
+    {
+        "type": "company",
+        "logo": "https://media.licdn.com/dms/image/v2/C560BAQF6GlisTb-FeQ/company-logo_100_100/company-logo_100_100/0/1630661121748/infoview_technologies_pvt_limited_logo?e=1733356800&v=beta&t=y1LrxdF7c8nygCFK57glUNNb8PIUktfEnaRkz_DPrmY",
+        "companyName": "Infoview Technologies Pvt Limted",
+        "duration": "3 Years 4 Months",
+        "description": "IVTL Infoview Technologies Limited specializes in building enterprise software applications, primarily catering to the Japanese market. With a strong emphasis on innovation and quality, IVTL delivers tailored solutions that enhance business efficiency and drive growth for its clients."
+    },
+    {
+        "type": "position",
+        "title": "UI Designer",
+        "dateRange": "Apr 2019 - Oct 2020",
+        "responsibilities": [
+            "In my role as a UI Designer, I had the unique opportunity to design components for internal framework from scratch along with a group of talented designers. Here are the key highlights:",
+            "Icon Design: I created a library of icons that combined aesthetics with clear functionality.",
+            "Component Design: I designed user interface components, like buttons and forms, following a consistent, user-friendly design language.",
+            "Collaboration: I collaborated closely with development teams to bring designs to life efficiently."
+        ]
+    },
+    {
+        "type": "position",
+        "title": "Graphic Designer & Manual Test Engineer",
+        "dateRange": "Jul 2017 - Mar 2019",
+        "responsibilities": [
+            "In my role as a graphics designer, I cultivated a keen eye for creative detail, delivering visually striking designs. As a manual tester, I learned the ropes of meticulous testing, enhancing software quality and identifying potential improvements."
+        ]
+    }
+]

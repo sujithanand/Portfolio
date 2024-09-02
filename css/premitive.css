@@ -28,16 +28,18 @@
 	--paragraph-color:#dadce0;
 	--background: #212327;
 	--background-secondary:#303238;
+	--background-tertiary:#3c4048;
 
 
-/*this is blue theme values*/
-/*
+/*this is blue theme values
+
 --primary: var(--blue);
 --heading-color:#001A35;
 	--paragraph-color:#47535F;
-	--background: #fff;
+	--background: #f0f3f7;
 	--background-secondary:#F9FAFC;
-;*/
+	--background-tertiary:#fff;
+*/
 
 	--breakpoint-xs: 0;
 	--breakpoint-sm: 576px;

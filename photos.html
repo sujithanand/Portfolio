@@ -101,7 +101,7 @@
 					style="enable-background:new 0 0 20 12;" xml:space="preserve">
 					<style type="text/css">
 						.st0 {
-							fill: #FFFFFF;
+							fill: var(--primary);
 						}
 					</style>
 					<g>
@@ -185,25 +185,31 @@
 			</div>
 
 			<!-- Image Modal -->
-			<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<img id="modal-image" src="" class="img-fluid" alt="Modal Image">
-							<p id="modal-title"></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		<!-- Gallery Container -->
+<div id="gallery-container" class="row">
+    <!-- Gallery items will be inserted here by JavaScript -->
+</div>
+
+<!-- Modal for displaying images -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p id="modal-title" class="fs-3"></p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="" class="img-fluid" alt="Modal Image">
+                         </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 			<!-- Bootstrap JS, Popper.js, and jQuery -->
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>

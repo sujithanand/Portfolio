@@ -1,15 +1,54 @@
 [
-    { "src": "img/Photo (12).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (2).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (13).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (10).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (5).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (6).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (7).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (8).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (9).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (4).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (1).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (11).jpg", "alt": "Gallery Image" },
-    { "src": "img/Photo (3).jpg", "alt": "Gallery Image" }
+    {
+        "src": "img/Photo (12).jpg",
+        "title": "Singer Singing"
+    },
+    {
+        "src": "img/Photo (2).jpg",
+        "title": "Man Reading Paper"
+    },
+    {
+        "src": "img/Photo (13).jpg",
+        "title": "Signer Singing"
+    },
+    {
+        "src": "img/Photo (10).jpg",
+        "title": "Happy Signer"
+    },
+    {
+        "src": "img/Photo (5).jpg",
+        "title": "Bride"
+    },
+    {
+        "src": "img/Photo (6).jpg",
+        "title": "Happy Worker"
+    },
+    {
+        "src": "img/Photo (7).jpg",
+        "title": "Men Reading Paper"
+    },
+    {
+        "src": "img/Photo (8).jpg",
+        "title": "Coin"
+    },
+    {
+        "src": "img/Photo (9).jpg",
+        "title": "Mango"
+    },
+    {
+        "src": "img/Photo (4).jpg",
+        "title": "Teen Immersed in Phone"
+    },
+    {
+        "src": "img/Photo (1).jpg",
+        "title": "Old Man Smoking"
+    },
+    {
+        "src": "img/Photo (11).jpg",
+        "title": "Small Kids"
+    },
+    {
+        "src": "img/Photo (3).jpg",
+        "title": "Old Man Arguning"
+    }
 ]
