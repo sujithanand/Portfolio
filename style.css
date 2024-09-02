@@ -48,7 +48,7 @@ Version:	1.1
 /*=============================
 	Global CSS 
 ===============================*/
-@import url(premitive.css);
+@import url(css/premitive.css);
 
 body {
 	font-family: 'Poppins', sans-serif;

@@ -1,0 +1,32 @@
+[
+    {
+        "icon": "icofont-hand-power",
+        "title": "Empowerment",
+        "description": "Designs that give users control and confidence, enabling them to make informed decisions."
+    },
+    {
+        "icon": "icofont-brainstorming",
+        "title": "Understanding",
+        "description": "Empathetic designs that ensure users feel heard and their needs are fully addressed."
+    },
+    {
+        "icon": "icofont-tick-mark",
+        "title": "Accomplishment",
+        "description": "Seamless interactions that help users achieve their goals efficiently and effectively."
+    },
+    {
+        "icon": "icofont-user-alt-5",
+        "title": "Happiness",
+        "description": "Designs that make user experiences enjoyable and satisfying."
+    },
+    {
+        "icon": "icofont-brain",
+        "title": "Smart",
+        "description": "Interfaces that enhance users' sense of intelligence with intuitive and clever solutions."
+    },
+    {
+        "icon": "icofont-group",
+        "title": "Inclusion",
+        "description": "Designs that cater to diverse needs and ensure everyone feels welcome and represented."
+    }
+]

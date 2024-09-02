@@ -152,13 +152,8 @@
 							<!-- Main Menu -->
 							<div class="main-menu">
 								<nav class="navigation">
-									<ul class="nav menu">
-										<li><a href="index.html">Home</a>
-										</li>
-										<li><a href="experience.html">Experience </a></li>
-										<li class="active"><a href="photos.html">Photography </a></li>
-										<li ><a href="projects.html">Pet Projects</a> </li>
-										<li><a href="about.html">About Me</a></li>
+									<ul class="nav menu" id="menu-list">
+										<script src="/js/menu.js"></script>
 									</ul>
 								</nav>
 							</div>
@@ -183,99 +178,28 @@
 				</div>
 			</div>
 			<div class="container mt-4">
-				<div class="row">
-					<!-- Repeat this block for each image -->
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (12).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (2).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (13).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (10).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (5).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (6).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (7).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (8).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (9).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (4).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (1).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (11).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
-					<div class="col-6 col-md-4 col-lg-3 mb-4">
-						<div class="gallery-item">
-							<img src="img/Photo (3).jpg" class="img-fluid" alt="Gallery Image" data-toggle="modal"
-								data-target="#imageModal">
-						</div>
-					</div>
+				<div class="row" id="gallery-container">
+				<script src="/js/photos.js"></script>
 					<!-- Add more gallery items here -->
 				</div>
 			</div>
 
 			<!-- Image Modal -->
-			<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered">
+			<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<div class="modal-header">
+							<h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
 						<div class="modal-body">
-							<img src="" class="img-fluid" alt="Popup Image">
+							<img id="modal-image" src="" class="img-fluid" alt="Modal Image">
+							<p id="modal-title"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>

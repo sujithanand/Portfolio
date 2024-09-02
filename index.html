@@ -114,13 +114,8 @@
 							<!-- Main Menu -->
 							<div class="main-menu">
 								<nav class="navigation">
-									<ul class="nav menu">
-										<li class="active"><a href="index.html">Home </a>
-										</li>
-										<li><a href="experience.html">Experience </a></li>
-										<li><a href="photos.html">Photography </a></li>
-										<li><a href="projects.html">Pet Projects</a> </li>
-										<li><a href="about.html">About Me</a></li>
+									<ul class="nav menu" id="menu-list">
+										<script src="/js/menu.js"></script>
 									</ul>
 								</nav>
 							</div>
@@ -328,45 +323,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 col-12">
-					<!-- Start Single features -->
-					<div class="single-features">
-						<div class="signle-icon">
-							<i class="icofont icofont-users-alt-4"></i>
-						</div>
-						<h3>User-Focused Design
-						</h3>
-						<p>I create designs that prioritize the user, ensuring intuitive and engaging experiences that
-							meet real needs.</p>
-					</div>
-					<!-- End Single features -->
+				<div class="row" id="features-container">
+					<script src="js/features.js"></script>
+					<!-- The content will be injected here by JavaScript -->
 				</div>
-				<div class="col-lg-4 col-12">
-					<!-- Start Single features -->
-					<div class="single-features">
-						<div class="signle-icon">
-							<i class="icofont icofont-chart-line-alt"></i>
-						</div>
-						<h3>Proven Results
-						</h3>
-						<p>My work drives measurable outcomes, from increased engagement to higher conversion rates,
-							across diverse industries.</p>
-					</div>
-					<!-- End Single features -->
-				</div>
-				<div class="col-lg-4 col-12">
-					<!-- Start Single features -->
-					<div class="single-features last">
-						<div class="signle-icon">
-							<i class="icofont icofont-handshake-deal"></i>
-						</div>
-						<h3>Collaborative Partner
-						</h3>
-						<p>I work closely with teams and clients, maintaining clear communication and a transparent
-							process throughout the project.</p>
-					</div>
-					<!-- End Single features -->
-				</div>
+				
 			</div>
 		</div>
 	</section>
@@ -484,68 +445,19 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<h2>My Design Principles</h2>
+						<h2>My Design <span class="text-primary">Principles</span></h2>
 						<p>My design approach is centered around creating experiences that make users feel empowered,
 							understood, and satisfied.</p>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Principle -->
-					<div class="single-service">
-						<i class="icofont icofont-hand-power"></i>
-						<h4>Empowerment</h4>
-						<p>Designs that give users control and confidence, enabling them to make informed decisions.</p>
-					</div>
-					<!-- End Single Principle -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Principle -->
-					<div class="single-service">
-						<i class="icofont icofont-brainstorming"></i>
-						<h4>Understanding</h4>
-						<p>Empathetic designs that ensure users feel heard and their needs are fully addressed.</p>
-					</div>
-					<!-- End Single Principle -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Principle -->
-					<div class="single-service">
-						<i class="icofont icofont-tick-mark"></i>
-						<h4>Accomplishment</h4>
-						<p>Seamless interactions that help users achieve their goals efficiently and effectively.</p>
-					</div>
-					<!-- End Single Principle -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Principle -->
-					<div class="single-service">
-						<i class="icofont icofont-user-alt-5"></i>
-						<h4>Happiness</h4>
-						<p>Designs that make user experiences enjoyable and satisfying.</p>
-					</div>
-					<!-- End Single Principle -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Principle -->
-					<div class="single-service">
-						<i class="icofont icofont-brain"></i>
-						<h4>Smart</h4>
-						<p>Interfaces that enhance users' sense of intelligence with intuitive and clever solutions.</p>
-					</div>
-					<!-- End Single Principle -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Principle -->
-					<div class="single-service">
-						<i class="icofont icofont-group"></i>
-						<h4>Inclusion</h4>
-						<p>Designs that cater to diverse needs and ensure everyone feels welcome and represented.</p>
-					</div>
-					<!-- End Single Principle -->
-				</div>
+			<div class="row" id="services-container">
+				<!-- Services will be injected here by JavaScript -->
+				<script src="js/principle.js"></script>
+	
 			</div>
+		</div>
+       
 		</div>
 	</section>
 	<!--/ End design-principles -->
@@ -610,6 +522,9 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
+
+	<!--jquery 3.6.0-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>
