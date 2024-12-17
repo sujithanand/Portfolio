@@ -21,7 +21,7 @@
 	--light: #f8f9fa;
 	--dark: #343a40;
 
-	/* This is dark theme values*/
+	/* This is dark theme values
 	 --primary: var(--cyan);
 	 --primary-drak: #067283;
 	--heading-color:#fff;
@@ -30,8 +30,8 @@
 	--background-secondary:#303238;
 	--background-tertiary:#3c4048;
 
-
-/*this is blue theme values
+*/
+/*this is blue theme values*/
 
 --primary: var(--blue);
 --heading-color:#001A35;
@@ -39,7 +39,7 @@
 	--background: #f0f3f7;
 	--background-secondary:#F9FAFC;
 	--background-tertiary:#fff;
-*/
+
 
 	--breakpoint-xs: 0;
 	--breakpoint-sm: 576px;
