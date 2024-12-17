@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     const headDiv = document.createElement('div');
                     headDiv.className = 'head';
-
+/*
                     const img = document.createElement('img');
                     img.src = item.logo;
                     img.alt = '#';
                     headDiv.appendChild(img);
-
+*/
                     const bodyDiv = document.createElement('div');
                     bodyDiv.className = 'body';
 
