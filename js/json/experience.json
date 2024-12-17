@@ -1,20 +1,29 @@
 [
     {
         "type": "company",
-        "logo": "https://media.licdn.com/dms/image/v2/C4E0BAQEHfBgZBNynOg/company-logo_100_100/company-logo_100_100/0/1635897505360/mitratech_logo?e=1733356800&v=beta&t=uVCSV3U8EpNGHp18nQ8LBFYv0izQVnY4e5PFWAXoBPA",
+        "logo": "img/mitratech_logo.jpg",
         "companyName": "Mitratech",
         "duration": "4 Years",
         "description": "Mitratech is a leading provider of legal, compliance, and operational risk management software, empowering organizations to streamline processes, reduce risk, and drive operational excellence. With innovative solutions, Mitratech supports businesses in navigating complex challenges and achieving greater efficiency."
     },
     {
         "type": "position",
+        "title": "Design Manager",
+        "dateRange": "Oct 2024 - Present",
+        "responsibilities": [
+            "Manage a team of 5 UX designers, ensuring they meet their goals and timelines.",
+            "Manage Design practices for a Business Unit",
+            "Continuously improve design processes and foster a collaborative team environment."
+        ]
+    },
+    {
+        "type": "position",
         "title": "UX Team Lead",
-        "dateRange": "Mar 2023 - Present",
+        "dateRange": "Mar 2023 - Sep 2024",
         "responsibilities": [
             "Lead and manage a team of 2 UX designers, ensuring they meet their goals and timelines.",
             "Oversee and work on various design projects as the lead designer.",
             "Act as a proxy product manager for key projects, coordinating with stakeholders and ensuring project alignment with business objectives.",
-            "Continuously improve design processes and foster a collaborative team environment."
         ]
     },
     {
@@ -41,7 +50,7 @@
     },
     {
         "type": "company",
-        "logo": "https://media.licdn.com/dms/image/v2/C560BAQF6GlisTb-FeQ/company-logo_100_100/company-logo_100_100/0/1630661121748/infoview_technologies_pvt_limited_logo?e=1733356800&v=beta&t=y1LrxdF7c8nygCFK57glUNNb8PIUktfEnaRkz_DPrmY",
+        "logo": "img/infoview_technologies_pvt_limited_logo.jpg",
         "companyName": "Infoview Technologies Pvt Limted",
         "duration": "3 Years 4 Months",
         "description": "IVTL Infoview Technologies Limited specializes in building enterprise software applications, primarily catering to the Japanese market. With a strong emphasis on innovation and quality, IVTL delivers tailored solutions that enhance business efficiency and drive growth for its clients."
