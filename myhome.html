@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Sujith Anand portfolio overview and selected work.">
+	<title>My Home | Sujith Anand</title>
+	<link rel="icon" href="img/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+	<style>
+		:root {
+			--bg: #fcfcfb;
+			--surface: #ffffff;
+			--surface-soft: #f7f9fc;
+			--text: #111111;
+			--secondary: #555555;
+			--accent: #2563eb;
+			--line: rgba(17, 17, 17, 0.10);
+			--line-strong: rgba(17, 17, 17, 0.16);
+			--surface: #ffffff;
+			--surface-soft: #f6f7f9;
+			--surface-elevated: #f1f3f5;
+			--container: 1000px;
+			--space-1: 8px;
+			--space-2: 16px;
+			--space-3: 24px;
+			--space-4: 32px;
+			--space-5: 48px;
+			--space-6: 64px;
+			--topbar-height: 64px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: "Nunito", sans-serif;
+			overflow-x: hidden;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus-visible {
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+
+		body,
+		h1,
+		h2,
+		h3,
+		p {
+			margin: 0;
+		}
+
+		.page {
+			position: relative;
+			padding: 88px var(--space-3) var(--space-3);
+		}
+
+		.container {
+			width: min(100%, var(--container));
+			margin: 0 auto;
+			position: relative;
+			z-index: 1;
+		}
+
+		.topbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 30;
+			width: 100vw;
+			padding: 0;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			transition: background-color 180ms ease, backdrop-filter 180ms ease, border-color 180ms ease;
+			pointer-events: none;
+		}
+
+		.topbar.is-scrolled {
+			background: rgba(246, 247, 249, 0.96);
+			border-bottom: 1px solid var(--line);
+			backdrop-filter: blur(14px);
+		}
+
+		.topbar-inner {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--space-2);
+			padding: var(--space-2) 0;
+			pointer-events: auto;
+		}
+
+		.topbar.is-scrolled .topbar-inner {
+			border-bottom: 1px solid transparent;
+		}
+
+		.scroll-progress {
+			position: fixed;
+			top: calc(var(--topbar-height) + 1px);
+			left: 0;
+			z-index: 29;
+			width: 100%;
+			height: 4px;
+			background: rgba(37, 99, 235, 0.12);
+			opacity: 0;
+			transition: opacity 180ms ease;
+			pointer-events: none;
+		}
+
+		.scroll-progress.is-visible {
+			opacity: 1;
+		}
+
+		.scroll-progress-bar {
+			width: 0%;
+			height: 100%;
+			background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+		}
+
+		.brand {
+			font-size: 15px;
+			font-weight: 600;
+			letter-spacing: 0.01em;
+		}
+
+		.nav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--space-2);
+		}
+
+		.nav a {
+			display: inline-flex;
+			align-items: center;
+			min-height: 40px;
+			padding: 0 12px;
+			border-radius: 999px;
+			font-size: 15px;
+			font-weight: 500;
+			color: var(--secondary);
+		}
+
+		.nav a:hover,
+		.nav a:focus-visible {
+			background: var(--surface-soft);
+		}
+
+		.section {
+			padding-top: var(--space-5);
+		}
+
+		.hero {
+			padding-top: 64px;
+		}
+
+		.hero-inner {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: var(--space-3);
+			align-items: start;
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--space-1);
+			padding: 6px 12px;
+			border-radius: 999px;
+			background: rgba(37, 99, 235, 0.08);
+			font-size: 15px;
+			font-weight: 500;
+			color: var(--accent);
+		}
+
+		.role-chip {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			width: fit-content;
+			padding: 10px 14px;
+			border-radius: 999px;
+			background: rgba(37, 99, 235, 0.08);
+			color: var(--accent);
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1.2;
+		}
+
+		.role-chip i {
+			font-size: 0.95em;
+		}
+
+		.section-label {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 24px;
+			font-weight: 700;
+			line-height: 1.15;
+			letter-spacing: -0.04em;
+			color: var(--text);
+			text-transform: none;
+		}
+
+		.section-label .accent {
+			color: var(--accent);
+		}
+
+		.section-label .dark {
+			color: var(--text);
+		}
+
+		.hero-copy,
+		.work-item,
+		.text-card,
+		.list-card,
+		.footer,
+		.highlights-strip {
+			width: 100vw;
+			margin-left: calc(50% - 50vw);
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			padding-inline: var(--space-3);
+		}
+
+		.hero-inner {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: var(--space-4);
+			max-width: var(--container);
+			margin: 0 auto;
+			align-items: center;
+		}
+
+		.hero-layout {
+			padding-bottom: var(--space-2);
+		}
+
+		.hero-info {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-2);
+		}
+
+		.hero-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			padding: 8px 20px;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.4);
+			color: #e0e7ff;
+			font-size: 13px;
+		}
+
+		.hero-info h1 {
+			font-size: clamp(36px, 4vw, 48px);
+			margin: 0;
+			line-height: 1.1;
+			color: #f8fafc;
+		}
+
+		.hero-intro {
+			color: rgba(248, 250, 252, 0.85);
+		}
+
+		.hero-portrait-wrap {
+			display: flex;
+			justify-content: center;
+			grid-column: span 1;
+		}
+
+		.hero-portrait {
+			width: 100%;
+			max-width: 360px;
+			object-fit: cover;
+			border-radius: 36px;
+			background: transparent;
+			box-shadow: none;
+			mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+			-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+		}
+
+		.hero-stats {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-3);
+			align-items: center;
+			text-align: center;
+		}
+
+		.hero-stat {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.hero-stat-value {
+			font-size: 28px;
+			font-weight: 600;
+			color: #f8fafc;
+		}
+
+		.hero-stat-label {
+			font-size: 14px;
+			color: rgba(248, 250, 252, 0.75);
+		}
+
+		.recommendations {
+			margin-top: var(--space-5);
+		}
+
+		.recommendation-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: var(--space-3);
+		}
+
+		.recommendation-card {
+			padding: var(--space-3);
+			border-radius: 24px;
+			background: #ffffff;
+			box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+			border: 1px solid rgba(15, 23, 42, 0.08);
+		}
+
+		.recommendation-card h3 {
+			margin: 0 0 8px;
+			font-size: 18px;
+		}
+
+		.recommendation-meta {
+			margin: 0 0 12px;
+			font-size: 13px;
+			color: var(--secondary);
+		}
+
+		.recommendation-card p {
+			margin: 0;
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--text);
+		}
+
+		.hero-copy {
+			padding: 0;
+			display: grid;
+			gap: var(--space-2);
+			width: 100%;
+			margin: 0;
+			text-align: left;
+		}
+
+		.hero h1 {
+			font-size: clamp(32px, 5vw, 36px);
+			line-height: 1.2;
+			font-weight: 600;
+			letter-spacing: -0.02em;
+		}
+
+		.hero-headline {
+			font-size: 20px;
+			line-height: 1.3;
+			font-weight: 600;
+			max-width: 720px;
+		}
+
+		.hero-intro {
+			display: grid;
+			gap: var(--space-1);
+			font-size: 16px;
+			line-height: 1.7;
+			font-weight: 400;
+			color: var(--secondary);
+			max-width: 760px;
+		}
+
+		.hero-intro p {
+			margin: 0;
+		}
+
+		.hero-intro a {
+			text-decoration: underline;
+			text-underline-offset: 2px;
+			text-decoration-thickness: 1px;
+		}
+
+		.hero-inner {
+			display: grid;
+			grid-template-columns: minmax(0, 60%) minmax(0, 40%);
+			gap: var(--space-4);
+			max-width: var(--container);
+			margin: 0 auto;
+			align-items: center;
+			position: relative;
+			z-index: 1;
+		}
+
+		.hero-stage {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			height: 100%;
+		}
+
+		.hero-portrait {
+			width: 100%;
+			max-width: 420px;
+			object-fit: cover;
+			border-radius: 36px;
+			background: transparent;
+			box-shadow: none;
+			mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+			-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+		}
+
+		.hero-contact {
+			display: grid;
+			gap: 6px;
+		}
+
+		.hero-contact-item {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.hero-contact-label {
+			font-size: 13px;
+			color: var(--secondary);
+		}
+
+		.hero-contact-sub {
+			font-weight: 600;
+			color: var(--text);
+		}
+
+		.hero-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--space-2);
+			padding-top: var(--space-1);
+			justify-content: flex-start;
+		}
+
+		.hero-stats {
+			grid-column: span 1;
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-3);
+			align-items: center;
+			text-align: center;
+		}
+
+		.hero-stat {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.hero-stat-value {
+			font-size: 28px;
+			font-weight: 600;
+			color: #f8fafc;
+		}
+
+		.hero-stat-label {
+			font-size: 14px;
+			color: rgba(248, 250, 252, 0.75);
+		}
+
+		.hero-image-column {
+			grid-column: span 1;
+			display: flex;
+			justify-content: center;
+		}
+
+		.hero-portrait-wrap {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+
+		.hero-portrait {
+			width: 100%;
+			max-width: 360px;
+			object-fit: cover;
+			border-radius: 36px;
+			background: transparent;
+			box-shadow: none;
+			padding: 0;
+			mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+			-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+		}
+
+		.link-cta {
+			font-size: 15px;
+			line-height: 1.6;
+			font-weight: 500;
+			color: var(--accent);
+		}
+
+		.meta i,
+		.eyebrow i {
+			font-size: 0.95em;
+		}
+
+		.meta i {
+			margin-right: 6px;
+			color: var(--accent);
+		}
+
+		.meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--space-2);
+			padding-top: var(--space-1);
+			font-size: 15px;
+			line-height: 1.6;
+			color: var(--secondary);
+			justify-content: flex-start;
+		}
+
+		.highlights-strip {
+			margin-top: var(--space-3);
+			padding: 0;
+			display: grid;
+			gap: var(--space-2);
+			padding-block: 44px;
+		}
+
+		.section.hero {
+			position: relative;
+			padding-block: 48px;
+			padding-inline: var(--space-3);
+			overflow: hidden;
+			width: 100vw;
+			margin-left: calc(50% - 50vw);
+		}
+
+		.section.hero::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			width: 100vw;
+			left: 50%;
+			transform: translateX(-50%);
+			background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0));
+			z-index: 0;
+		}
+
+		.hero-inner {
+			position: relative;
+			z-index: 1;
+		}
+
+		#selected-work {
+			position: relative;
+			margin-top: var(--space-5);
+			padding-block: 44px;
+			padding-inline: var(--space-3);
+			overflow: hidden;
+			width: 100vw;
+			margin-left: calc(50% - 50vw);
+		}
+
+		#selected-work::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 100vw;
+			background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.02));
+			z-index: 0;
+		}
+
+		.highlights-head {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: var(--space-1);
+			max-width: var(--container);
+			margin: 0 auto;
+			width: 100%;
+			text-align: left;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.highlights-head h2 {
+			font-size: 20px;
+			line-height: 1.3;
+			font-weight: 600;
+		}
+
+		.highlights-head p {
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--secondary);
+			max-width: 640px;
+		}
+
+		.stat-stack {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: var(--space-2);
+			align-items: stretch;
+			max-width: var(--container);
+			margin: 0 auto;
+			width: 100%;
+		}
+
+		.section-label-group {
+			display: grid;
+			gap: var(--space-1);
+			margin-bottom: var(--space-3);
+		}
+
+		.work-card-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(220px, 1fr));
+			gap: var(--space-3);
+		}
+
+		@media (max-width: 960px) {
+			.work-card-grid {
+				grid-template-columns: repeat(2, minmax(220px, 1fr));
+			}
+		}
+
+		@media (max-width: 640px) {
+			.work-card-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.case-note {
+			margin: 0 0 var(--space-2);
+			font-size: 15px;
+			line-height: 1.6;
+			color: var(--secondary);
+			max-width: 840px;
+		}
+
+		.selected-work-inner {
+			max-width: var(--container);
+			margin: 0 auto;
+			position: relative;
+			z-index: 1;
+		}
+
+		#selected-work .section-label-group,
+		#selected-work .case-note,
+		#selected-work .work-card-grid {
+			position: relative;
+			z-index: 1;
+		}
+
+		.work-card {
+			display: block;
+			padding: var(--space-3);
+			border-radius: 20px;
+			background: #ffffff;
+			border: 1px solid rgba(15, 23, 42, 0.08);
+			box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+			color: inherit;
+			text-decoration: none;
+			transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+		}
+
+		.work-card:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 18px 32px rgba(15, 23, 42, 0.2);
+			border-color: rgba(37, 99, 235, 0.25);
+		}
+
+		.work-card-index {
+			font-size: 14px;
+			font-weight: 600;
+			color: var(--accent);
+			margin-bottom: var(--space-2);
+		}
+
+		.work-card h3 {
+			margin: 0 0 var(--space-1);
+			font-size: 18px;
+			line-height: 1.3;
+		}
+
+		.work-card p {
+			margin: 0;
+			font-size: 15px;
+			line-height: 1.6;
+			color: var(--secondary);
+		}
+
+		.stat-row {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: var(--space-1);
+			padding: 20px;
+			height: 100%;
+			text-align: left;
+			border-radius: 20px;
+			background: rgba(255, 255, 255, 0.82);
+			box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+		}
+
+		.stat-icon {
+			width: 36px;
+			height: 36px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 12px;
+			background: rgba(37, 99, 235, 0.10);
+			color: var(--accent);
+			font-size: 16px;
+		}
+
+		.stat-value {
+			font-size: 22px;
+			line-height: 1.3;
+			font-weight: 600;
+			color: var(--accent);
+		}
+
+		.counter-value {
+			font-variant-numeric: tabular-nums;
+		}
+
+		.stat-copy {
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--secondary);
+		}
+
+		.section-header {
+			display: grid;
+			gap: var(--space-1);
+			margin-bottom: var(--space-3);
+		}
+
+		.section-header h2 {
+			font-size: 22px;
+			line-height: 1.3;
+			font-weight: 600;
+		}
+
+		.section-header p {
+			max-width: 640px;
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--secondary);
+		}
+
+		.work-list {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: var(--space-2);
+			max-width: var(--container);
+			margin: 0 auto;
+			width: 100%;
+		}
+
+		.work-group {
+			display: grid;
+			gap: var(--space-2);
+		}
+
+		.work-group+.work-group {
+			margin-top: var(--space-4);
+		}
+
+		.work-group-head {
+			display: grid;
+			gap: var(--space-1);
+			max-width: var(--container);
+			margin: 0 auto;
+			text-align: left;
+		}
+
+		.work-group-label {
+			font-size: 14px;
+			line-height: 1.6;
+			font-weight: 500;
+			color: var(--accent);
+		}
+
+		.work-group-head h3 {
+			font-size: 18px;
+			line-height: 1.4;
+			font-weight: 600;
+		}
+
+		.work-group-head p {
+			max-width: 680px;
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--secondary);
+		}
+
+		.work-item {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-2);
+			padding: 0;
+			min-height: 0;
+			justify-content: space-between;
+			background: transparent;
+			text-align: left;
+		}
+
+		.work-portrait {
+			width: 100%;
+			height: 104px;
+			border-radius: 20px;
+			background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.02));
+		}
+
+		.work-index {
+			font-size: 14px;
+			line-height: 1.6;
+			font-weight: 500;
+			color: var(--accent);
+		}
+
+		.work-item h3 {
+			font-size: 18px;
+			line-height: 1.4;
+			font-weight: 600;
+		}
+
+		.work-body {
+			display: grid;
+			gap: var(--space-2);
+		}
+
+		.work-summary,
+		.work-outcome {
+			font-size: 15px;
+			line-height: 1.7;
+			font-weight: 400;
+			color: var(--secondary);
+			max-width: 720px;
+		}
+
+		.work-note {
+			font-size: 14px;
+			line-height: 1.6;
+			font-weight: 500;
+			color: var(--accent);
+		}
+
+		.text-card {
+			max-width: none;
+			padding: 0;
+			display: grid;
+			gap: var(--space-2);
+			text-align: left;
+			max-width: var(--container);
+			margin: 0 auto;
+		}
+
+		.text-card h2 {
+			font-size: 22px;
+			line-height: 1.3;
+			font-weight: 600;
+		}
+
+		.text-card p {
+			font-size: 15px;
+			line-height: 1.7;
+			font-weight: 400;
+			color: var(--secondary);
+			max-width: 760px;
+		}
+
+		.two-column {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: var(--space-3);
+			max-width: var(--container);
+			margin: 0 auto;
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.two-column>.list-card {
+			width: 100%;
+			margin-left: 0;
+			padding-inline: 0;
+			background: transparent;
+		}
+
+		.list-section {
+			display: grid;
+			gap: var(--space-2);
+		}
+
+		.list-card {
+			padding: 0;
+		}
+
+		.list-section h2 {
+			font-size: 22px;
+			line-height: 1.3;
+			font-weight: 600;
+			text-align: left;
+		}
+
+		.simple-list {
+			display: grid;
+			gap: var(--space-2);
+			margin-top: var(--space-1);
+			text-align: left;
+		}
+
+		.simple-list div {
+			padding-bottom: var(--space-2);
+			border-bottom: 1px solid var(--line);
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--secondary);
+		}
+
+		.experience-item {
+			display: grid;
+			gap: var(--space-1);
+		}
+
+		.experience-item strong {
+			font-size: 16px;
+			font-weight: 600;
+			color: var(--text);
+		}
+
+		.experience-item span.work-note {
+			font-size: 14px;
+			color: var(--accent);
+			font-weight: 500;
+		}
+
+		.simple-list div:last-child {
+			padding-bottom: 0;
+			border-bottom: 0;
+		}
+
+		.footer {
+			padding: 0;
+			margin-top: var(--space-5);
+			display: grid;
+			gap: var(--space-1);
+			max-width: var(--container);
+			margin-inline: auto;
+			text-align: left;
+		}
+
+		.footer h2 {
+			font-size: 20px;
+			line-height: 1.3;
+			font-weight: 600;
+		}
+
+		.footer p {
+			max-width: 620px;
+			font-size: 15px;
+			line-height: 1.7;
+			color: var(--secondary);
+		}
+
+		.footer-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--space-3);
+		}
+
+		.footer-links a {
+			font-size: 15px;
+			font-weight: 500;
+			color: var(--accent);
+		}
+
+		@media (min-width: 768px) {
+			.page {
+				padding: 104px var(--space-5) var(--space-5);
+			}
+
+			.topbar-inner {
+				padding: var(--space-2) 0;
+			}
+		}
+
+		@media (max-width: 760px) {
+			.page {
+				padding: 80px var(--space-2) var(--space-2);
+			}
+
+			.topbar {
+				top: 0;
+			}
+
+			.scroll-progress {
+				top: calc(var(--topbar-height) + 1px);
+				height: 4px;
+			}
+
+			.topbar-inner {
+				flex-direction: column;
+				align-items: flex-start;
+				padding: var(--space-2) 0;
+			}
+
+			.hero-inner,
+			.work-list,
+			.work-item.featured,
+			.two-column {
+				grid-template-columns: 1fr;
+			}
+
+			.stat-stack {
+				grid-template-columns: 1fr;
+			}
+
+			.two-column {
+				gap: var(--space-4);
+			}
+
+			.hero-copy,
+			.hero-panel,
+			.text-card,
+			.list-card,
+			.footer {
+				padding: 20px;
+			}
+		}
+
+		@media (max-width: 560px) {
+			.hero {
+				padding-top: var(--space-4);
+			}
+
+			.hero-actions {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.section-label {
+				font-size: 18px;
+			}
+
+		}
+	</style>
+</head>
+
+<body>
+	<div class="page">
+		<div class="scroll-progress" aria-hidden="true">
+			<div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+		</div>
+		<header class="topbar">
+			<div class="container topbar-inner">
+				<div class="brand">Sujith Anand</div>
+				<nav class="nav" aria-label="Page sections">
+					<a href="#selected-work">Selected Work</a>
+					<a href="#what-i-do">What I Do</a>
+					<a href="#how-i-work">How I Work</a>
+				</nav>
+			</div>
+		</header>
+		<div class="container">
+			<section class="section hero" id="hero">
+				<div class="hero-inner">
+					<div class="hero-copy">
+						<h1>Sujith Anand</h1>
+						<div class="role-chip"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><span>Product
+								Design Manager | AI-Driven UX in GRC &amp; Legal Tech</span></div>
+						<div class="hero-intro">
+							<p>Product Design Manager with 8+ years scaling teams, processes, and AI-powered workflows
+								for <a href="https://mitratech.com/" target="_blank" rel="noreferrer">Mitratech</a> and
+								<a href="https://india.worksap.co.jp/" target="_blank" rel="noreferrer">Works
+									Applications</a>. Specialized in compliance and legal tech while turning UI teams
+								into full-stack UX/research functions.</p>
+							<p>Embedded AI across research, ideation, and delivery to speed cycles, improve consistency,
+								and keep data-heavy systems trustworthy.</p>
+						</div>
+						<div class="hero-actions">
+							<a class="link-cta" href="#selected-work">View Selected Work</a>
+							<a class="link-cta" href="https://linkedin.com/in/yourprofile" target="_blank"
+								rel="noreferrer">Connect on LinkedIn</a>
+						</div>
+						<div class="meta">
+							<span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Hyderabad, India</span>
+							<span><i class="fa-solid fa-link" aria-hidden="true"></i> sujithanand.com</span>
+							<span><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Open to product design
+								leadership</span>
+						</div>
+					</div>
+					<div class="hero-stage">
+						<img class="hero-portrait" src="img/IMG_2660 Background Removed.png"
+							alt="Sujith Anand portrait">
+					</div>
+				</div>
+			</section>
+
+			<section class="section" aria-labelledby="highlights-title">
+				<div class="highlights-strip">
+					<div class="highlights-head">
+						<h2 id="highlights-title"><span class="section-label"><span class="accent">Selected</span> <span
+									class="dark">Highlights</span></span></h2>
+						<p>Leadership impact across design, research, and AI adoption.</p>
+					</div>
+					<div class="stat-stack">
+						<div class="stat-row">
+							<div class="stat-icon"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+							<div class="stat-value counter-value" data-target="8" data-prefix="" data-suffix="+">8+
+							</div>
+							<div class="stat-copy">Years across enterprise product design, research, and delivery
+								leadership.</div>
+						</div>
+						<div class="stat-row">
+							<div class="stat-icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></div>
+							<div class="stat-value counter-value" data-target="1" data-prefix="0→" data-suffix="">0→1
+							</div>
+							<div class="stat-copy">Design practice built from the ground up into a structured UX and
+								research function.</div>
+						</div>
+						<div class="stat-row">
+							<div class="stat-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+							<div class="stat-value counter-value" data-target="60" data-prefix="" data-suffix="%">60%
+							</div>
+							<div class="stat-copy">Reduction in design cycle time through stronger systems and shared
+								process.</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="selected-work">
+				<div class="selected-work-inner">
+					<div class="section-label-group">
+						<h2 id="selected-work-title"><span class="section-label"><span class="accent">Selected</span>
+								<span class="dark">Work</span></span></h2>
+						<p>Leadership case studies + IC experiments that are clickable for deeper stories.</p>
+					</div>
+					<p class="case-note">These are a few curated picks—if you’d like the full set of case studies, drop
+						me a note at <a href="mailto:sujithanand96@gmail.com">sujithanand96@gmail.com</a>.
+					</p>
+					<div class="work-card-grid">
+						<a class="work-card" href="case-study-research-bot.html">
+							<div class="work-card-index">01</div>
+							<h3>AI Research Agent (BotDojo)</h3>
+							<p>Unified Gong, Salesforce, Zendesk, and Productboard into an always-on research assistant.
+							</p>
+						</a>
+						<a class="work-card" href="case-study-ai-search.html">
+							<div class="work-card-index">02</div>
+							<h3>AI Enterprise Risk Search</h3>
+							<p>Built a cross-product AI search for risk, third-party ops, and policy management content.
+							</p>
+						</a>
+						<a class="work-card" href="case-study-billing.html">
+							<div class="work-card-index">03</div>
+							<h3>Law Firm Billing Acceleration</h3>
+							<p>Combined onboarding and rate approvals so billing cycles dropped from 20 to 5 days.</p>
+						</a>
+						<a class="work-card" href="case-study-document-summarization.html">
+							<div class="work-card-index">04</div>
+							<h3>Policy Doc Summaries</h3>
+							<p>AI-powered briefings inside policy management to keep legal teams aligned quickly.</p>
+						</a>
+						<a class="work-card" href="case-study-building-design-team.html">
+							<div class="work-card-index">05</div>
+							<h3>0→1 Design Practice</h3>
+							<p>Built a 5-person UX/research team from scratch across Mitratech’s GRC product suite while
+								defining rituals, tools, and governance.</p>
+						</a>
+					</div>
+			</section>
+
+			<section class="section recommendations" aria-label="LinkedIn recommendations">
+				<div class="section-label-group">
+					<h2><span class="section-label"><span class="accent">Endorsements</span> <span class="dark">from
+								collaborators</span></span></h2>
+					<p>Selected LinkedIn recommendations from leaders and partners who worked closely with me.</p>
+				</div>
+				<div class="recommendation-grid">
+					<article class="recommendation-card">
+						<h3>Kirk Sadler · Global Transformation Product Executive</h3>
+						<p class="recommendation-meta"> Kirk managed me directly</p>
+						<p>I worked with Sujith for 4+ years. In that time, I watched him blossom from a great UX
+							designer (individual contributor) into a leader of designers. His ability to teach others
+							good design practices/processes/validation/etc so a company can scale from one to three to
+							seven products is admirable. What's more impressive is that this new leadership role was
+							within a new business unit to him; translation: Sujith had to step out of his knowledge zone
+							and deliver quickly.
+
+							Sujith is also a tech-forward designer, and in this day and age, that means AI-first. He
+							will find creative ways to get work done across a large portfolio by delegating and taking
+							on some work himself, using AI-enabled tools to show his team the way. He is a true
+							player-coach.
+
+							Sujith also comes through in a crunch. There were many times when deadlines to build a new
+							prototype, hype video, or client validation were in the range of 24 - 48 hours. His ability
+							to build a first version fast, iterate, and incorporate feedback was a blessing.
+						</p>
+					</article>
+					<article class="recommendation-card">
+						<h3>Suvitha S · Product Owner (Manager Level 3)</h3>
+						<p class="recommendation-meta">Worked on different teams</p>
+						<p>Wise, smart, amazing, and well educated UX Designer who can be trusted. Sujith always
+							completed tasks despite deadline pressure with favorable results.</p>
+					</article>
+					<article class="recommendation-card">
+						<h3>Sashi Kiran · AI Product Strategist</h3>
+						<p class="recommendation-meta">worked on the Same team</p>
+						<p>Sujith Anand has profound knowledge, great skills in modern business solutions, and a
+							take-charge attitude who presents creative solutions to complex problems.</p>
+					</article>
+					<article class="recommendation-card">
+						<h3>Santhosh Sivan · Senior Product Designer @ Kong Inc.</h3>
+						<p class="recommendation-meta">worked on the Same team</p>
+						<p>Sujith is wonderful to work with, has exceptional UI/UX expertise, solid work ethic, and a
+							very positive attitude. He earns my highest recommendation.</p>
+					</article>
+				</div>
+			</section>
+			<section class="section two-column">
+				<div class="list-card">
+					<div class="list-section" id="what-i-do">
+						<h2><span class="section-label"><span class="accent">What</span> <span class="dark">I
+									Do</span></span></h2>
+						<div class="simple-list">
+							<div>UX Strategy &amp; Product Design</div>
+							<div>AI in Design Workflows</div>
+							<div>User Research &amp; Discovery</div>
+							<div>Enterprise &amp; Data-heavy UX</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="list-card">
+					<div class="list-section" id="how-i-work">
+						<h2><span class="section-label"><span class="accent">How</span> <span class="dark">I
+									Work</span></span></h2>
+						<div class="simple-list">
+							<div>Focus on problem clarity over process theatre</div>
+							<div>Use AI as a decision-support tool, not a shortcut</div>
+							<div>Balance hands-on design with leadership</div>
+							<div>Prioritize impact, speed, and scalability</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	<script>
+		(function () {
+			const topbar = document.querySelector('.topbar');
+			const counters = Array.from(document.querySelectorAll('.counter-value'));
+			const progressTrack = document.querySelector('.scroll-progress');
+			const progressBar = document.getElementById('scroll-progress-bar');
+			if (!progressBar || !topbar || !progressTrack) return;
+
+			const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const storageKey = 'myhome-highlight-counters-seen';
+
+			function syncTopbarHeight() {
+				document.documentElement.style.setProperty('--topbar-height', `${topbar.offsetHeight}px`);
+			}
+
+			function renderCounter(el, value) {
+				const prefix = el.dataset.prefix || '';
+				const suffix = el.dataset.suffix || '';
+				el.textContent = `${prefix}${value}${suffix}`;
+			}
+
+			function animateCounter(el) {
+				const target = Number(el.dataset.target || 0);
+				const duration = 1200;
+				const start = performance.now();
+
+				function tick(now) {
+					const progress = Math.min(1, (now - start) / duration);
+					const eased = 1 - Math.pow(1 - progress, 3);
+					const value = Math.round(target * eased);
+					renderCounter(el, value);
+					if (progress < 1) {
+						requestAnimationFrame(tick);
+					}
+				}
+
+				requestAnimationFrame(tick);
+			}
+
+			function setFinalCounters() {
+				counters.forEach((el) => renderCounter(el, el.dataset.target || '0'));
+			}
+
+			function runCountersIfNeeded() {
+				if (motionQuery.matches) {
+					setFinalCounters();
+					return;
+				}
+
+				if (localStorage.getItem(storageKey) === '1') {
+					setFinalCounters();
+					return;
+				}
+
+				setFinalCounters();
+				requestAnimationFrame(() => {
+					counters.forEach(animateCounter);
+				});
+				localStorage.setItem(storageKey, '1');
+			}
+
+			function updateProgress() {
+				const doc = document.documentElement;
+				const maxScroll = doc.scrollHeight - window.innerHeight;
+				const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+				const isScrolled = window.scrollY > 8;
+				progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+				topbar.classList.toggle('is-scrolled', isScrolled);
+				progressTrack.classList.toggle('is-visible', isScrolled);
+			}
+
+			syncTopbarHeight();
+			runCountersIfNeeded();
+			updateProgress();
+			window.addEventListener('resize', syncTopbarHeight);
+			window.addEventListener('scroll', updateProgress, { passive: true });
+			window.addEventListener('resize', updateProgress);
+		})();
+	</script>
+</body>
+
+</html>
+</div>
+</div>
+</section>
