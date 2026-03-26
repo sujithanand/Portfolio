@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building a 0→1 Design Practice in GRC</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f5f7fe;
+      --container: 1080px;
+      --text: #111;
+      --muted: #5c6473;
+      --accent: #2563eb;
+      --surface: #fff;
+      --gap: 24px;
+    }
+
+    *,*::before,*::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 56px var(--gap);
+    }
+
+    .case-panel {
+      max-width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: 32px var(--gap);
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    }
+
+    .case-header {
+      margin: 0 0 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 42px);
+      margin: 0 0 16px;
+    }
+
+    .case-desc {
+      max-width: 720px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .1);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(37, 99, 235, .12);
+      box-shadow: 0 15px 35px rgba(15, 23, 42, .1);
+    }
+
+    .summary-card strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .summary-card strong i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .summary-card span {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .case-section {
+      margin: 0 0 32px;
+    }
+
+    .case-section h2 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .section-hero-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, .1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .case-section h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .case-section p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .case-section ul {
+      margin: 0 0 12px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .case-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 64px 0 0;
+    }
+
+    .case-footer a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="case-panel">
+      <div class="case-header">
+        <a class="back-link" href="myhome.html#selected-work">← Back to home</a>
+        <p class="eyebrow">Case Study</p>
+        <h1>Building a 0→1 Design Practice in GRC</h1>
+        <p class="case-desc">Transforming design from a UI execution function into a strategic UX and research capability across 13 enterprise products.</p>
+        <div class="chips">
+          <span class="chip">Design Leadership</span>
+          <span class="chip">GRC</span>
+          <span class="chip">Research Ops</span>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><strong><i class="fa-solid fa-user-gear"></i>Role</strong><span>Product Design Manager & capability builder</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-microscope"></i>Methods</strong><span>Stakeholder touring, research frameworks, AI tooling</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-users-gear"></i>Team</strong><span>Scaled from 1 → 5 designers</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-lightbulb"></i>Outcome</strong><span>60% faster design + 50% faster research cycles</span></div>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-signal"></i></span>Phase 1: Problem Definition & Opportunity</h2>
+        <h3>Context</h3>
+        <p>Design operated primarily as a UI delivery function with limited strategic influence while the business managed 13 enterprise GRC products. Each product evolved independently, resulting in fragmented experiences and inconsistent interaction patterns.</p>
+        <h3>How I Identified the Problem</h3>
+        <ul>
+          <li>Stakeholder conversations with Product and Engineering leads highlighted workflow bottlenecks.</li>
+          <li>User exposure to enterprise workflows surfaced usability gaps.</li>
+          <li>Product audits revealed inconsistent experiences and disconnected design standards.</li>
+          <li>Customer signals across support and feedback confirmed systemic gaps.</li>
+        </ul>
+        <h3>Key Problems Identified</h3>
+        <ul>
+          <li>Design was reactive, focused on UI rather than problem definition.</li>
+          <li>There was no structured research capability or insight governance.</li>
+          <li>Customer insights were fragmented across tools.</li>
+          <li>Shared UX standards were missing, slowing cycles.</li>
+        </ul>
+        <h3>Why This Needed to Be Solved</h3>
+        <p>The issues eroded product quality, slowed delivery, and forced decisions based on assumptions—critical risks in complex, high-stakes GRC tasks.</p>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-shapes"></i></span>Phase 2: Solution Design</h2>
+        <h3>Strategy</h3>
+        <p>The focus shifted from point solutions to building organizational systems covering people, process, and tools.</p>
+        <h3>Key Interventions</h3>
+        <ul>
+          <li>Repositioned design as a strategic partner, embedded in discovery, and aligned Product, Engineering, and Design around user problems.</li>
+          <li>Established a repeatable research framework using contextual inquiry, workflow analysis, and standardized insight capture, including international research (UK).</li>
+          <li>Scaled the team from 1 to 5 designers, defined ownership across products, and mentored designers to operate beyond execution.</li>
+          <li>Adopted an AI-first design workflow, integrating AI across research, ideation, and execution as a decision-support tool.</li>
+          <li>Built BotDojo, an AI research agent connecting Gong, Salesforce, Zendesk, and Productboard for centralized insights.</li>
+        </ul>
+        <h3>Stakeholder Alignment</h3>
+        <p>Close collaboration with leadership emphasized business impact, demonstrated early wins, and secured buy-in by framing design improvements in strategic terms.</p>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-gears"></i></span>Phase 3: Implementation & Adoption</h2>
+        <h3>Implementation</h3>
+        <ul>
+          <li>Rolled out design and research frameworks incrementally within existing workflows.</li>
+          <li>Introduced AI tools with training and clear use cases so designers were enabled and accountable.</li>
+          <li>Embedded design into product workflows rather than separating it as another process.</li>
+        </ul>
+        <h3>Driving Adoption</h3>
+        <p>Adoption came from making the new system easier and more effective than the legacy approach, not through enforcement. Shared visibility, self-serve insights, and regular collaboration reinforced the change.</p>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-bullseye"></i></span>Impact</h2>
+        <ul>
+          <li>Design cycle time shrank by 60% (two weeks to four days).</li>
+          <li>Research cycle time dropped 50% (three weeks to 1.5 weeks).</li>
+          <li>Scaled the design team from 1 to 5 contributors.</li>
+          <li>Enabled self-serve research via BotDojo and improved consistency across 13 products.</li>
+        </ul>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-eye"></i></span>Reflection</h2>
+        <p>Scaling design is about building systems that enable better decisions. The most impactful changes came from making insights accessible, aligning teams around real needs, and reducing workflow friction—AI amplified that work but judgment stayed central.</p>
+      </div>
+      <div class="case-footer">
+        <p>More context is available—please email <a href="mailto:sujithanand96@gmail.com">sujithanand96@gmail.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

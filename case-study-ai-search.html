@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Search Across Risk & Compliance</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f5f5ff;
+      --container: 1080px;
+      --text: #111;
+      --muted: #5c6473;
+      --accent: #2563eb;
+      --surface: #fff;
+      --gap: 24px;
+    }
+
+    *,*::before,*::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 56px var(--gap);
+    }
+
+    .case-panel {
+      max-width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: 32px var(--gap);
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    }
+
+    .case-header {
+      margin: 0 0 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 42px);
+      margin: 0 0 16px;
+    }
+
+    .case-desc {
+      max-width: 720px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .1);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(37, 99, 235, .12);
+      box-shadow: 0 15px 35px rgba(15, 23, 42, .1);
+    }
+
+    .summary-card strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .summary-card strong i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .summary-card span {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .case-section {
+      margin: 0 0 32px;
+    }
+
+    .case-section h2 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+
+    .insight-card {
+      padding: 16px;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .insight-card p {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .insight-card .insight-meta {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .insight-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .design-demo {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.02));
+      border-radius: 28px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+    }
+
+    .design-demo h3 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .search-demo {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.15);
+      display: grid;
+      gap: 16px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .search-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .search-input {
+      width: 100%;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      background: transparent;
+      outline: none;
+      color: rgba(15, 23, 42, 0.9);
+    }
+
+    .recent-searches {
+      padding: 12px 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .recent-searches[hidden] {
+      display: none !important;
+    }
+
+    .recent-searches h4 {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .recent-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .recent-tag {
+      padding: 6px 12px;
+      background: rgba(37, 99, 235, 0.12);
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .result-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .result-grid.collapsed {
+      display: none !important;
+    }
+
+    .result-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0 8px;
+    }
+
+    .result-tabs[hidden] {
+      display: none !important;
+    }
+
+    .result-tab {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      background: #fff;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 120ms ease;
+    }
+
+    .result-tab.active {
+      background: rgba(37, 99, 235, 0.12);
+      border-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .result-card {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+      display: grid;
+      gap: 8px;
+    }
+
+    .result-card:nth-child(2) {
+      /* spacing only */
+    }
+
+    .result-card:nth-child(3) {
+      /* spacing only */
+    }
+
+    .result-card h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .result-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent);
+    }
+
+    .section-hero-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, .1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .case-section h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .case-section p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .case-section ul {
+      margin: 0 0 12px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .case-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 64px 0 0;
+    }
+
+    .case-footer a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="case-panel">
+      <div class="case-header">
+        <a class="back-link" href="myhome.html#selected-work">← Back to home</a>
+        <p class="eyebrow">Case Study</p>
+        <h1>AI Search Across Risk, Third-Party, and Policy Tools</h1>
+        <p class="case-desc">Designed a unified, intelligent search experience across risk, governance, compliance, controls, and questionnaire modules so Enterprise Risk Manager users can find answers without hopping between silos.</p>
+        <div class="chips">
+          <span class="chip">Enterprise AI</span>
+          <span class="chip">Risk & Compliance</span>
+          <span class="chip">Governance</span>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><strong><i class="fa-solid fa-user-gear"></i>Role</strong><span>Design lead, global search experience</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-microscope"></i>Methods</strong><span>User interviews, workflow observation, intent mapping</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-users-gear"></i>Users</strong><span>Risk managers, compliance operators, governance leads</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-lightbulb"></i>Outcome</strong><span>AI-powered global search across siloed GRC modules</span></div>
+      </div>
+    <div class="case-section">
+      <h2><span class="section-hero-icon"><i class="fa-solid fa-signal"></i></span>Phase 1: Problem Definition &amp; Opportunity</h2>
+      <h3>Context</h3>
+      <p>Enterprise Risk Manager bundled risk, governance, compliance, controls, and questionnaire modules, yet each function lived in a separate silo. Critical information existed, but users had to navigate across modules manually, slowing down decision-making.</p>
+      <p>The search experience was inconsistent: accuracy varied per module, discoverability suffered, and teams often bypassed search entirely.</p>
+      <ul>
+        <li>Risk</li>
+        <li>Governance</li>
+        <li>Compliance</li>
+        <li>Controls</li>
+        <li>Questionnaires</li>
+      </ul>
+      <h3>How I Identified the Problem</h3>
+      <ul>
+        <li>User interviews revealed frustration with cross-module navigation.</li>
+        <li>Support tickets highlighted recurring search accuracy complaints.</li>
+        <li>Productboard feedback contained repeated asks for better cross-module visibility.</li>
+        <li>Workflow observation showed users favoring manual jumps over search.</li>
+      </ul>
+      <h3>User Interview Insights</h3>
+      <div class="insight-grid">
+        <article class="insight-card">
+          <p>“If I’m reviewing a risk, I usually need related controls or policies… but I have to jump between sections to piece it together.”</p>
+          <p class="insight-meta">Risk Analyst</p>
+        </article>
+        <article class="insight-card">
+          <p>“Search exists, but I don’t rely on it. It doesn’t always return what I expect.”</p>
+          <p class="insight-meta">Compliance Manager</p>
+        </article>
+        <article class="insight-card">
+          <p>“Finding the right information depends on knowing exactly where it lives.”</p>
+          <p class="insight-meta">Governance Lead</p>
+        </article>
+        <article class="insight-card">
+          <p>“I spend more time navigating than actually analyzing the data.”</p>
+          <p class="insight-meta">Risk Manager</p>
+        </article>
+        <article class="insight-card">
+          <p>“Even when I search, I get too many results that aren’t relevant. It’s faster to just click through.”</p>
+          <p class="insight-meta">Internal Auditor</p>
+        </article>
+        <article class="insight-card">
+          <p>“We deal with controls and questionnaires a lot, but there’s no easy way to connect them to risks without digging around.”</p>
+          <p class="insight-meta">Third-Party Risk Specialist</p>
+        </article>
+        <article class="insight-card">
+          <p>“The lack of contextual results makes me double-check every search outcome.”</p>
+          <p class="insight-meta">Security Lead</p>
+        </article>
+        <article class="insight-card">
+          <p>“I need a single answer, not a list of unrelated records.”</p>
+          <p class="insight-meta">Audit Director</p>
+        </article>
+        <article class="insight-card">
+          <p>“Connecting risks with controls should happen automatically; currently it feels manual.”</p>
+          <p class="insight-meta">Control Owner</p>
+        </article>
+      </div>
+      <h3>Key Problems Identified</h3>
+      <ul>
+        <li>No unified search across the five core modules.</li>
+        <li>Users relied on manual navigation across sections.</li>
+        <li>Existing search behaved inconsistently and missed context.</li>
+        <li>Heavy cognitive load due to data-dense interfaces.</li>
+        <li>Difficulty connecting related information spread across modules.</li>
+      </ul>
+      <h3>Why This Needed to Be Solved</h3>
+      <p>This inefficiency slowed information access, weakened decision-making, and frustrated users in a high-stakes environment. The opportunity was to transition from navigation-driven workflows to search-driven access.</p>
+    </div>
+    <div class="case-section">
+      <h2><span class="section-hero-icon"><i class="fa-solid fa-shapes"></i></span>Phase 2: Solution Design</h2>
+      <h3>Strategy</h3>
+      <p>Designed a global, AI-powered search system that operates across every module, learns user intent, and surfaces relevant results without forcing module switches.</p>
+      <h3>Solution Overview</h3>
+      <p>Introduced a single unified search interface for Enterprise Risk Manager that indexes risk records, governance structures, compliance data, controls, and questionnaires.</p>
+      <h3>Key Design Decisions</h3>
+      <h4>1. Unified Search Entry Point</h4>
+      <ul>
+        <li>Created a prominent search bar as the primary entry point.</li>
+        <li>Ensured users no longer needed to switch modules manually.</li>
+        <li>Delivered consistent behavior across data types.</li>
+      </ul>
+      <h4>2. Context-Aware Results</h4>
+      <ul>
+        <li>Interpret intent beyond keywords.</li>
+        <li>Prioritize results by relevance and contextual cues.</li>
+        <li>Group answers by module (risk, governance, compliance, controls, questionnaires).</li>
+      </ul>
+      <h4>3. Scalable Information Architecture</h4>
+      <ul>
+        <li>Handled large volumes of enterprise data with grouping and hierarchy.</li>
+        <li>Prepared the system to scale into future modules.</li>
+      </ul>
+      <h4>4. AI-Driven Enhancements</h4>
+      <ul>
+        <li>Used AI-assisted ranking for partial, ambiguous, and natural-language queries.</li>
+        <li>Reduced noise, surfaced signal quickly.</li>
+      </ul>
+      <h4>5. Interaction Design</h4>
+      <ul>
+        <li>Optimized for keyboard-first interactions.</li>
+        <li>Allowed progressive refinement of results.</li>
+        <li>Reduced the steps needed to reach critical records.</li>
+      </ul>
+      <h3>Stakeholder Alignment</h3>
+      <p>Partnered with Product and Engineering to balance relevance with performance, demonstrated workflow wins, and positioned global search as a strategic capability.</p>
+    </div>
+    <div class="case-section">
+      <h2><span class="section-hero-icon"><i class="fa-solid fa-microchip-ai"></i></span>Design for AI-Powered Global Search</h2>
+      <div class="design-demo">
+        <h3>Animated global search interaction</h3>
+        <div class="search-demo">
+          <div class="search-bar">
+            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" id="global-search" class="search-input" placeholder="Search risks, controls, policies, questionnaires..." aria-label="Global search">
+          </div>
+          <div class="recent-searches" id="recent-searches" hidden>
+            <h4>Recent searches</h4>
+            <div class="recent-tags">
+              <span class="recent-tag">vendor risk</span>
+              <span class="recent-tag">fire incident</span>
+              <span class="recent-tag">questionnaire</span>
+            </div>
+          </div>
+          <div class="result-tabs" id="result-tabs" hidden>
+            <button class="result-tab active" data-cat="All">All</button>
+            <button class="result-tab" data-cat="Risks">Risks</button>
+            <button class="result-tab" data-cat="Controls">Controls</button>
+            <button class="result-tab" data-cat="Questionnaires">Questionnaires</button>
+            <button class="result-tab" data-cat="Policies">Policies</button>
+            <button class="result-tab" data-cat="Tasks">Tasks</button>
+            <button class="result-tab" data-cat="Mitigation">Mitigation</button>
+          </div>
+          <div class="result-grid collapsed" id="result-grid"></div>
+        </div>
+      </div>
+    </div>
+    <div class="case-section">
+      <h2><span class="section-hero-icon"><i class="fa-solid fa-gears"></i></span>Phase 3: Implementation &amp; Adoption</h2>
+      <h3>Implementation</h3>
+      <ul>
+        <li>Delivered the search experience within Enterprise Risk Manager.</li>
+        <li>Integrated across modules and normalized results.</li>
+        <li>Iterated relevance and UX based on feedback.</li>
+      </ul>
+      <h3>Driving Adoption</h3>
+      <ul>
+        <li>Embedded search as the primary workflow entry point.</li>
+        <li>Reduced reliance on deep navigation.</li>
+        <li>Showcased faster access to insights with concrete use cases.</li>
+      </ul>
+      <p>Guiding principle: make search the fastest, most reliable way to access information.</p>
+    </div>
+    <div class="case-section">
+      <h2><span class="section-hero-icon"><i class="fa-solid fa-bullseye"></i></span>Impact</h2>
+      <ul>
+        <li>Reduced time spent searching across modules.</li>
+        <li>Improved efficiency for risk analysis and compliance workflows.</li>
+        <li>Increased visibility across interconnected data.</li>
+        <li>Cut dependence on manual navigation.</li>
+        <li>Raised trust in search as the primary interaction model.</li>
+      </ul>
+    </div>
+    <div class="case-section">
+      <h2><span class="section-hero-icon"><i class="fa-solid fa-eye"></i></span>Reflection</h2>
+      <p>Turning search into a system meant balancing relevance vs. performance, flexibility vs. clarity, and depth vs. simplicity. The biggest shift was moving users from navigating systems to directly accessing information, cutting friction in complex workflows.</p>
+    </div>
+      <div class="case-footer">
+        <p>Want the detailed story? Email <a href="mailto:sujithanand96@gmail.com">sujithanand96@gmail.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+    (function () {
+      const results = [
+      {
+        title: "Risk: third-party integration delay",
+        description: "Matching controls, policies, and questionnaire references across modules.",
+        tags: ["Risk", "Questionnaire"],
+        categories: ["Risks", "Mitigation"],
+        owner: "Alex"
+      },
+      {
+        title: "Control: access revocation policy",
+        description: "AI highlights related risks and mitigation actions tied to governance.",
+        tags: ["Control", "Governance"],
+        categories: ["Controls", "Tasks"],
+        owner: "Priya"
+      },
+      {
+        title: "Questionnaire: vendor due diligence",
+        description: "Instant context for auditors, policies, and compliance leads.",
+        tags: ["Questionnaire", "Compliance"],
+        categories: ["Questionnaires", "Compliance"],
+        owner: "Liam"
+      },
+      {
+        title: "Policy: incident response playbook",
+        description: "Links controls, risks, and governance approvals in one view.",
+        tags: ["Policy", "Risk"],
+        categories: ["Policies", "Risks"],
+        owner: "Sana"
+      },
+      {
+        title: "Control: vendor onboarding",
+        description: "Connects relevant questionnaires and compliance checkpoints.",
+        tags: ["Control", "Governance"],
+        categories: ["Controls", "Tasks"],
+        owner: "Ajay"
+      }
+    ];
+
+    const grid = document.getElementById("result-grid");
+    const input = document.getElementById("global-search");
+    const recent = document.getElementById("recent-searches");
+    const tabs = document.getElementById("result-tabs");
+    let currentCategory = "All";
+
+    const recentQueries = ["vendor risk", "fire incident", "questionnaire"];
+
+    function showRecent() {
+      if (recent) {
+        recent.hidden = false;
+      }
+      if (grid) {
+        grid.classList.add("collapsed");
+      }
+      if (tabs) tabs.hidden = true;
+    }
+
+    function hideRecent() {
+      if (recent) {
+        recent.hidden = true;
+      }
+    }
+
+    function showResults() {
+      hideRecent();
+      if (grid) {
+        grid.classList.remove("collapsed");
+      }
+      if (tabs) {
+        tabs.hidden = false;
+      }
+    }
+
+    function render(items) {
+      if (!grid) return;
+      grid.innerHTML = items.length
+        ? items
+            .map(
+              (item) => `
+        <article class="result-card">
+          <h4>${item.title}</h4>
+          <p>${item.description}</p>
+          <div class="result-meta">
+            ${item.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+            <span class="tag">Owner: ${item.owner}</span>
+          </div>
+        </article>
+      `
+            )
+            .join("")
+        : `<p>No results yet—refine your search.</p>`;
+    }
+
+    function upgradeQuery(value) {
+      const cleaned = value.trim().toLowerCase();
+      return cleaned;
+    }
+
+    function filterResults(query, category) {
+      return results.filter((item) => {
+        const matchesCategory = category === "All" || (item.categories || []).includes(category);
+        if (!matchesCategory) return false;
+        if (!query) return true;
+        const haystack = `${item.title} ${item.description} ${item.tags.join(" ")} ${(item.categories || []).join(" ")}`.toLowerCase();
+        return haystack.includes(query);
+      });
+    }
+
+    function handleInput(event) {
+      const query = upgradeQuery(event.target.value);
+      if (!query) {
+        showRecent();
+        render([]);
+        return;
+      }
+      render(filterResults(query, currentCategory));
+      showResults();
+    }
+
+    function handleTabClick(event) {
+      if (!(event.target instanceof HTMLElement)) return;
+      const tab = event.target.closest(".result-tab");
+      if (!tab) return;
+      currentCategory = tab.dataset.cat || "All";
+      if (tabs) {
+        tabs.querySelectorAll(".result-tab").forEach((btn) => btn.classList.remove("active"));
+        tab.classList.add("active");
+      }
+      const query = upgradeQuery(input?.value || "");
+      render(filterResults(query, currentCategory));
+      showResults();
+    }
+
+    if (tabs) {
+      tabs.addEventListener("click", handleTabClick);
+    }
+
+    if (input) {
+      input.addEventListener("input", handleInput);
+      input.addEventListener("focus", () => {
+        if (!upgradeQuery(input.value)) {
+          showRecent();
+        }
+      });
+      input.addEventListener("blur", () => {
+        setTimeout(() => {
+          if (!upgradeQuery(input.value)) {
+            hideRecent();
+            if (grid) grid.classList.add("collapsed");
+            if (tabs) tabs.hidden = true;
+          }
+        }, 150);
+      });
+    }
+
+    if (recent) {
+      recent.addEventListener("click", (event) => {
+        if (!(event.target instanceof HTMLElement)) return;
+        const tag = event.target.closest(".recent-tag");
+        if (!tag || !input) return;
+        input.value = tag.textContent || "";
+        handleInput({ target: input });
+      });
+    }
+
+    render([]);
+  })();
+</script>
+</html>

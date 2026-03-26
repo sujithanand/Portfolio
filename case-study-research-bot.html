@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BotDojo AI Research Agent</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+    :root {
+      --bg: #f5f5ff;
+      --container: 1080px;
+      --text: #111;
+      --muted: #5c6473;
+      --accent: #2563eb;
+      --surface: #fff;
+      --gap: 24px;
+    }
+
+    *,*::before,*::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 56px var(--gap);
+    }
+
+    .case-panel {
+      max-width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: 32px var(--gap);
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    }
+
+    .case-header {
+      margin: 0 0 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 42px);
+      margin: 0 0 16px;
+    }
+
+    .case-desc {
+      max-width: 720px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .1);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(37, 99, 235, .12);
+      box-shadow: 0 15px 35px rgba(15, 23, 42, .1);
+    }
+
+    .summary-card strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .summary-card strong i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .summary-card span {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .case-section {
+      margin: 0 0 32px;
+    }
+
+    .case-section h2 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .section-hero-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .case-section h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .case-section p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .case-section ul {
+      margin: 0 0 12px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .case-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 64px 0 0;
+    }
+
+    .case-footer a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .quote-grid {
+      margin: 24px 0 32px;
+      display: grid;
+      gap: 16px;
+      width: 100%;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .quote-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(15, 23, 42, .08);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, .08);
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .quote-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .quote-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quote-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .quote-meta {
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .quote-punc {
+      color: #f97316;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="case-panel">
+      <div class="case-header">
+        <a class="back-link" href="myhome.html#selected-work">← Back to home</a>
+        <p class="eyebrow">Case Study</p>
+        <h1>BotDojo: AI-Powered Research Agent</h1>
+        <p class="case-desc">Unifying customer and product insights that were trapped in Gong, Salesforce, Zendesk, and Productboard into a single, queryable surface so teams could respond faster with confidence.</p>
+        <div class="chips">
+          <span class="chip">AI Research</span>
+          <span class="chip">Insight Aggregation</span>
+          <span class="chip">Connector Platform</span>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><strong><i class="fa-solid fa-user-gear" aria-hidden="true"></i>Role</strong><span>Research systems lead</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-microscope" aria-hidden="true"></i>Methods</strong><span>Connector audits, synthesis automation, contextual inquiry</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-users-gear" aria-hidden="true"></i>Users</strong><span>PMs, UX researchers, customer-facing teams</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-lightbulb" aria-hidden="true"></i>Outcome</strong><span>Always-on AI agent that surfaces insight bundles across four platforms</span></div>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-signal"></i></span>Phase 1: Problem Definition & Opportunity</h2>
+        <h3>Context</h3>
+        <p>Insights lived across Gong conversation notes, Salesforce CRM data, Zendesk tickets, and Productboard feedback, yet no single pathway made those signals usable. Teams worked with stale, fragmented information.</p>
+        <h3>How I Identified the Problem</h3>
+        <ul>
+          <li>Observed research and product workflows that relied on manual synthesis.</li>
+          <li>Stakeholder discussions noted repeated delays in getting signal clarity.</li>
+          <li>Decision patterns relied on partial data or outdated assumptions.</li>
+          <li>Direct research showed insight gathering was slow and inconsistent.</li>
+        </ul>
+      <h3>Key Problems</h3>
+      <ul>
+        <li>Insights were fragmented across tools, requiring manual effort to compile.</li>
+        <li>Research synthesis was time-intensive and not scalable.</li>
+        <li>Teams lacked real-time access to user signals.</li>
+        <li>Decisions were often based on incomplete or outdated data.</li>
+      </ul>
+      <h3>Voices from the Team: Fragmented Research Pain Points</h3>
+      <div class="quote-grid">
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>There’s no shared source of truth. Everyone has a piece of the puzzle, but no one sees the whole picture.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Product Lead</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>I know the insights exist somewhere, but pulling them together takes more time than the decision itself.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Product Manager</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>We end up relying on the last thing we remember rather than the full picture, because getting that picture is just too slow.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Senior Product Manager</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>Every time we start a new initiative, it feels like we’re rediscovering the same insights instead of building on existing knowledge.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Product Manager</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>There’s data in Gong, feedback in Zendesk, notes in Productboard… but no single place to actually make sense of it.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Product Manager</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>Half of my time goes into finding and stitching insights together, not actually understanding the user.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Design Researcher</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>We’re not lacking data. We’re lacking a way to connect it meaningfully.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">UX Researcher</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>Insights are scattered, and by the time we compile them, they’re already outdated.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">Design Researcher</p>
+        </article>
+        <article class="quote-card">
+          <p class="quote-text"><span class="quote-punc">“</span>We do good research, but it doesn’t scale because every project starts from scratch.<span class="quote-punc">”</span></p>
+          <p class="quote-meta">UX Designer</p>
+        </article>
+      </div>
+      <h3>Why This Needed to Be Solved</h3>
+        <p>Delays hurt research and design cycles, increased reliance on individuals, reduced confidence, and blocked scaling research across products. The opportunity was to shift from periodic research to continuous, accessible insight.</p>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-shapes"></i></span>Phase 2: Solution Design</h2>
+        <h3>Strategy</h3>
+        <p>Built a centralized, AI-powered system that aggregates multiple sources, enables natural-language querying, and scales research accessibility.</p>
+        <h3>Solution Overview</h3>
+        <p>Designed and launched BotDojo, an AI research agent that normalizes data, surfaces summaries, and links back to source artifacts.</p>
+        <h3>Core System Design</h3>
+        <ul>
+          <li>Data inputs: Gong, Salesforce, Zendesk, Productboard.</li>
+          <li>AI layer: aggregation, processing, and synthesis of signals.</li>
+          <li>Interface: queryable surface with contextual summaries.</li>
+        </ul>
+        <h3>Key Design Decisions</h3>
+        <ul>
+          <li>Centralized fragmented data without replacing existing tools.</li>
+          <li>Enabled natural querying to reduce manual filtering.</li>
+          <li>Prioritized fast, usable insights over perfect analysis.</li>
+          <li>Designed for cross-functional use—design, PM, and customer teams.</li>
+        </ul>
+        <h3>Stakeholder Alignment</h3>
+        <p>Positioned the system as a way to reduce friction, showed faster insight retrieval, and secured engineering agreement on connector feasibility.</p>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-gears"></i></span>Phase 3: Implementation & Adoption</h2>
+        <h3>Implementation</h3>
+        <ul>
+          <li>Built BotDojo with connectors to the four enterprise tools.</li>
+          <li>Designed a simple interface for querying insights and reviewing sources.</li>
+          <li>Ensured outputs were actionable and surfaced clear next steps.</li>
+        </ul>
+        <h3>Driving Adoption</h3>
+        <ul>
+          <li>Embedded BotDojo into existing workflows rather than building new rituals.</li>
+          <li>Demonstrated use cases inside design and product scenarios.</li>
+          <li>Enabled teams with self-serve access and reduced dependency on centralized researchers.</li>
+        </ul>
+        <p>The principle was to make the system easier to use than not to use.</p>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-bullseye"></i></span>Impact</h2>
+        <ul>
+          <li>50% reduction in research cycle time (3 weeks → 1.5 weeks).</li>
+          <li>Real-time insight access across PM, design, and customer support teams.</li>
+          <li>Less dependency on manual synthesis and faster decision making.</li>
+          <li>Scalable research availability across multiple product teams.</li>
+        </ul>
+      </div>
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-eye"></i></span>Reflection</h2>
+        <p>The biggest challenge was not the lack of data but the lack of accessibility and synthesis; treating research as a system allowed broader adoption. AI enabled the shift, but the real value was in embedding it meaningfully into workflows.</p>
+      </div>
+      <div class="case-footer">
+        <p>Need the full write-up? Email <a href="mailto:sujithanand96@gmail.com">sujithanand96@gmail.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

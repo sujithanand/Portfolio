@@ -169,6 +169,11 @@
 
 		.section {
 			padding-top: var(--space-5);
+			margin-bottom: var(--space-5);
+		}
+
+		.highlights-section {
+			padding-top: 0;
 		}
 
 		.hero {
@@ -230,6 +235,29 @@
 
 		.section-label .dark {
 			color: var(--text);
+		}
+
+		.section-bg-wide {
+			position: relative;
+			padding: var(--space-4) 0;
+		}
+
+		.section-bg-wide::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			width: 100vw;
+			left: 50%;
+			transform: translateX(-50%);
+			background: radial-gradient(120% 120% at 30% 20%, rgba(37, 99, 235, 0.08), transparent 60%),
+				radial-gradient(120% 120% at 70% 50%, rgba(37, 99, 235, 0.08), transparent 60%),
+				linear-gradient(90deg, rgba(37, 99, 235, 0.05), rgba(255, 255, 255, 0.2));
+			z-index: 0;
+		}
+
+		.section-bg-wide > .container {
+			position: relative;
+			z-index: 1;
 		}
 
 		.hero-copy,
@@ -335,8 +363,28 @@
 
 		.recommendation-grid {
 			display: grid;
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-areas:
+				"kirk sashi"
+				"kirk suvitha"
+				"kirk santhosh";
 			gap: var(--space-3);
+		}
+
+		.rec-kirk { grid-area: kirk; }
+		.rec-sashi { grid-area: sashi; }
+		.rec-suvitha { grid-area: suvitha; }
+		.rec-santhosh { grid-area: santhosh; }
+
+		@media (max-width: 760px) {
+			.recommendation-grid {
+				grid-template-columns: 1fr;
+				grid-template-areas:
+					"kirk"
+					"sashi"
+					"suvitha"
+					"santhosh";
+			}
 		}
 
 		.recommendation-card {
@@ -520,6 +568,38 @@
 			line-height: 1.6;
 			font-weight: 500;
 			color: var(--accent);
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			border-radius: 12px;
+			padding: 10px 16px;
+			border: 1px solid transparent;
+			transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease, border-color 120ms ease;
+		}
+
+		.link-cta.primary {
+			background: var(--accent);
+			color: #fff;
+			border-color: var(--accent);
+			box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+		}
+
+		.link-cta.secondary {
+			background: #eef2ff;
+			color: var(--accent);
+			border-color: rgba(37, 99, 235, 0.3);
+		}
+
+		.link-cta.tertiary {
+			background: transparent;
+			color: var(--accent);
+			padding-inline: 8px;
+		}
+
+		.link-cta:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+			text-decoration: none;
 		}
 
 		.meta i,
@@ -645,14 +725,72 @@
 			gap: var(--space-3);
 		}
 
+		.work-grid {
+			display: grid;
+			gap: var(--space-2);
+		}
+
+		.articles-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.articles-viewport {
+			position: relative;
+		}
+
+		.articles-viewport.collapsed {
+			max-height: 520px;
+			overflow: hidden;
+		}
+
+		.articles-fade {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 140px;
+			background: linear-gradient(0deg, var(--bg), rgba(251, 251, 253, 0));
+			pointer-events: none;
+		}
+
+		.articles-more {
+			margin-top: var(--space-2);
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 10px 16px;
+			border-radius: 12px;
+			border: 1px solid rgba(37, 99, 235, 0.35);
+			background: #eef2ff;
+			color: var(--accent);
+			font-weight: 600;
+			cursor: pointer;
+			transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+		}
+
+		.articles-more:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+		}
+
+		.articles-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
 		@media (max-width: 960px) {
 			.work-card-grid {
 				grid-template-columns: repeat(2, minmax(220px, 1fr));
+			}
+			.articles-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
 		}
 
 		@media (max-width: 640px) {
 			.work-card-grid {
+				grid-template-columns: 1fr;
+			}
+			.articles-grid {
 				grid-template-columns: 1fr;
 			}
 		}
@@ -1089,6 +1227,8 @@
 					<a href="#selected-work">Selected Work</a>
 					<a href="#what-i-do">What I Do</a>
 					<a href="#how-i-work">How I Work</a>
+					<a href="#endorsements">Endorsements</a>
+					<a href="#articles">My Articles</a>
 				</nav>
 			</div>
 		</header>
@@ -1108,11 +1248,11 @@
 							<p>Embedded AI across research, ideation, and delivery to speed cycles, improve consistency,
 								and keep data-heavy systems trustworthy.</p>
 						</div>
-						<div class="hero-actions">
-							<a class="link-cta" href="#selected-work">View Selected Work</a>
-							<a class="link-cta" href="https://linkedin.com/in/yourprofile" target="_blank"
-								rel="noreferrer">Connect on LinkedIn</a>
-						</div>
+				<div class="hero-actions">
+					<a class="link-cta primary" href="#selected-work">View Selected Work</a>
+					<a class="link-cta secondary" href="#articles">Read My Articles</a>
+					<a class="link-cta tertiary" href="https://www.linkedin.com/in/sujithanand/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+				</div>
 						<div class="meta">
 							<span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Hyderabad, India</span>
 							<span><i class="fa-solid fa-link" aria-hidden="true"></i> sujithanand.com</span>
@@ -1127,7 +1267,7 @@
 				</div>
 			</section>
 
-			<section class="section" aria-labelledby="highlights-title">
+			<section class="section highlights-section" aria-labelledby="highlights-title">
 				<div class="highlights-strip">
 					<div class="highlights-head">
 						<h2 id="highlights-title"><span class="section-label"><span class="accent">Selected</span> <span
@@ -1202,59 +1342,68 @@
 					</div>
 			</section>
 
-			<section class="section recommendations" aria-label="LinkedIn recommendations">
+			<section class="section" id="articles" aria-label="Articles and writing" style="padding-bottom: var(--space-4);">
 				<div class="section-label-group">
-					<h2><span class="section-label"><span class="accent">Endorsements</span> <span class="dark">from
-								collaborators</span></span></h2>
-					<p>Selected LinkedIn recommendations from leaders and partners who worked closely with me.</p>
+					<h2 class="section-label"><span class="accent">My</span> <span class="dark">Articles</span></h2>
+					<p>Writing on AI in design, enterprise UX, and research systems.</p>
 				</div>
-				<div class="recommendation-grid">
-					<article class="recommendation-card">
-						<h3>Kirk Sadler · Global Transformation Product Executive</h3>
-						<p class="recommendation-meta"> Kirk managed me directly</p>
-						<p>I worked with Sujith for 4+ years. In that time, I watched him blossom from a great UX
-							designer (individual contributor) into a leader of designers. His ability to teach others
-							good design practices/processes/validation/etc so a company can scale from one to three to
-							seven products is admirable. What's more impressive is that this new leadership role was
-							within a new business unit to him; translation: Sujith had to step out of his knowledge zone
-							and deliver quickly.
-
-							Sujith is also a tech-forward designer, and in this day and age, that means AI-first. He
-							will find creative ways to get work done across a large portfolio by delegating and taking
-							on some work himself, using AI-enabled tools to show his team the way. He is a true
-							player-coach.
-
-							Sujith also comes through in a crunch. There were many times when deadlines to build a new
-							prototype, hype video, or client validation were in the range of 24 - 48 hours. His ability
-							to build a first version fast, iterate, and incorporate feedback was a blessing.
-						</p>
-					</article>
-					<article class="recommendation-card">
-						<h3>Suvitha S · Product Owner (Manager Level 3)</h3>
-						<p class="recommendation-meta">Worked on different teams</p>
-						<p>Wise, smart, amazing, and well educated UX Designer who can be trusted. Sujith always
-							completed tasks despite deadline pressure with favorable results.</p>
-					</article>
-					<article class="recommendation-card">
-						<h3>Sashi Kiran · AI Product Strategist</h3>
-						<p class="recommendation-meta">worked on the Same team</p>
-						<p>Sujith Anand has profound knowledge, great skills in modern business solutions, and a
-							take-charge attitude who presents creative solutions to complex problems.</p>
-					</article>
-					<article class="recommendation-card">
-						<h3>Santhosh Sivan · Senior Product Designer @ Kong Inc.</h3>
-						<p class="recommendation-meta">worked on the Same team</p>
-						<p>Sujith is wonderful to work with, has exceptional UI/UX expertise, solid work ethic, and a
-							very positive attitude. He earns my highest recommendation.</p>
-					</article>
+			<div class="articles-viewport collapsed">
+				<div class="work-grid articles-grid">
+					<a class="work-card" href="article-art-of-saying-no.html" aria-label="Article The Art of Saying No">
+						<h3>The Art of Saying No: When Designs Speak for Themselves</h3>
+							<p>January 11, 2025 — Why ruthless prioritization and intentional “no’s” keep interfaces focused and meaningful.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+						<a class="work-card" href="article-perfectionism-to-progress.html" aria-label="Article From Perfectionism to Progress">
+							<h3>From Perfectionism to Progress: Embracing Imperfection in Design</h3>
+							<p>January 17, 2025 — Moving from “perfect” to practical with Minimum Viable Design, faster testing, and feedback-first habits.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+						<a class="work-card" href="article-designing-within-limits.html" aria-label="Article Designing Within Limits">
+							<h3>Designing Within Limits: How Constraints Unlock Creativity</h3>
+							<p>January 31, 2025 — Why constraints fuel smarter solutions and drive impact in legacy systems.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+						<a class="work-card" href="article-kiss-minimalism.html" aria-label="Article KISS and Minimalism">
+							<h3>KISS and Minimalism: Keeping It Simple, Not Stripping It Down</h3>
+							<p>February 7, 2025 — Why minimalism is about what you keep and why, not just removing UI.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+						<a class="work-card" href="article-design-beyond-validation.html" aria-label="Article Design Beyond Validation">
+							<h3>Design Beyond Validation: Creating with Purpose</h3>
+							<p>January 24, 2025 — Designing for REAL impact (Results, Empathy, Actionable, Learn) instead of chasing praise.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+						<a class="work-card" href="article-invisible-design.html" aria-label="Article Does Good Design Even Need to Be Seen">
+							<h3>Does Good Design Even Need to Be Seen?</h3>
+							<p>February 15, 2025 — Why the best experiences feel invisible, effortless, and get out of the user’s way.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+						<a class="work-card" href="article-ai-tools-in-workflow.html" aria-label="Article Not Every AI Tool">
+							<h3>Not Every AI Tool Deserves a Place in Your Workflow</h3>
+							<p> October 10, 2025 — Adopting AI with a clear why, not just to look modern; value over noise.</p>
+							<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+						</a>
+					<a class="work-card" href="article-resume-first-design.html" aria-label="Article Your Resume Is Your First Design Deliverable">
+						<h3>Your Resume Is Your First Design Deliverable</h3>
+						<p>October 31, 2025 — Why your resume is judged like any design artifact and how to avoid common red flags.</p>
+						<p class="meta-line"><i class="fa-solid fa-user-pen" aria-hidden="true"></i> Sujith Anand · Product Design Manager</p>
+					</a>
 				</div>
-			</section>
-			<section class="section two-column">
-				<div class="list-card">
-					<div class="list-section" id="what-i-do">
-						<h2><span class="section-label"><span class="accent">What</span> <span class="dark">I
-									Do</span></span></h2>
-						<div class="simple-list">
+				<div class="articles-fade" aria-hidden="true"></div>
+			</div>
+			<div class="articles-actions">
+				<button class="articles-more" id="articles-show-more" type="button">View more articles</button>
+				<button class="articles-more" id="articles-show-less" type="button" style="display:none">View less</button>
+			</div>
+		</section>
+
+		<section class="section section-bg-wide two-column">
+			<div class="list-card">
+				<div class="list-section" id="what-i-do">
+					<h2><span class="section-label"><span class="accent">What</span> <span class="dark">I
+								Do</span></span></h2>
+					<div class="simple-list">
 							<div>UX Strategy &amp; Product Design</div>
 							<div>AI in Design Workflows</div>
 							<div>User Research &amp; Discovery</div>
@@ -1277,6 +1426,51 @@
 				</div>
 			</section>
 
+		<section class="section recommendations" id="endorsements" aria-label="LinkedIn recommendations">
+			<div class="section-label-group">
+				<h2><span class="section-label"><span class="accent">Endorsements</span> <span class="dark">from
+							collaborators</span></span></h2>
+				<p>Selected LinkedIn recommendations from leaders and partners who worked closely with me.</p>
+			</div>
+			<div class="recommendation-grid">
+				<article class="recommendation-card rec-kirk">
+					<h3>Kirk Sadler · Global Transformation Product Executive</h3>
+					<p class="recommendation-meta">Managed me directly</p>
+					<p>I worked with Sujith for 4+ years. In that time, I watched him blossom from a great UX
+						designer (individual contributor) into a leader of designers. His ability to teach others
+						good design practices/processes/validation/etc so a company can scale from one to three to
+						seven products is admirable. What's more impressive is that this new leadership role was
+						within a new business unit to him; translation: Sujith had to step out of his knowledge zone
+						and deliver quickly.</p>
+					<p>Sujith is also a tech-forward designer, and in this day and age, that means AI-first. He
+						will find creative ways to get work done across a large portfolio by delegating and taking
+						on some work himself, using AI-enabled tools to show his team the way. He is a true
+						player-coach.</p>
+					<p>Sujith also comes through in a crunch. There were many times when deadlines to build a new
+						prototype, hype video, or client validation were in the range of 24 - 48 hours. His ability
+						to build a first version fast, iterate, and incorporate feedback was a blessing.</p>
+				</article>
+				<article class="recommendation-card rec-sashi">
+					<h3>Sashi Kiran · AI Product Strategist</h3>
+					<p class="recommendation-meta">Worked on the same team</p>
+					<p>Sujith Anand has profound knowledge, great skills in modern business solutions, and a
+						take-charge attitude who presents creative solutions to complex problems.</p>
+				</article>
+				<article class="recommendation-card rec-suvitha">
+					<h3>Suvitha S · Product Owner (Manager Level 3)</h3>
+					<p class="recommendation-meta">Worked on different teams</p>
+					<p>Wise, smart, amazing, and well educated UX Designer who can be trusted. Sujith always
+						completed tasks despite deadline pressure with favorable results.</p>
+				</article>
+				<article class="recommendation-card rec-santhosh">
+					<h3>Santhosh Sivan · Senior Product Designer @ Kong Inc.</h3>
+					<p class="recommendation-meta">Worked on the same team</p>
+					<p>Sujith is wonderful to work with, has exceptional UI/UX expertise, solid work ethic, and a
+						very positive attitude. He earns my highest recommendation.</p>
+				</article>
+			</div>
+		</section>
+
 		</div>
 	</div>
 
@@ -1286,6 +1480,25 @@
 			const counters = Array.from(document.querySelectorAll('.counter-value'));
 			const progressTrack = document.querySelector('.scroll-progress');
 			const progressBar = document.getElementById('scroll-progress-bar');
+			const articlesViewport = document.querySelector('.articles-viewport');
+			const articlesFade = document.querySelector('.articles-fade');
+			const btnMore = document.getElementById('articles-show-more');
+			const btnLess = document.getElementById('articles-show-less');
+			if (articlesViewport && btnMore && btnLess) {
+				btnMore.addEventListener('click', () => {
+					articlesViewport.classList.remove('collapsed');
+					if (articlesFade) articlesFade.remove();
+					btnMore.style.display = 'none';
+					btnLess.style.display = 'inline-flex';
+				});
+				btnLess.addEventListener('click', () => {
+					articlesViewport.classList.add('collapsed');
+					btnLess.style.display = 'none';
+					btnMore.style.display = 'inline-flex';
+					// no fade on collapse per requirement
+					articlesViewport.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				});
+			}
 			if (!progressBar || !topbar || !progressTrack) return;
 
 			const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -1358,10 +1571,7 @@
 			window.addEventListener('scroll', updateProgress, { passive: true });
 			window.addEventListener('resize', updateProgress);
 		})();
-	</script>
+</script>
 </body>
 
 </html>
-</div>
-</div>
-</section>

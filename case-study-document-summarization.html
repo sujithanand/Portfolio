@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Policy Document Summaries</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #fbfbfd;
+      --container: 1080px;
+      --text: #111;
+      --muted: #5c6473;
+      --accent: #2563eb;
+      --surface: #fff;
+      --gap: 24px;
+    }
+
+    *,*::before,*::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 56px var(--gap);
+    }
+
+    .case-panel {
+      max-width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: 32px var(--gap);
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    }
+
+    .case-header {
+      margin: 0 0 40px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 42px);
+      margin: 0 0 16px;
+    }
+
+    .case-desc {
+      max-width: 720px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .1);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(37, 99, 235, .12);
+      box-shadow: 0 15px 35px rgba(15, 23, 42, .1);
+    }
+
+    .summary-card strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .summary-card strong i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .summary-card span {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .case-section {
+      margin: 0 0 32px;
+    }
+
+    .case-section h2 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .section-hero-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, .1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .case-section h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .case-section p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .case-section ul {
+      margin: 0 0 12px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .case-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 64px 0 0;
+    }
+
+  .case-footer a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .notice-banner {
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.22);
+    color: var(--text);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .notice-banner i {
+    color: var(--accent);
+    margin-top: 2px;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="case-panel">
+      <div class="case-header">
+        <a class="back-link" href="myhome.html#selected-work">← Back to home</a>
+        <p class="eyebrow">Case Study</p>
+        <h1>Policy Document Summaries</h1>
+        <p class="case-desc">Enabling legal teams to quickly understand policy changes and take action through AI-generated briefings embedded within the platform.</p>
+        <div class="chips">
+          <span class="chip">Policy AI</span>
+          <span class="chip">Legal Ops</span>
+          <span class="chip">Knowledge Workflows</span>
+        </div>
+        <div class="notice-banner">
+          <i class="fa-solid fa-circle-info"></i>
+          <p style="margin:0">This project is in progress; full case study details will be available soon. Happy to walk you through the current work—email <a href="mailto:sujithanand96@gmail.com" style="color:var(--accent);font-weight:600;text-decoration:underline">sujithanand96@gmail.com</a>.</p>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><strong><i class="fa-solid fa-user-gear"></i>Role</strong><span>Product Design Manager</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-microscope"></i>Methods</strong><span>Document audits, prompt engineering, workflow testing</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-users-gear"></i>Users</strong><span>Legal teams, compliance officers, policy reviewers</span></div>
+        <div class="summary-card"><strong><i class="fa-solid fa-lightbulb"></i>Focus</strong><span>AI integration, decision support, workflow efficiency</span></div>
+      </div>
+
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-signal"></i></span>Phase 1: Problem Definition &amp; Opportunity</h2>
+        <h3>Context</h3>
+        <p>Legal and compliance teams routinely review lengthy, dense policy documents to spot changes, assess impact, and trigger actions. Parallel updates increased effort and risk of delay.</p>
+        <h3>How I Identified the Problem</h3>
+        <ul>
+          <li>Observed users working inside the policy platform, watching how they navigated documents.</li>
+          <li>Interviews with legal and compliance teams about review workflows and delays.</li>
+          <li>Noted repeated manual scanning to extract key points and implications.</li>
+          <li>Mapped where comprehension—not access—was the bottleneck.</li>
+        </ul>
+        <h3>Key Problems Identified</h3>
+        <ul>
+          <li>Reviews were time-consuming; key changes had to be found manually.</li>
+          <li>Critical updates could be missed or acted on late.</li>
+          <li>No structured way to surface follow-ups or owners.</li>
+          <li>Review quality and speed varied across users.</li>
+        </ul>
+        <h3>Why This Needed to Be Solved</h3>
+        <p>Slow decision-making increased risk, raised cognitive load, and hurt efficiency when multiple updates landed together. The shift needed was from reading documents to understanding and acting on them.</p>
+      </div>
+
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-shapes"></i></span>Phase 2: Solution Design</h2>
+        <h3>Strategy</h3>
+        <p>Augment documents with intelligence so users can understand key updates quickly, know what matters, and act confidently—without leaving their workflow.</p>
+        <h3>Solution Overview</h3>
+        <p>Designed an AI-powered briefing system embedded in the policy platform that generates concise summaries, highlights critical changes, and surfaces follow-up actions.</p>
+        <h3>Key Design Interventions</h3>
+        <h4>1. AI-Generated Summaries</h4>
+        <ul>
+          <li>Extract key information from long-form policies into structured, readable briefs.</li>
+          <li>Cut the time to grasp updates.</li>
+        </ul>
+        <h4>2. Highlighting Critical Changes</h4>
+        <ul>
+          <li>Flag important updates and point to the relevant sections.</li>
+          <li>Reduce risk of missing critical information.</li>
+        </ul>
+        <h4>3. Action-Oriented Briefings</h4>
+        <ul>
+          <li>Turn summaries into actionable insights with suggested follow-ups.</li>
+          <li>Shift from passive reading to active decision-making.</li>
+        </ul>
+        <h4>4. Embedded Experience</h4>
+        <ul>
+          <li>Keep briefs inside the policy workflow to avoid context switching.</li>
+          <li>Access insights at the moment of review.</li>
+        </ul>
+        <h4>5. AI as Decision Support</h4>
+        <ul>
+          <li>Position AI as support, not replacement for legal judgment.</li>
+          <li>Keep outputs explainable and trustworthy.</li>
+        </ul>
+        <h3>Stakeholder Alignment</h3>
+        <p>Partnered with Product and Legal to balance automation with compliance, iterating outputs to fit real-world legal workflows.</p>
+      </div>
+
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-gears"></i></span>Phase 3: Implementation &amp; Adoption</h2>
+        <h3>Implementation</h3>
+        <ul>
+          <li>Integrated summarization into the platform with structured briefing layouts.</li>
+          <li>Validated outputs through user feedback and iteration.</li>
+          <li>Aligned summaries with legal expectations and standards.</li>
+        </ul>
+        <h3>Driving Adoption</h3>
+        <ul>
+          <li>Made briefs visible in-line to encourage natural use.</li>
+          <li>Reduced effort to process documents, building trust via consistent outputs.</li>
+          <li>Framed as a time-saving enhancement, not a requirement.</li>
+        </ul>
+      </div>
+
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-bullseye"></i></span>Impact</h2>
+        <ul>
+          <li>Reduced time to review policy documents.</li>
+          <li>Faster understanding and decision-making.</li>
+          <li>Higher confidence in catching critical updates.</li>
+          <li>More consistent review processes across teams.</li>
+        </ul>
+      </div>
+
+      <div class="case-section">
+        <h2><span class="section-hero-icon"><i class="fa-solid fa-eye"></i></span>Reflection</h2>
+        <p>In legal and compliance work, the challenge is sensemaking, not access. Embedding AI in the workflow reduced cognitive load, improved clarity, and accelerated confident decisions—while keeping human judgment in control.</p>
+      </div>
+      <div class="case-footer">
+        <p>Curious? Email <a href="mailto:sujithanand96@gmail.com">sujithanand96@gmail.com</a> for the latest walkthrough.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
