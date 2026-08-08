@@ -5,8 +5,9 @@
      console. It renders inside the widget's own document, so the script, if it
      survives sanitising, can reach the composer directly and send a question.
 
-     If the chips render but clicking does nothing, the script was stripped.
-     They still read as guidance in that case, so nothing looks broken.
+     The suggestions read as prompts, not buttons: a sparkle marker instead of
+     a border, so nothing promises a press that may not be wired. If the script
+     does run, a quiet colour shift on hover is the only hint.
 
      Styling matches sujithanand.com: Figtree for display, Inter for text,
      #9b72cb for the accent.
@@ -37,7 +38,7 @@
 		font-size: 14.5px;
 		line-height: 1.6;
 		color: #444746;
-		margin: 0 0 14px;
+		margin: 0 0 16px;
 	}
 
 	.sa-label {
@@ -46,44 +47,40 @@
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		color: #747775;
-		margin: 0 0 8px;
+		margin: 0 0 10px;
 	}
 
+	/* No border, no background, no box. A prompt, not a control. */
 	.sa-ask {
-		display: block;
+		display: flex;
+		align-items: flex-start;
+		gap: 9px;
 		width: 100%;
 		text-align: left;
 		font: inherit;
 		font-size: 14px;
-		line-height: 1.45;
+		line-height: 1.5;
 		color: #444746;
-		background: #fff;
-		padding: 10px 13px;
-		margin-bottom: 7px;
-		border: 1px solid #e3e3e3;
-		border-radius: 12px;
-		cursor: pointer;
-		transition: border-color .18s, background-color .18s, transform .18s, color .18s;
-	}
-
-	.sa-ask:hover {
-		border-color: transparent;
-		background: #f3ecfa;
-		color: #1f1f1f;
-		transform: translateX(3px);
-	}
-
-	/* Applied by the script once it has found the composer. Until then the
-	   chips stay looking like plain guidance rather than false affordances. */
-	.sa-hello:not(.sa-live) .sa-ask {
+		background: none;
+		border: 0;
+		padding: 7px 0;
 		cursor: default;
+		transition: color .18s;
 	}
 
-	.sa-hello:not(.sa-live) .sa-ask:hover {
-		border-color: #e3e3e3;
-		background: #fff;
-		color: #444746;
-		transform: none;
+	.sa-ask svg {
+		flex: 0 0 auto;
+		margin-top: 2px;
+	}
+
+	/* Only once the script has found the composer does it hint at anything,
+	   and then only with colour. */
+	.sa-live .sa-ask {
+		cursor: pointer;
+	}
+
+	.sa-live .sa-ask:hover {
+		color: #1f1f1f;
 	}
 </style>
 
@@ -92,10 +89,34 @@
 	<p>How I lead teams, the systems I own, and the products my team designs.</p>
 
 	<p class="sa-label">Try asking</p>
-	<button type="button" class="sa-ask">How do your designers ship front end code themselves?</button>
-	<button type="button" class="sa-ask">How do you run a design team across 13 products?</button>
-	<button type="button" class="sa-ask">What does the design system cover?</button>
-	<button type="button" class="sa-ask">How do you use AI in design work?</button>
+
+	<button type="button" class="sa-ask">
+		<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M12 2.5c.75 5.15 3.85 8.25 9 9-5.15.75-8.25 3.85-9 9-.75-5.15-3.85-8.25-9-9 5.15-.75 8.25-3.85 9-9Z" fill="#9b72cb" />
+		</svg>
+		<span>How do your designers ship front end code themselves?</span>
+	</button>
+
+	<button type="button" class="sa-ask">
+		<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M12 2.5c.75 5.15 3.85 8.25 9 9-5.15.75-8.25 3.85-9 9-.75-5.15-3.85-8.25-9-9 5.15-.75 8.25-3.85 9-9Z" fill="#9b72cb" />
+		</svg>
+		<span>How do you run a design team across 13 products?</span>
+	</button>
+
+	<button type="button" class="sa-ask">
+		<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M12 2.5c.75 5.15 3.85 8.25 9 9-5.15.75-8.25 3.85-9 9-.75-5.15-3.85-8.25-9-9 5.15-.75 8.25-3.85 9-9Z" fill="#9b72cb" />
+		</svg>
+		<span>What does the design system cover?</span>
+	</button>
+
+	<button type="button" class="sa-ask">
+		<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M12 2.5c.75 5.15 3.85 8.25 9 9-5.15.75-8.25 3.85-9 9-.75-5.15-3.85-8.25-9-9 5.15-.75 8.25-3.85 9-9Z" fill="#9b72cb" />
+		</svg>
+		<span>How do you use AI in design work?</span>
+	</button>
 </div>
 
 <script>
@@ -161,7 +182,7 @@
 			ask(chip.textContent.trim());
 		});
 
-		/* Only advertise the chips as clickable once the composer exists. */
+		/* Only hint that these do anything once the composer exists. */
 		var tries = 0;
 		(function wait() {
 			if (findInput()) {
