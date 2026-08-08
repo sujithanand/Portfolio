@@ -63,16 +63,6 @@
 		if (composer) composer.remove();
 		if (resetBtn) resetBtn.remove();
 
-		/* Our greeting, in our type and our gradient, above the provider's chat.
-		   The widget's own welcome message should be left short or empty in the
-		   BotDojo console, or the reader is welcomed twice. */
-		var hello = document.createElement("div");
-		hello.className = "chat-embed-hello";
-		hello.innerHTML =
-			'<h3>Hello. Ask me about <span class="g">design leadership</span>.</h3>' +
-			"<p>How I lead teams, the systems I own, and the products my team designs.</p>";
-		log.parentNode.insertBefore(hello, log);
-
 		var frame = document.createElement("iframe");
 		frame.className = "chat-frame";
 		frame.title = "Ask AI";
