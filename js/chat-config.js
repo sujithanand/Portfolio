@@ -10,20 +10,19 @@
                stays in .env, inside that process, and never reaches the
                browser. Unchanged, and this is what runs on localhost.
 
-   PRODUCTION  The page talks to BotDojo directly. The placeholder below is
-               substituted at deploy time by .github/workflows/deploy.yml,
-               which reads BOTDOJO_API_KEY from GitHub Actions secrets. The
-               repository never contains the key. The deployed site does,
-               because a static page has nowhere else to keep it.
+   PRODUCTION  The panel loads BotDojo's embedded widget in an iframe. The
+               key is substituted at deploy time by
+               .github/workflows/deploy.yml, which reads BOTDOJO_API_KEY from
+               GitHub Actions secrets, so the repository stays clean.
 
-   Two things must be true for production to work:
+               Calling api.botdojo.com from the page is not an option: that
+               API only accepts browser requests from BotDojo's own domains
+               and answers "Not allowed by CORS https://sujithanand.com".
+               The widget is served from embed.botdojo.com, which is allowed.
 
-     1. sujithanand.com has to be on BotDojo's allowed origins list. The API
-        currently answers "Not allowed by CORS https://sujithanand.com", and a
-        browser cannot work around that. Set it in the BotDojo console.
-
-     2. The key is public once deployed. Keep it on the personal account,
-        scoped to this one flow, and treat rotation as routine.
+               The key is public once deployed, which is inherent to the
+               embed snippet BotDojo issues. Keep it on the personal account
+               and treat rotation as routine.
    ========================================================================== */
 
 /* Substituted during deploy. Left as this literal placeholder in the
@@ -50,13 +49,18 @@ if (STATIC_ONLY_HOSTS.indexOf(location.hostname) === -1) {
 	window.CHAT_ENDPOINT = "/api/ask";
 	window.CHAT_DIRECT = null;
 } else {
-	/* Deployed: call BotDojo from the browser. If the placeholder was never
-	   substituted there is no usable key, so the button hides rather than
-	   offering a control that cannot work. */
+	/* Deployed: BotDojo's embedded widget, loaded into the Ask AI panel.
+
+	   Not a direct API call. api.botdojo.com only accepts browser requests
+	   from BotDojo's own domains, so a call from this site is rejected with
+	   "Not allowed by CORS" no matter what key it carries. The widget is
+	   served from embed.botdojo.com, which is on that allowlist, so framing
+	   it works where calling the API does not.
+
+	   Same key as the API, which is how BotDojo's embed snippet is issued.
+	   Substituted at deploy time, so the repository stays clean. */
 	window.CHAT_ENDPOINT = null;
-	window.CHAT_DIRECT = BOTDOJO_API_KEY.indexOf("__") === 0 ? null : {
-		url: BOTDOJO.baseUrl + "/accounts/" + BOTDOJO.accountId +
-			"/projects/" + BOTDOJO.projectId + "/flows/" + BOTDOJO.flowId + "/run",
-		key: BOTDOJO_API_KEY
-	};
+	window.CHAT_DIRECT = null;
+	window.CHAT_EMBED_URL = BOTDOJO_API_KEY.indexOf("__") === 0 ? null :
+		"https://embed.botdojo.com/embed/chat?key=" + encodeURIComponent(BOTDOJO_API_KEY);
 }
