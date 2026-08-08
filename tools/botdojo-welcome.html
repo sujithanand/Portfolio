@@ -1,0 +1,174 @@
+<!-- ===========================================================================
+     Welcome message for the BotDojo embedded widget.
+
+     Paste the whole thing into the flow's welcome message field in the BotDojo
+     console. It renders inside the widget's own document, so the script, if it
+     survives sanitising, can reach the composer directly and send a question.
+
+     If the chips render but clicking does nothing, the script was stripped.
+     They still read as guidance in that case, so nothing looks broken.
+
+     Styling matches sujithanand.com: Figtree for display, Inter for text,
+     #9b72cb for the accent.
+     =========================================================================== -->
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@600&family=Inter:wght@400;500&display=swap');
+
+	.sa-hello {
+		font-family: Inter, -apple-system, system-ui, sans-serif;
+		color: #1f1f1f;
+	}
+
+	.sa-hello h3 {
+		font-family: Figtree, 'Google Sans', system-ui, sans-serif;
+		font-weight: 600;
+		font-size: 21px;
+		line-height: 1.3;
+		letter-spacing: -0.02em;
+		margin: 0 0 10px;
+	}
+
+	.sa-hello .sa-grad {
+		color: #9b72cb;
+	}
+
+	.sa-hello p {
+		font-size: 14.5px;
+		line-height: 1.6;
+		color: #444746;
+		margin: 0 0 14px;
+	}
+
+	.sa-label {
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #747775;
+		margin: 0 0 8px;
+	}
+
+	.sa-ask {
+		display: block;
+		width: 100%;
+		text-align: left;
+		font: inherit;
+		font-size: 14px;
+		line-height: 1.45;
+		color: #444746;
+		background: #fff;
+		padding: 10px 13px;
+		margin-bottom: 7px;
+		border: 1px solid #e3e3e3;
+		border-radius: 12px;
+		cursor: pointer;
+		transition: border-color .18s, background-color .18s, transform .18s, color .18s;
+	}
+
+	.sa-ask:hover {
+		border-color: transparent;
+		background: #f3ecfa;
+		color: #1f1f1f;
+		transform: translateX(3px);
+	}
+
+	/* Applied by the script once it has found the composer. Until then the
+	   chips stay looking like plain guidance rather than false affordances. */
+	.sa-hello:not(.sa-live) .sa-ask {
+		cursor: default;
+	}
+
+	.sa-hello:not(.sa-live) .sa-ask:hover {
+		border-color: #e3e3e3;
+		background: #fff;
+		color: #444746;
+		transform: none;
+	}
+</style>
+
+<div class="sa-hello" id="sa-hello">
+	<h3>Hello. Ask me about <span class="sa-grad">design leadership</span>.</h3>
+	<p>How I lead teams, the systems I own, and the products my team designs.</p>
+
+	<p class="sa-label">Try asking</p>
+	<button type="button" class="sa-ask">How do your designers ship front end code themselves?</button>
+	<button type="button" class="sa-ask">How do you run a design team across 13 products?</button>
+	<button type="button" class="sa-ask">What does the design system cover?</button>
+	<button type="button" class="sa-ask">How do you use AI in design work?</button>
+</div>
+
+<script>
+	(function () {
+		"use strict";
+
+		var root = document.getElementById("sa-hello");
+		if (!root) return;
+
+		/* The composer is the widget's own textarea, in this same document. It
+		   may mount after the welcome message renders, so this is retried. */
+		function findInput() {
+			return document.querySelector("textarea")
+				|| document.querySelector('input[type="text"]');
+		}
+
+		/* React tracks its own value, so assigning .value directly is ignored.
+		   Going through the prototype setter and firing input makes React see
+		   the change. */
+		function setValue(el, text) {
+			var proto = el instanceof window.HTMLTextAreaElement
+				? window.HTMLTextAreaElement.prototype
+				: window.HTMLInputElement.prototype;
+			var setter = Object.getOwnPropertyDescriptor(proto, "value").set;
+			setter.call(el, text);
+			el.dispatchEvent(new Event("input", { bubbles: true }));
+		}
+
+		function submit(el) {
+			/* Prefer a real send button: it carries whatever handler the widget
+			   attached. Fall back to Enter, which most composers listen for. */
+			var form = el.closest("form");
+			var button = (form && form.querySelector('button[type="submit"]'))
+				|| (el.parentElement && el.parentElement.querySelector("button"))
+				|| (el.closest("div") && el.closest("div").querySelector("button"));
+
+			if (button && !button.disabled) {
+				button.click();
+				return;
+			}
+
+			["keydown", "keypress", "keyup"].forEach(function (type) {
+				el.dispatchEvent(new KeyboardEvent(type, {
+					key: "Enter", code: "Enter", keyCode: 13, which: 13,
+					bubbles: true, cancelable: true
+				}));
+			});
+		}
+
+		function ask(text) {
+			var el = findInput();
+			if (!el) return;
+			el.focus();
+			setValue(el, text);
+			/* One frame, so the widget's state settles before submitting. */
+			window.requestAnimationFrame(function () { submit(el); });
+		}
+
+		root.addEventListener("click", function (e) {
+			var chip = e.target.closest(".sa-ask");
+			if (!chip) return;
+			e.preventDefault();
+			ask(chip.textContent.trim());
+		});
+
+		/* Only advertise the chips as clickable once the composer exists. */
+		var tries = 0;
+		(function wait() {
+			if (findInput()) {
+				root.classList.add("sa-live");
+				return;
+			}
+			if (++tries < 40) window.setTimeout(wait, 150);
+		})();
+	})();
+</script>
