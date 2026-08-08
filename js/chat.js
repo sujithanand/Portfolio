@@ -34,12 +34,77 @@
 
 	if (!root || !opener) return;
 
-	/* No endpoint configured: remove the entry point entirely. A visible
-	   button that always errors is worse than no button. */
-	if (!ENDPOINT) {
+	/* Production path: BotDojo's own chat, loaded into this panel from a public
+	   embed URL. Keeps the button and the panel chrome, needs no proxy, and
+	   puts no secret in the page. */
+	var EMBED = window.CHAT_EMBED_URL || null;
+
+	if (!ENDPOINT && !EMBED) {
+		/* Nothing to talk to. Remove the entry point: a visible button that
+		   always errors is worse than no button. */
 		opener.remove();
 		root.remove();
 		return;
+	}
+
+	if (!ENDPOINT && EMBED) {
+		mountEmbed();
+		return;
+	}
+
+	function mountEmbed() {
+		var panelEl = document.getElementById("chat-panel");
+		panelEl.classList.add("is-embed");
+
+		/* The composer, the reset button and the disclaimer all belong to the
+		   custom UI. BotDojo's widget brings its own. */
+		var composer = panelEl.querySelector(".chat-composer");
+		if (composer) composer.remove();
+		if (resetBtn) resetBtn.remove();
+
+		var frame = document.createElement("iframe");
+		frame.className = "chat-frame";
+		frame.title = "Ask AI";
+		frame.setAttribute("loading", "lazy");
+		frame.setAttribute("allow", "clipboard-write");
+		log.replaceWith(frame);
+
+		function openEmbed() {
+			lastFocus = document.activeElement;
+			root.hidden = false;
+			requestAnimationFrame(function () { root.classList.add("is-open"); });
+			opener.setAttribute("aria-expanded", "true");
+			document.body.style.overflow = "hidden";
+			/* Loaded on first open rather than on page load, so the widget costs
+			   nothing to a visitor who never opens it. */
+			if (!frame.src) frame.src = EMBED;
+		}
+
+		function closeEmbed() {
+			root.classList.remove("is-open");
+			opener.setAttribute("aria-expanded", "false");
+			document.body.style.overflow = "";
+			window.setTimeout(function () { root.hidden = true; }, reduced ? 0 : 260);
+			if (lastFocus && lastFocus.focus) lastFocus.focus();
+		}
+
+		opener.addEventListener("click", function () {
+			if (root.hidden) openEmbed();
+			else closeEmbed();
+		});
+
+		Array.prototype.forEach.call(root.querySelectorAll("[data-chat-close]"), function (el) {
+			el.addEventListener("click", closeEmbed);
+		});
+
+		document.addEventListener("keydown", function (e) {
+			if (!root.hidden && e.key === "Escape") {
+				e.preventDefault();
+				closeEmbed();
+			}
+		});
+
+		if (window.location.hash === "#ask") openEmbed();
 	}
 
 	var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -23,14 +23,29 @@
                               GitHub Pages and the proxy lives elsewhere.
                               That host must allow this origin via CORS.
    ========================================================================== */
-/* Hosts where the site is served as static files with no proxy behind it.
-   Ask AI removes itself there. Everywhere else it assumes a proxy on the same
-   origin, so it stays visible during local development however the page is
-   opened, and reports a useful message if the proxy is not running.
+/* --- Production: BotDojo public embed ------------------------------------
+   BotDojo's embedded widget uses a PUBLIC embed key, meant for client side
+   HTML. It is not the server API key and must never be replaced with one.
+   Get it from the BotDojo console under Deploy, Embedded Widget, then paste
+   the whole iframe URL here:
 
-   When a proxy is deployed for production, replace this whole block with:
-       window.CHAT_ENDPOINT = "https://your-proxy-host/api/ask";
-   and allow this origin via CORS on that host. */
+       window.CHAT_EMBED_URL =
+           "https://embed.botdojo.com/embed/chat?key=YOUR_PUBLIC_EMBED_KEY";
+
+   With this set, the Ask AI panel hosts BotDojo's chat directly, so the site
+   needs no proxy and holds no secret. Leave it null to keep the panel hidden
+   in production.
+
+   Worth confirming in the BotDojo console: whether the embed key can be
+   restricted to sujithanand.com. Without a domain restriction anyone who
+   reads the page can point the key at your flow, which costs you usage. */
+window.CHAT_EMBED_URL = null;
+
+/* --- Local development ----------------------------------------------------
+   Hosts where the site is served as static files with no proxy behind it.
+   The custom chat UI removes itself there and the embed above takes over if
+   configured. Everywhere else it assumes a proxy on the same origin, so it
+   stays visible during local development however the page is opened. */
 var STATIC_ONLY_HOSTS = [
 	"sujithanand.com",
 	"www.sujithanand.com",
