@@ -39,6 +39,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Declared so this job can read secrets scoped to the github-pages
+    # environment. Without it, secrets.BOTDOJO_API_KEY resolves to empty here
+    # even when the secret exists, because environment secrets are only
+    # visible to jobs that name the environment. Repository secrets of the
+    # same name keep working either way.
+    environment: github-pages
     steps:
       - uses: actions/checkout@v4
 
@@ -59,11 +65,11 @@ jobs:
             fi
             echo "::error::BOTDOJO_API_KEY is not set, so Ask AI would deploy hidden."
             echo ""
-            echo "Add it as a REPOSITORY secret, not an environment secret:"
-            echo "  Settings, Secrets and variables, Actions, Repository secrets, New repository secret"
-            echo "  Name: BOTDOJO_API_KEY"
+            echo "Add BOTDOJO_API_KEY as either:"
+            echo "  a repository secret, or"
+            echo "  a secret on the github-pages environment, which this job now reads"
             echo ""
-            echo "Environment secrets on github-pages are not visible to this build job."
+            echo "Settings, Secrets and variables, Actions."
             echo "To deploy without the chat on purpose, set repository variable ALLOW_NO_KEY=true."
             exit 1
           fi
