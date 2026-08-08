@@ -48,10 +48,24 @@ jobs:
       - name: Inject the BotDojo key
         env:
           BOTDOJO_API_KEY: ${{ secrets.BOTDOJO_API_KEY }}
+          # Set repository variable ALLOW_NO_KEY to "true" to deploy without
+          # Ask AI, for example while the key is being rotated.
+          ALLOW_NO_KEY: ${{ vars.ALLOW_NO_KEY }}
         run: |
           if [ -z "$BOTDOJO_API_KEY" ]; then
-            echo "::warning::BOTDOJO_API_KEY is not set. Ask AI will stay hidden on the deployed site."
-            exit 0
+            if [ "$ALLOW_NO_KEY" = "true" ]; then
+              echo "::warning::BOTDOJO_API_KEY not set and ALLOW_NO_KEY is true. Deploying without Ask AI."
+              exit 0
+            fi
+            echo "::error::BOTDOJO_API_KEY is not set, so Ask AI would deploy hidden."
+            echo ""
+            echo "Add it as a REPOSITORY secret, not an environment secret:"
+            echo "  Settings, Secrets and variables, Actions, Repository secrets, New repository secret"
+            echo "  Name: BOTDOJO_API_KEY"
+            echo ""
+            echo "Environment secrets on github-pages are not visible to this build job."
+            echo "To deploy without the chat on purpose, set repository variable ALLOW_NO_KEY=true."
+            exit 1
           fi
           python3 - <<'PY'
           import io, os
@@ -82,6 +96,14 @@ jobs:
             fi
           done
           echo "Exclusions held."
+
+      - name: Confirm the key was substituted
+        run: |
+          if grep -q "__BOTDOJO_API_KEY__" _site/js/chat-config.js; then
+            echo "::error::The placeholder survived into _site. Ask AI will be hidden."
+            exit 1
+          fi
+          echo "Substitution confirmed in the built site."
 
       - uses: actions/upload-pages-artifact@v3
 
