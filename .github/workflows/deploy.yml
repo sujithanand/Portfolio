@@ -1,0 +1,96 @@
+# Builds the site and deploys it to GitHub Pages, substituting the BotDojo key
+# from Actions secrets into js/chat-config.js on the way through.
+#
+# Two things to know about this workflow:
+#
+# 1. It builds with Jekyll on purpose. Adding any deploy workflow replaces the
+#    default Pages build, and _config.yml relies on that build to keep the v1
+#    pages out of the published site. Swapping this for a plain file upload
+#    would silently publish all of them.
+#
+# 2. The substituted key is public. It lands in a file that Pages serves to
+#    every visitor, so it is readable in view source. The secret is protected
+#    in the repository and in the logs, not on the deployed site. That is a
+#    property of static hosting, not of this workflow.
+#
+# Setup, once:
+#   - Settings, Secrets and variables, Actions: add BOTDOJO_API_KEY
+#   - Settings, Pages, Source: change from "Deploy from a branch" to
+#     "GitHub Actions", otherwise this workflow builds and nothing ships
+#   - BotDojo console: add sujithanand.com to the flow's allowed origins, or
+#     the browser call fails with "Not allowed by CORS"
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once, and let a newer push win.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse to build if a secret was committed
+        run: python3 tools/check-secrets.py
+
+      - name: Inject the BotDojo key
+        env:
+          BOTDOJO_API_KEY: ${{ secrets.BOTDOJO_API_KEY }}
+        run: |
+          if [ -z "$BOTDOJO_API_KEY" ]; then
+            echo "::warning::BOTDOJO_API_KEY is not set. Ask AI will stay hidden on the deployed site."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import io, os
+          path = "js/chat-config.js"
+          placeholder = "__BOTDOJO_API_KEY__"
+          s = io.open(path, encoding="utf-8").read()
+          if placeholder not in s:
+              raise SystemExit("placeholder %s not found in %s" % (placeholder, path))
+          io.open(path, "w", encoding="utf-8").write(
+              s.replace(placeholder, os.environ["BOTDOJO_API_KEY"]))
+          print("key substituted into", path)
+          PY
+
+      - uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Confirm the v1 pages stayed excluded
+        run: |
+          for f in case-study-billing.html home.html SITE-CONTENT.md; do
+            if [ -e "_site/$f" ]; then
+              echo "::error::$f was published. _config.yml exclusions are not being applied."
+              exit 1
+            fi
+          done
+          echo "Exclusions held."
+
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

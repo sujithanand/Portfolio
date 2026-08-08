@@ -38,8 +38,9 @@
 	   embed URL. Keeps the button and the panel chrome, needs no proxy, and
 	   puts no secret in the page. */
 	var EMBED = window.CHAT_EMBED_URL || null;
+	var DIRECT = window.CHAT_DIRECT || null;
 
-	if (!ENDPOINT && !EMBED) {
+	if (!ENDPOINT && !DIRECT && !EMBED) {
 		/* Nothing to talk to. Remove the entry point: a visible button that
 		   always errors is worse than no button. */
 		opener.remove();
@@ -47,7 +48,7 @@
 		return;
 	}
 
-	if (!ENDPOINT && EMBED) {
+	if (!ENDPOINT && !DIRECT && EMBED) {
 		mountEmbed();
 		return;
 	}
@@ -422,29 +423,73 @@
 		ask(text);
 	}
 
+	/* Two transports, one contract: resolve to {reply, sessionId}.
+
+	   Through the proxy the server owns the BotDojo payload shape. Direct from
+	   the browser this file owns it, so the request and response shapes below
+	   mirror functions/api/ask.js deliberately. Change one, change both. */
+	function send(text, signal) {
+		if (DIRECT) {
+			var options = { stream: "none" };
+			if (sessionId) options.flow_session_id = sessionId;
+
+			return fetch(DIRECT.url, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": DIRECT.key
+				},
+				body: JSON.stringify({ options: options, body: { user_message: text } }),
+				signal: signal
+			}).then(function (res) {
+				if (!res.ok) {
+					return res.text().then(function (detail) {
+						var error = new Error(
+							/not allowed by cors/i.test(detail)
+								? "This site is not on the assistant's allowed origins list yet."
+								: "The assistant is unavailable (" + res.status + ").");
+						/* A session the server has forgotten. Same contract as the proxy. */
+						if (sessionId && /error loading session/i.test(detail)) {
+							error.code = "session_invalid";
+						}
+						throw error;
+					});
+				}
+				return res.json();
+			}).then(function (data) {
+				return {
+					reply: ((data.response && data.response.text_output) ||
+						(data.aiMessage && data.aiMessage.content) || "").trim(),
+					sessionId: data.flow_session_id
+				};
+			});
+		}
+
+		return fetch(ENDPOINT, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ message: text, sessionId: sessionId }),
+			signal: signal
+		}).then(function (res) {
+			return res.json().then(function (data) {
+				if (!res.ok) {
+					var error = new Error(data && data.error ? data.error : "Request failed (" + res.status + ")");
+					error.code = data && data.code;
+					throw error;
+				}
+				return data;
+			}, function () {
+				throw new Error("The assistant returned an unreadable response.");
+			});
+		});
+	}
+
 	function ask(text, isRetryAfterExpiry) {
 		var thinking = showThinking();
 		setBusy(true);
 		controller = new AbortController();
 
-		fetch(ENDPOINT, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ message: text, sessionId: sessionId }),
-			signal: controller.signal
-		})
-			.then(function (res) {
-				return res.json().then(function (data) {
-					if (!res.ok) {
-						var error = new Error(data && data.error ? data.error : "Request failed (" + res.status + ")");
-						error.code = data && data.code;
-						throw error;
-					}
-					return data;
-				}, function () {
-					throw new Error("The assistant returned an unreadable response.");
-				});
-			})
+		send(text, controller.signal)
 			.then(function (data) {
 				/* Keep the thread id the server just handed back. */
 				if (data && data.sessionId) saveSession(data.sessionId);
@@ -497,6 +542,10 @@
 			if (window.location.protocol === "file:") {
 				return "This page is open as a file, so it cannot reach the assistant. " +
 					"Run python3 tools/dev-proxy.py and open http://localhost:8000 instead.";
+			}
+			if (DIRECT) {
+				return "Could not reach the assistant. If this keeps happening, " +
+					"this site may not be on its allowed origins list.";
 			}
 			return "Could not reach " + ENDPOINT + ". Is the proxy running? " +
 				"Start it with python3 tools/dev-proxy.py";
