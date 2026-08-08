@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Article pages. Depends on design-system.css, chrome.css and case.css
+   (which owns .case-hero, .prose and .related).
+   ========================================================================== */
+
+.post-hero h1 {
+	max-width: 24ch;
+	font-size: clamp(32px, 4vw, 52px);
+}
+
+.post-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px var(--s2);
+	margin-top: var(--s4);
+	padding-top: var(--s4);
+	border-top: 1px solid var(--line);
+	font-size: 14px;
+	color: var(--ink-3);
+}
+
+.post-meta span:first-child {
+	font-weight: 600;
+	color: var(--ink);
+}
+
+/* Middle dots between the byline items, never em dashes. */
+.post-meta > *+ *::before {
+	content: "\00b7";
+	margin-right: var(--s2);
+	color: var(--line);
+}
+
+.post {
+	padding-top: var(--s5);
+}
+
+/* The articles were written with h2 subheads and chip rows, so those need
+   v2 styling here rather than in case.css, which has no h2 inside .prose. */
+.prose h2 {
+	margin-top: var(--s6);
+	margin-bottom: var(--s3);
+	font-size: clamp(23px, 2.2vw, 28px);
+	letter-spacing: -0.02em;
+}
+
+.prose h2:first-child {
+	margin-top: 0;
+}
+
+.chip-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: var(--s5);
+}
+
+.chip {
+	padding: 5px 13px;
+	border-radius: var(--r-pill);
+	background: var(--bg-sink);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--ink-2);
+}
+
+/* --- Keep reading --------------------------------------------------------- */
+
+/* Every other essay, in two dense columns. Seven recommendations occupy less
+   height than the two-row version did, because the rows carry a date and a
+   title and nothing else. */
+.post-related {
+	border-top: 1px solid var(--line-soft);
+}
+
+.post-next {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 2px var(--s5);
+}
+
+.post-next a {
+	display: grid;
+	grid-template-columns: 62px minmax(0, 1fr);
+	align-items: baseline;
+	gap: var(--s2);
+	padding: 9px 0;
+	transition: color 180ms var(--ease);
+}
+
+.pn-date {
+	font-size: 12px;
+	color: var(--ink-3);
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.pn-title {
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.45;
+	color: var(--ink-2);
+	/* One line each, so the column height stays predictable however long a
+	   title is. The full title is still in the DOM for assistive tech. */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.post-next a:hover .pn-title {
+	color: var(--blue-ink);
+}
+
+@media (max-width: 720px) {
+
+	.post-next {
+		grid-template-columns: 1fr;
+	}
+
+	.pn-title {
+		white-space: normal;
+	}
+}

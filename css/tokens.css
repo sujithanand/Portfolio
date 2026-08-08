@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Design tokens: single source of truth for the site.
+   Layout stylesheets (home / article / case-study) may override --container
+   and nothing else.
+   ========================================================================== */
+
+:root {
+	/* Surfaces */
+	--bg: #fbfbfd;
+	--surface: #ffffff;
+	--surface-soft: #f6f7f9;
+	--surface-elevated: #f1f3f5;
+
+	/* Text */
+	--text: #111111;
+	--secondary: #555555;
+	--muted: #5c6473;
+
+	/* Accent */
+	--accent: #2563eb;
+	--accent-soft: rgba(37, 99, 235, 0.10);
+
+	/* Lines */
+	--line: rgba(17, 17, 17, 0.10);
+	--line-strong: rgba(17, 17, 17, 0.16);
+
+	/* Spacing */
+	--space-1: 8px;
+	--space-2: 16px;
+	--space-3: 24px;
+	--space-4: 32px;
+	--space-5: 48px;
+	--space-6: 64px;
+	--gap: 24px;
+
+	/* Layout */
+	--container: 1000px;
+	--topbar-height: 64px;
+
+	/* Elevation */
+	--radius: 18px;
+	--radius-pill: 999px;
+	--shadow-panel: 0 24px 60px rgba(15, 23, 42, 0.08);
+
+	/* Type */
+	--font: "Nunito", sans-serif;
+}

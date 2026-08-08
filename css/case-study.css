@@ -1,0 +1,284 @@
+/* ==========================================================================
+   Case study layout, used by every case-study-*.html page.
+   Shared core (was duplicated byte-for-byte across all five pages) plus the
+   components reused by more than one: insight grid, quote grid, notice
+   banner, and media frames.
+   ========================================================================== */
+
+:root {
+	--container: 1080px;
+}
+
+body {
+	line-height: 1.7;
+}
+
+.page {
+	min-height: 100vh;
+	padding: 56px var(--gap);
+}
+
+.case-panel {
+	max-width: min(100%, var(--container));
+	margin: 0 auto;
+	padding: var(--space-4) var(--gap);
+	background: var(--surface);
+	border-radius: 20px;
+	box-shadow: var(--shadow-panel);
+}
+
+/* --- Header -------------------------------------------------------------- */
+
+.case-header {
+	margin: 0 0 40px;
+}
+
+.back-link {
+	margin-bottom: var(--space-2);
+}
+
+.eyebrow {
+	font-size: 12px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin-bottom: 12px;
+}
+
+h1 {
+	font-size: clamp(32px, 4vw, 42px);
+	margin: 0 0 var(--space-2);
+}
+
+.case-desc {
+	max-width: 720px;
+	margin: 0 0 var(--space-3);
+	color: var(--muted);
+}
+
+/* --- Summary cards ------------------------------------------------------- */
+
+.summary-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: var(--space-2);
+	margin-bottom: var(--space-4);
+}
+
+.summary-card {
+	background: var(--surface);
+	border-radius: var(--radius);
+	padding: 18px;
+	border: 1px solid rgba(37, 99, 235, 0.12);
+	box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1);
+}
+
+.summary-card strong {
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+	font-size: 13px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--accent);
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.summary-card strong i {
+	width: 32px;
+	height: 32px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: rgba(37, 99, 235, 0.12);
+	color: var(--accent);
+	font-size: 14px;
+}
+
+.summary-card span {
+	display: block;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+/* --- Sections ------------------------------------------------------------ */
+
+.case-section {
+	margin: 0 0 var(--space-4);
+}
+
+.case-section h2 {
+	margin-bottom: 12px;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-weight: 600;
+}
+
+.section-hero-icon {
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+	background: var(--accent-soft);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--accent);
+	font-size: 16px;
+}
+
+.case-section h3 {
+	margin-bottom: var(--space-1);
+	font-size: 17px;
+}
+
+.case-section p {
+	margin: 0 0 12px;
+	color: var(--muted);
+}
+
+.case-section ul {
+	margin: 0 0 12px;
+	padding-left: 20px;
+	color: var(--muted);
+}
+
+/* --- Insight grid -------------------------------------------------------- */
+
+.insight-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 14px;
+	margin: var(--space-2) 0 var(--space-3);
+}
+
+.insight-card {
+	padding: 14px;
+	background: var(--surface);
+	border-radius: 14px;
+	border: 1px solid rgba(37, 99, 235, 0.12);
+	box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+	display: grid;
+	gap: var(--space-1);
+}
+
+.insight-card p {
+	margin: 0;
+	line-height: 1.6;
+	color: var(--muted);
+}
+
+.insight-card .insight-meta {
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	color: var(--accent);
+}
+
+/* --- Quote grid ---------------------------------------------------------- */
+
+.quote-grid {
+	margin: var(--space-3) 0 var(--space-4);
+	display: grid;
+	gap: var(--space-2);
+	width: 100%;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.quote-card {
+	padding: 18px;
+	border-radius: var(--radius);
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+	background: var(--surface);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.quote-text {
+	font-size: 15px;
+	color: var(--muted);
+	line-height: 1.7;
+	margin-bottom: 12px;
+}
+
+.quote-meta {
+	font-size: 13px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+
+.quote-punc {
+	color: #f97316;
+	font-weight: 600;
+}
+
+/* --- Media frames -------------------------------------------------------- */
+
+.flow-frame {
+	padding: 20px;
+	background: #f8fafc;
+	border-radius: 20px;
+	box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
+	margin-top: 12px;
+}
+
+.flow-svg {
+	width: 100%;
+	height: auto;
+}
+
+.notice-banner {
+	margin: var(--space-2) 0 20px;
+	padding: 14px var(--space-2);
+	border-radius: 12px;
+	background: rgba(37, 99, 235, 0.08);
+	border: 1px solid rgba(37, 99, 235, 0.22);
+	color: var(--text);
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+}
+
+.notice-banner i {
+	color: var(--accent);
+	margin-top: 2px;
+	font-size: 16px;
+}
+
+/* --- Footer -------------------------------------------------------------- */
+
+.case-footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+	margin: var(--space-6) 0 0;
+}
+
+.case-footer a {
+	color: var(--accent);
+	font-weight: 600;
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+	.insight-grid,
+	.quote-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 640px) {
+
+	.insight-grid,
+	.quote-grid {
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,0 +1,24 @@
+# Site is being rebuilt. Everything below is still in the repository but is
+# NOT published to sujithanand.com: Jekyll drops these before deploying.
+#
+# TO RESTORE THE SITE:
+#   1. git mv home.html index.html   (overwrites the blank placeholder)
+#   2. delete this file, or empty the `exclude:` list below
+#   3. restore the full sitemap.xml (see git history)
+#
+# The blank index.html also carries <meta name="robots" content="noindex">.
+# Remove that line when relaunching.
+
+exclude:
+  - 404.html
+  - case-study-ai-search.html
+  - case-study-billing.html
+  - case-study-building-design-team.html
+  - case-study-document-summarization.html
+  - case-study-research-bot.html
+  - home.html
+  - SITE-CONTENT.md
+  - README.md
+  - tools/
+  - functions/
+  - .env.example

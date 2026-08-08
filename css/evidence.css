@@ -1,0 +1,630 @@
+/* ==========================================================================
+   Evidence components. Confidentiality-safe artifacts used across case
+   studies: process flows, tradeoff tables, decision logs, operating model
+   diagrams, quotes, metrics and provenance notes.
+
+   Depends on design-system.css. Deliberately page-agnostic so the articles
+   can use these later too.
+
+   Diagrams are built from HTML and CSS rather than hand-positioned SVG text,
+   so the copy stays real text: it wraps, it reflows, it is selectable and
+   indexable, it survives an edit, and it stays legible on a phone.
+   ========================================================================== */
+
+figure {
+	margin: 0;
+}
+
+/* --- Shared frame --------------------------------------------------------- */
+
+.ev {
+	margin-top: var(--s5);
+	margin-bottom: var(--s5);
+}
+
+.ev-title {
+	margin-bottom: var(--s3);
+	font-family: var(--font-display);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+.ev-note {
+	margin-top: var(--s3);
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--ink-3);
+}
+
+/* --- Process flow --------------------------------------------------------- */
+
+.flow-frame {
+	padding: var(--s4);
+	border-radius: var(--r-lg);
+	background: var(--bg-soft);
+	border: 1px solid var(--line-soft);
+}
+
+.flow-pair {
+	display: grid;
+	gap: var(--s3);
+}
+
+.lane {
+	display: grid;
+	grid-template-columns: 132px minmax(0, 1fr);
+	align-items: start;
+	gap: var(--s3);
+}
+
+.lane + .lane {
+	margin-top: var(--s3);
+	padding-top: var(--s3);
+	border-top: 1px dashed var(--line);
+}
+
+.lane-label {
+	padding-top: 10px;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+/* An <ol> for reading order, but the markers are dropped: the connectors
+   already carry sequence, and default markers sit outside the flex boxes. */
+.lane-steps {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.step {
+	position: relative;
+	flex: 1 1 150px;
+	min-width: 0;
+	padding: 12px 14px;
+	border-radius: var(--r-sm);
+	border: 1px solid var(--line);
+	background: #fff;
+	font-size: 14px;
+	line-height: 1.45;
+	color: var(--ink);
+}
+
+/* Connector. Sits in the gap, so it never overlaps the next step. */
+.step:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	right: -10px;
+	top: 50%;
+	width: 10px;
+	height: 1px;
+	background: var(--ink-3);
+}
+
+.step:not(:last-child)::before {
+	content: "";
+	position: absolute;
+	right: -10px;
+	top: 50%;
+	width: 5px;
+	height: 5px;
+	border-top: 1px solid var(--ink-3);
+	border-right: 1px solid var(--ink-3);
+	transform: translateY(-50%) rotate(45deg);
+	z-index: 1;
+}
+
+.step b {
+	display: block;
+	font-weight: 600;
+}
+
+.step span {
+	display: block;
+	margin-top: 3px;
+	font-size: 13px;
+	color: var(--ink-3);
+}
+
+.step-wait {
+	border-color: transparent;
+	background: var(--tint-yellow);
+}
+
+.step-pain {
+	border-color: transparent;
+	background: var(--tint-red);
+	color: var(--red-ink);
+}
+
+.step-pain span {
+	color: var(--red-ink);
+	opacity: 0.85;
+}
+
+.step-win {
+	border-color: transparent;
+	background: var(--tint-green);
+	color: var(--green-ink);
+}
+
+.step-win span {
+	color: var(--green-ink);
+	opacity: 0.85;
+}
+
+.step-gate {
+	border-style: dashed;
+	background: var(--bg-soft);
+}
+
+/* Outcome line under a flow */
+.flow-out {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 8px;
+	margin-top: var(--s3);
+	padding-top: var(--s3);
+	border-top: 1px solid var(--line);
+	font-size: 14px;
+	color: var(--ink-2);
+}
+
+.flow-out b {
+	color: var(--ink);
+}
+
+/* --- Tradeoff matrix ------------------------------------------------------ */
+
+/* Scroll container is focusable so a keyboard user can reach the overflow. */
+.matrix-scroll {
+	overflow-x: auto;
+	border-radius: var(--r-md);
+	border: 1px solid var(--line);
+}
+
+.matrix {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 15px;
+	min-width: 640px;
+}
+
+.matrix th,
+.matrix td {
+	padding: 14px 16px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid var(--line-soft);
+	line-height: 1.5;
+}
+
+.matrix thead th {
+	font-family: var(--font-text);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+	background: var(--bg-soft);
+	white-space: nowrap;
+}
+
+.matrix tbody th {
+	font-weight: 600;
+	color: var(--ink);
+	min-width: 190px;
+}
+
+.matrix td {
+	color: var(--ink-2);
+}
+
+.matrix tbody tr:last-child th,
+.matrix tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.matrix .is-chosen {
+	background: var(--tint-green);
+}
+
+.matrix .is-chosen th {
+	box-shadow: inset 3px 0 0 var(--green-ink);
+}
+
+.verdict {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: var(--r-pill);
+	font-size: 12px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.verdict-yes {
+	background: var(--green-ink);
+	color: #fff;
+}
+
+.verdict-no {
+	background: var(--bg-sink);
+	color: var(--ink-3);
+}
+
+/* --- Decision log --------------------------------------------------------- */
+
+.decisions {
+	display: grid;
+	gap: var(--s3);
+	counter-reset: decision;
+}
+
+.decision {
+	position: relative;
+	padding: var(--s4);
+	padding-left: calc(var(--s4) + 44px);
+	border-radius: var(--r-lg);
+	border: 1px solid var(--line);
+	background: var(--bg);
+}
+
+.decision::before {
+	counter-increment: decision;
+	content: counter(decision, decimal-leading-zero);
+	position: absolute;
+	left: var(--s4);
+	top: var(--s4);
+	font-family: var(--font-display);
+	font-size: 14px;
+	font-weight: 700;
+	color: transparent;
+	background: var(--grad);
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+
+.decision dl {
+	display: grid;
+	gap: 10px;
+	margin: 0;
+}
+
+.decision dt {
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+.decision dd {
+	margin: 0 0 var(--s2);
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--ink-2);
+}
+
+.decision dd:last-child {
+	margin-bottom: 0;
+}
+
+.decision .d-call {
+	font-size: 17px;
+	font-weight: 600;
+	color: var(--ink);
+}
+
+.decision .d-cost {
+	color: var(--red-ink);
+}
+
+/* --- Operating model ------------------------------------------------------ */
+
+.model {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: var(--s3);
+	padding: var(--s4);
+	border-radius: var(--r-lg);
+	background: var(--bg-soft);
+	border: 1px solid var(--line-soft);
+}
+
+.model-col {
+	position: relative;
+	display: grid;
+	gap: 10px;
+	align-content: start;
+}
+
+/* Chevron between columns, hidden on the last and when stacked. */
+.model-col:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	right: calc(var(--s3) / -2 - 4px);
+	top: 42px;
+	width: 8px;
+	height: 8px;
+	border-top: 2px solid var(--ink-3);
+	border-right: 2px solid var(--ink-3);
+	transform: rotate(45deg);
+}
+
+.model-label {
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+.node {
+	padding: 12px 14px;
+	border-radius: var(--r-sm);
+	background: #fff;
+	border: 1px solid var(--line);
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.node b {
+	display: block;
+	font-weight: 600;
+	color: var(--ink);
+}
+
+.node span {
+	display: block;
+	margin-top: 3px;
+	font-size: 13px;
+	color: var(--ink-3);
+}
+
+.node-key {
+	border-color: transparent;
+	background: var(--tint-blue);
+}
+
+.node-key b {
+	color: var(--blue-ink);
+}
+
+/* --- Metrics -------------------------------------------------------------- */
+
+.metrics {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+	gap: var(--s3);
+}
+
+.metric {
+	padding: var(--s4);
+	border-radius: var(--r-lg);
+	border: 1px solid var(--line);
+	border-top: 3px solid var(--accent, var(--blue-ink));
+}
+
+.metric-num {
+	font-family: var(--font-display);
+	font-size: clamp(30px, 3.4vw, 40px);
+	font-weight: 600;
+	letter-spacing: -0.03em;
+	line-height: 1.05;
+	color: var(--accent, var(--ink));
+}
+
+.metric-label {
+	margin-top: 10px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.45;
+	color: var(--ink);
+}
+
+/* Provenance. Styled small and muted so an unsourced number looks wrong. */
+.metric-source {
+	margin-top: 10px;
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--ink-3);
+}
+
+/* --- Evidence bands ------------------------------------------------------- */
+
+/* Measured / Observed / Too early to claim. All three always render, so an
+   empty band is visible rather than quietly omitted. */
+.bands {
+	display: grid;
+	gap: var(--s3);
+}
+
+.band {
+	display: grid;
+	grid-template-columns: 168px minmax(0, 1fr);
+	gap: var(--s3);
+	padding: var(--s3) 0;
+	border-top: 1px solid var(--line);
+}
+
+.band-label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+.band-label::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--ink-3);
+	flex: 0 0 auto;
+}
+
+.band-measured .band-label::before {
+	background: var(--green-ink);
+}
+
+.band-observed .band-label::before {
+	background: var(--blue-ink);
+}
+
+.band-early .band-label::before {
+	background: var(--yellow-ink);
+}
+
+.band p {
+	margin-bottom: 10px;
+	font-size: 16px;
+	line-height: 1.65;
+	color: var(--ink-2);
+}
+
+.band p:last-child {
+	margin-bottom: 0;
+}
+
+/* --- Measure note and callouts -------------------------------------------- */
+
+.measure-note {
+	margin-top: var(--s3);
+	padding: var(--s3) var(--s4);
+	border-radius: var(--r-md);
+	background: var(--bg-soft);
+	border-left: 3px solid var(--blue-ink);
+}
+
+.measure-note-label {
+	margin-bottom: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--blue-ink);
+}
+
+.measure-note p {
+	font-size: 14.5px;
+	line-height: 1.6;
+	color: var(--ink-2);
+}
+
+.callout {
+	display: flex;
+	gap: 12px;
+	margin-top: var(--s4);
+	padding: var(--s3) var(--s4);
+	border-radius: var(--r-md);
+	background: var(--tint-blue);
+	font-size: 14.5px;
+	line-height: 1.6;
+	color: var(--ink-2);
+}
+
+.callout svg {
+	flex: 0 0 auto;
+	margin-top: 2px;
+	color: var(--blue-ink);
+}
+
+/* --- Voices --------------------------------------------------------------- */
+
+.voices {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: var(--s3);
+}
+
+.voice {
+	display: grid;
+	align-content: start;
+	gap: 12px;
+	padding: var(--s4);
+	border-radius: var(--r-lg);
+	border: 1px solid var(--line);
+	background: var(--bg);
+}
+
+.voice blockquote {
+	margin: 0;
+	font-size: 15px;
+	line-height: 1.65;
+	color: var(--ink);
+}
+
+.voice figcaption {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ink-3);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 860px) {
+
+	/* Lanes stack: the label moves above its steps and the steps run down the
+	   page, so the connector has to turn ninety degrees with them. */
+	.lane {
+		grid-template-columns: 1fr;
+		gap: var(--s2);
+	}
+
+	.lane-label {
+		padding-top: 0;
+	}
+
+	.lane-steps {
+		flex-direction: column;
+	}
+
+	.step {
+		flex: 0 0 auto;
+	}
+
+	.step:not(:last-child)::after {
+		right: auto;
+		left: 24px;
+		top: auto;
+		bottom: -10px;
+		width: 1px;
+		height: 10px;
+	}
+
+	.step:not(:last-child)::before {
+		right: auto;
+		left: 22px;
+		top: auto;
+		bottom: -8px;
+		transform: rotate(135deg);
+	}
+
+	.model-col:not(:last-child)::after {
+		right: auto;
+		left: 24px;
+		top: auto;
+		bottom: calc(var(--s3) / -2 - 6px);
+		transform: rotate(135deg);
+	}
+
+	.band {
+		grid-template-columns: 1fr;
+		gap: 8px;
+	}
+}

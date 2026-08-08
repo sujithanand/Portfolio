@@ -1,290 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Law Firm Billing Acceleration</title>
-  <link rel="icon" href="img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    :root {
-      --bg: #fffefc;
-      --container: 1080px;
-      --text: #111;
-      --muted: #5c6473;
-      --accent: #2563eb;
-      --surface: #fff;
-      --gap: 24px;
-    }
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    *,*::before,*::after {
-      box-sizing: border-box;
-    }
+	<title>Law Firm Billing Acceleration | Sujith Anand</title>
+	<meta name="description" content="Reducing billing cycle time from 20 days to 5 by unifying onboarding, rate approvals, and billing into a single guided workflow.">
+	<meta name="author" content="Sujith Anand">
+	<link rel="canonical" href="https://sujithanand.com/case-study-billing.html">
 
-    body {
-      margin: 0;
-      font-family: "Nunito", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Sujith Anand">
+	<meta property="og:title" content="Law Firm Billing Acceleration | Sujith Anand">
+	<meta property="og:description" content="Reducing billing cycle time from 20 days to 5 by unifying onboarding, rate approvals, and billing into a single guided workflow.">
+	<meta property="og:url" content="https://sujithanand.com/case-study-billing.html">
+	<meta property="og:image" content="https://sujithanand.com/img/og-cover.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Law Firm Billing Acceleration | Sujith Anand">
+	<meta name="twitter:description" content="Reducing billing cycle time from 20 days to 5 by unifying onboarding, rate approvals, and billing into a single guided workflow.">
+	<meta name="twitter:image" content="https://sujithanand.com/img/og-cover.png">
 
-    .page {
-      min-height: 100vh;
-      padding: 56px var(--gap);
-    }
-
-    .case-panel {
-      max-width: min(100%, var(--container));
-      margin: 0 auto;
-      padding: 32px var(--gap);
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
-    }
-
-    .case-header {
-      margin: 0 0 40px;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: clamp(32px, 4vw, 42px);
-      margin: 0 0 16px;
-    }
-
-    .case-desc {
-      max-width: 720px;
-      margin: 0 0 24px;
-      color: var(--muted);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .chip {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(37, 99, 235, .1);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .summary-card {
-      background: var(--surface);
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid rgba(37, 99, 235, .12);
-      box-shadow: 0 15px 35px rgba(15, 23, 42, .1);
-    }
-
-    .summary-card strong {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .summary-card strong i {
-      width: 32px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.12);
-      color: var(--accent);
-      font-size: 14px;
-    }
-
-    .summary-card span {
-      display: block;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .case-section {
-      margin: 0 0 32px;
-    }
-
-    .case-section h2 {
-      margin-bottom: 12px;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-    }
-
-    .section-hero-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: rgba(37, 99, 235, .1);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 16px;
-    }
-
-    .case-section h3 {
-      margin-bottom: 8px;
-      font-size: 17px;
-    }
-
-    .case-section p {
-      margin: 0 0 12px;
-      color: var(--muted);
-    }
-
-    .case-section ul {
-      margin: 0 0 12px;
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    .case-footer {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin: 64px 0 0;
-    }
-
-    .case-footer a {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .insight-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin: 16px 0 24px;
-    }
-
-    @media (max-width: 900px) {
-      .insight-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .insight-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .insight-card {
-      padding: 14px;
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid rgba(37, 99, 235, 0.12);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-      display: grid;
-      gap: 8px;
-    }
-
-    .insight-card p {
-      margin: 0;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .insight-card .insight-meta {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--accent);
-    }
-
-    .flow-frame {
-      padding: 20px;
-      background: #f8fafc;
-      border-radius: 20px;
-      box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
-      margin-top: 12px;
-    }
-
-    .flow-svg {
-      width: 100%;
-      height: auto;
-    }
-
-    .video-frame {
-      margin: 20px 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
-      background: #0f172a;
-    }
-
-    .video-frame video {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .notice-banner {
-      margin: 16px 0 20px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: rgba(37, 99, 235, 0.08);
-      border: 1px solid rgba(37, 99, 235, 0.22);
-      color: var(--text);
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .notice-banner i {
-      color: var(--accent);
-      margin-top: 2px;
-      font-size: 16px;
-    }
-  </style>
+	<link rel="icon" href="img/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="css/tokens.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/case-study.css">
 </head>
 <body>
   <div class="page">
     <div class="case-panel">
       <div class="case-header">
-        <a class="back-link" href="myhome.html#selected-work">← Back to home</a>
+        <a class="back-link" href="index.html#selected-work">← Back to home</a>
         <p class="eyebrow">Case Study</p>
         <h1>Law Firm Billing Acceleration</h1>
         <p class="case-desc">Reducing billing cycle time from 20 days to 5 by unifying onboarding, rate approvals, and billing into a single guided workflow.</p>
@@ -305,7 +56,7 @@
       <div class="case-section">
         <h2><span class="section-hero-icon"><i class="fa-solid fa-signal"></i></span>Phase 1: Problem Definition &amp; Opportunity</h2>
         <h3>Context</h3>
-        <p>Legal billing workflows were fragmented across multiple systems; onboarding, rate approvals, and billing ran independently with separate inputs, reviews, and approvals. The fragmentation created delays, redundant work, and low visibility for finance and legal ops.</p>
+        <p>Across Mitratech's legal operations products, billing workflows were fragmented over multiple systems; onboarding, rate approvals, and billing ran independently with separate inputs, reviews, and approvals. The fragmentation created delays, redundant work, and low visibility for finance and legal ops.</p>
         <h3>How I Identified the Problem</h3>
         <ul>
           <li>Process mapping sessions across the full billing lifecycle.</li>
@@ -353,16 +104,6 @@
         <p>Billing delays hurt cash flow, increased manual workload, and eroded confidence in timelines. Teams spent more time coordinating than completing work. The opportunity: shift from a fragmented, multi-step process to a unified, guided workflow.</p>
       </div>
 
-      <div class="case-section">
-        <h2><span class="section-hero-icon"><i class="fa-solid fa-video"></i></span>TK with Rates Pain Point (Video)</h2>
-        <p>Original capture showing how rate approvals were handled and where friction appeared.</p>
-        <div class="video-frame">
-          <video controls preload="metadata">
-            <source src="img/TK%20with%20Rates%20Pain%20Point.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
 
       <div class="case-section">
         <h2><span class="section-hero-icon"><i class="fa-solid fa-diagram-project"></i></span>Legacy Flow (Before Unification)</h2>

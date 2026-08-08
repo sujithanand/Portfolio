@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Base: reset, document defaults, and primitives shared by every layout.
+   Depends on tokens.css. Deliberately does NOT define .page: each layout
+   owns its own page padding.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font);
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
+
+img,
+video {
+	max-width: 100%;
+}
+
+/* --- Primitives ---------------------------------------------------------- */
+
+.back-link {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-1);
+	font-weight: 600;
+	color: var(--accent);
+}
+
+.chip {
+	padding: 6px 14px;
+	border-radius: var(--radius-pill);
+	background: var(--accent-soft);
+	color: var(--accent);
+	font-size: 13px;
+	font-weight: 600;
+}
+
+/* .chips (case studies) and .chip-row (articles) are the same object. */
+.chips,
+.chip-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-1);
+	margin-bottom: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

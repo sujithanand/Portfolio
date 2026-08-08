@@ -1,0 +1,545 @@
+/* ==========================================================================
+   Shared chrome. Everything that appears on more than one page: the nav,
+   the work cards, the pull quote, the contact block and the footer.
+
+   Split out of landing.css so case study pages get identical chrome without
+   duplicating it. Depends on design-system.css.
+   ========================================================================== */
+
+/* --- Nav ------------------------------------------------------------------ */
+
+.nav {
+	position: fixed;
+	inset: 0 0 auto 0;
+	z-index: 50;
+	height: var(--nav-h);
+	display: flex;
+	align-items: center;
+	transition: background-color 300ms var(--ease), box-shadow 300ms var(--ease),
+		backdrop-filter 300ms var(--ease);
+}
+
+.nav.is-stuck {
+	background: rgba(255, 255, 255, 0.82);
+	backdrop-filter: saturate(180%) blur(16px);
+	box-shadow: 0 1px 0 var(--line-soft);
+}
+
+/* Note: no width here. `.wrap` owns the width and centring, and this rule
+   loads later, so setting width would override it and pin the nav left. */
+.nav-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--s3);
+}
+
+.brand {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 18px;
+	letter-spacing: -0.02em;
+}
+
+.nav-links {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.nav-links a {
+	position: relative;
+	padding: 8px 14px;
+	border-radius: var(--r-pill);
+	font-size: 15px;
+	font-weight: 500;
+	color: var(--ink-2);
+	transition: color 200ms var(--ease), background-color 200ms var(--ease);
+}
+
+.nav-links a:hover {
+	color: var(--ink);
+	background: var(--bg-soft);
+}
+
+.nav-links a.active {
+	color: var(--ink);
+}
+
+.nav-links a.active::after {
+	content: "";
+	position: absolute;
+	left: 14px;
+	right: 14px;
+	bottom: 2px;
+	height: 2px;
+	border-radius: 2px;
+	background: var(--grad);
+}
+
+.nav-actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.nav-cta {
+	height: 42px;
+	padding: 0 20px;
+	font-size: 15px;
+	/* Both nav buttons share a width so the pair reads as one control group
+	   rather than two differently sized pills. */
+	min-width: 136px;
+	justify-content: center;
+}
+
+/* --- Ask AI button -------------------------------------------------------- */
+
+/* The border is a rotating conic gradient. Animating a gradient needs the angle
+   to be a registered custom property; where @property is unsupported the
+   gradient simply renders at its initial angle and stays put, which still
+   looks correct. */
+@property --ai-angle {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}
+
+.btn-ai {
+	position: relative;
+	--ai-angle: 0deg;
+	background: #fff;
+	color: var(--ink);
+	overflow: hidden;
+	/* Sized to its own content rather than matching the primary CTA: the label
+	   is two short words and the shared 136px left it looking hollow. */
+	min-width: 0;
+	padding: 0 18px;
+	gap: 8px;
+}
+
+/* Gradient ring, drawn as a padding-box mask so only the 1.5px edge shows. */
+.btn-ai::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+	background: conic-gradient(from var(--ai-angle),
+			#4285f4, #9b72cb, #d96570, #fbbc04, #4285f4);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	animation: ai-spin 5s linear infinite;
+	pointer-events: none;
+}
+
+/* Light sweep across the face, on hover only. */
+.btn-ai::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: linear-gradient(105deg, transparent 38%,
+			rgba(155, 114, 203, 0.16) 50%, transparent 62%);
+	transform: translateX(-120%);
+	pointer-events: none;
+}
+
+.btn-ai:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 24px rgba(66, 133, 244, 0.18);
+}
+
+.btn-ai:hover::before {
+	animation-duration: 1.6s;
+}
+
+.btn-ai:hover::after {
+	animation: ai-sweep 900ms var(--ease);
+}
+
+.btn-ai .ai-spark {
+	display: inline-flex;
+	animation: ai-twinkle 3.6s ease-in-out infinite;
+}
+
+.btn-ai:hover .ai-spark {
+	animation-duration: 1.2s;
+}
+
+.btn-ai .ai-label {
+	background: var(--grad);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+@keyframes ai-spin {
+	to {
+		--ai-angle: 360deg;
+	}
+}
+
+@keyframes ai-sweep {
+	to {
+		transform: translateX(120%);
+	}
+}
+
+@keyframes ai-twinkle {
+
+	0%,
+	100% {
+		transform: rotate(0deg) scale(1);
+	}
+
+	45% {
+		transform: rotate(18deg) scale(1.14);
+	}
+
+	70% {
+		transform: rotate(-6deg) scale(0.98);
+	}
+}
+
+.nav-toggle {
+	display: none;
+}
+/* --- Work ----------------------------------------------------------------- */
+
+.work-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--s3);
+}
+
+.work {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var(--s2);
+	padding: var(--s5) var(--s4);
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg);
+	background: #fff;
+	transition: transform 320ms var(--ease), box-shadow 320ms var(--ease),
+		border-color 320ms var(--ease);
+}
+
+.work:hover {
+	transform: translateY(-5px);
+	border-color: transparent;
+	box-shadow: 0 20px 48px rgba(31, 31, 31, 0.10);
+}
+
+.work-tag {
+	align-self: flex-start;
+	padding: 5px 12px;
+	border-radius: var(--r-pill);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	background: var(--tint, var(--tint-blue));
+	color: var(--accent, var(--blue-ink));
+}
+
+.work h3 {
+	font-size: 21px;
+}
+
+.work p {
+	color: var(--ink-2);
+	font-size: 16px;
+	flex: 1;
+}
+
+.work-out {
+	padding-top: var(--s2);
+	border-top: 1px solid var(--line-soft);
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.work-out span {
+	color: var(--ink-3);
+	font-weight: 500;
+	display: block;
+	font-size: 13px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	margin-bottom: 4px;
+}
+
+.work-note {
+	margin-top: var(--s5);
+	font-size: 15px;
+	color: var(--ink-3);
+}
+/* --- Endorsements --------------------------------------------------------- */
+
+/* One featured quote, then a compact row of shorter ones. Three short
+   endorsements occupy about the height of a single pull quote, so the section
+   scales without the page growing. */
+.endorse-lead blockquote {
+	margin: 0 auto;
+	max-width: 40ch;
+	font-family: var(--font-display);
+	font-size: clamp(26px, 3.2vw, 40px);
+	font-weight: 600;
+	line-height: 1.22;
+	letter-spacing: -0.025em;
+	text-align: center;
+	text-wrap: balance;
+}
+
+.endorse-lead figcaption {
+	margin-top: var(--s4);
+	text-align: center;
+	font-size: 15px;
+	color: var(--ink-3);
+}
+
+.endorse-lead figcaption b {
+	color: var(--ink);
+	font-weight: 600;
+}
+
+.endorse-lead figcaption span::before {
+	content: ", ";
+}
+
+.endorse-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+	gap: var(--s3);
+}
+
+/* Only pays for its margin when it actually holds something. */
+.endorse-grid:not(:empty) {
+	margin-top: var(--s6);
+	padding-top: var(--s5);
+	border-top: 1px solid var(--line-soft);
+}
+
+.endorse {
+	display: grid;
+	align-content: start;
+	gap: var(--s3);
+	padding: var(--s4);
+	border-radius: var(--r-lg);
+	border: 1px solid var(--line);
+	background: var(--bg);
+	transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+
+.endorse:hover {
+	border-color: transparent;
+	box-shadow: 0 10px 30px rgba(32, 33, 36, 0.08);
+}
+
+.endorse blockquote {
+	margin: 0;
+	font-size: 15.5px;
+	line-height: 1.6;
+	color: var(--ink);
+}
+
+.endorse figcaption {
+	display: grid;
+	gap: 2px;
+	font-size: 13.5px;
+	color: var(--ink-3);
+}
+
+.endorse figcaption b {
+	font-size: 14.5px;
+	color: var(--ink);
+	font-weight: 600;
+}
+
+/* --- Contact -------------------------------------------------------------- */
+
+.contact {
+	text-align: center;
+	padding-block: var(--s8);
+}
+
+.contact h2 {
+	font-size: clamp(36px, 6vw, 68px);
+	font-weight: 600;
+	letter-spacing: -0.035em;
+}
+
+.contact p {
+	margin: var(--s3) auto 0;
+	max-width: 54ch;
+	color: var(--ink-2);
+	font-size: clamp(17px, 1.6vw, 20px);
+}
+
+.contact-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s2);
+	justify-content: center;
+	margin-top: var(--s5);
+}
+
+.foot {
+	border-top: 1px solid var(--line-soft);
+	padding-block: var(--s4);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s2) var(--s4);
+	justify-content: space-between;
+	font-size: 14px;
+	color: var(--ink-3);
+}
+
+.foot a:hover {
+	color: var(--ink);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 960px) {
+
+	.work-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.nav-links {
+		display: none;
+	}
+}
+
+@media (max-width: 640px) {
+
+	.work-grid {
+		grid-template-columns: 1fr;
+	}
+
+	/* Only the secondary CTA goes. Ask AI stays: on a phone it is the one nav
+	   control left once the section links are hidden. */
+	.nav-actions .btn-primary {
+		display: none;
+	}
+
+	.work {
+		padding: var(--s4);
+	}
+}
+
+/* --- Work card as a link -------------------------------------------------- */
+
+/* Only cards that lead somewhere get the affordance, so a linked card is
+   visibly distinct from one whose case study is not written yet. */
+.work-go {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: var(--s3);
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--accent, var(--ink));
+}
+
+.work-go svg {
+	transition: transform 260ms var(--ease);
+}
+
+.work:hover .work-go svg {
+	transform: translateX(4px);
+}
+
+/* --- Work groups ---------------------------------------------------------- */
+
+/* Two groups: work written up in full, and shipped product work that stays
+   internal. Grouping makes the confidentiality read as a boundary rather
+   than a missing page. */
+.work-group {
+	margin-bottom: var(--s4);
+}
+
+.work-group:not(:first-of-type) {
+	margin-top: var(--s6);
+}
+
+.work-group-title {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	font-family: var(--font-text);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-2);
+}
+
+.work-group.is-closed .work-group-title {
+	color: var(--ink-3);
+}
+
+.work-group-note {
+	margin-top: 10px;
+	max-width: 62ch;
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--ink-3);
+}
+
+/* --- Locked mini cards ---------------------------------------------------- */
+
+/* Title and category only. These lead nowhere, so a compact card is the whole
+   honest surface: it names the work without implying a page behind it. */
+.work-mini-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: var(--s3);
+}
+
+.work-mini {
+	position: relative;
+	display: grid;
+	align-content: start;
+	gap: 12px;
+	padding: var(--s4);
+	padding-right: calc(var(--s4) + 24px);
+	border-radius: var(--r-lg);
+	border: 1px dashed var(--line);
+	background: var(--bg-soft);
+}
+
+/* Grid items stretch by default, which made the pill span the card. */
+.work-mini .work-tag {
+	justify-self: start;
+}
+
+.work-mini h3 {
+	font-size: 18px;
+	line-height: 1.3;
+	color: var(--ink-2);
+}
+
+.work-lock {
+	position: absolute;
+	top: var(--s4);
+	right: var(--s4);
+	color: var(--ink-3);
+	opacity: 0.7;
+}
+
+.work-group-note a {
+	font-weight: 600;
+	color: var(--ink-2);
+	border-bottom: 1px solid var(--line);
+}
+
+.work-group-note a:hover {
+	color: var(--ink);
+	border-bottom-color: var(--ink);
+}

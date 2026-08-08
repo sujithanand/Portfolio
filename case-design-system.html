@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>A design system AI can read | Sujith Anand</title>
+	<meta name="description"
+		content="Thirteen products, thirteen front end stacks, one design system. Built on unstyled primitives and served through an MCP server, so developers and their AI tools pull the real component instead of reading a spec.">
+	<meta name="author" content="Sujith Anand">
+	<link rel="canonical" href="https://sujithanand.com/case-design-system.html">
+
+	<!-- Temporary while the rest of the site is rebuilt. Removed at relaunch,
+	     in the same commit as the one in index.html. -->
+	<meta name="robots" content="noindex">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Sujith Anand">
+	<meta property="og:title" content="A design system AI can read">
+	<meta property="og:description"
+		content="Thirteen products, thirteen front end stacks, one design system. Served through an MCP server so developers and their AI tools pull the real component, not a spec.">
+	<meta property="og:url" content="https://sujithanand.com/case-design-system.html">
+	<meta property="og:image" content="https://sujithanand.com/img/og-cover.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="A design system AI can read">
+	<meta name="twitter:description"
+		content="Thirteen products, thirteen front end stacks, one design system. Served through an MCP server so developers and their AI tools pull the real component, not a spec.">
+	<meta name="twitter:image" content="https://sujithanand.com/img/og-cover.png">
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "A design system AI can read",
+		"description": "Thirteen products, thirteen front end stacks, one design system. Built on unstyled primitives and served through an MCP server.",
+		"author": { "@type": "Person", "name": "Sujith Anand", "url": "https://sujithanand.com/" },
+		"publisher": { "@type": "Person", "name": "Sujith Anand" },
+		"image": "https://sujithanand.com/img/og-cover.png",
+		"mainEntityOfPage": "https://sujithanand.com/case-design-system.html",
+		"about": ["Design systems", "Enterprise UX", "Governance risk and compliance"]
+	}
+	</script>
+
+	<link rel="icon" href="img/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+		rel="stylesheet">
+	<script>document.documentElement.classList.add("js");</script>
+	<link rel="stylesheet" href="css/design-system.css">
+	<link rel="stylesheet" href="css/chrome.css">
+	<link rel="stylesheet" href="css/case.css">
+	<link rel="stylesheet" href="css/evidence.css">
+	<link rel="stylesheet" href="css/chat.css">
+</head>
+
+<body>
+
+	<header class="nav" id="nav">
+		<div class="wrap nav-inner">
+			<a class="brand" href="index.html">Sujith Anand</a>
+			<nav class="nav-links" aria-label="Sections">
+				<a href="index.html#approach">Approach</a>
+				<a href="index.html#shape">Scope</a>
+				<a href="index.html#work">Work</a>
+				<a href="index.html#writing">Writing</a>
+			</nav>
+			<div class="nav-actions">
+				<button class="btn btn-ai nav-cta" type="button" id="ask-ai" aria-haspopup="dialog"
+					aria-expanded="false">
+					<span class="ai-spark" aria-hidden="true">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M12 2.5c.75 5.15 3.85 8.25 9 9-5.15.75-8.25 3.85-9 9-.75-5.15-3.85-8.25-9-9 5.15-.75 8.25-3.85 9-9Z"
+								fill="url(#sparkA)" />
+							<defs>
+								<linearGradient id="sparkA" x1="4" y1="3" x2="20" y2="20">
+									<stop stop-color="#1a73e8" />
+									<stop offset="0.5" stop-color="#9b72cb" />
+									<stop offset="1" stop-color="#d93025" />
+								</linearGradient>
+							</defs>
+						</svg>
+					</span>
+					<span class="ai-label">Ask AI</span>
+				</button>
+				<a class="btn btn-primary nav-cta" href="index.html#contact">Get in touch</a>
+			</div>
+		</div>
+	</header>
+
+	<main id="top">
+
+		<!-- ============================================================ Hero -->
+		<section class="case-hero">
+			<div class="wrap">
+				<a class="back-link reveal" href="index.html#work">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+					Selected work
+				</a>
+
+				<p class="eyebrow reveal" style="--i:1">Case study &middot; Design systems</p>
+
+				<h1 class="reveal" style="--i:2">
+					A design system <span class="g">AI can read</span>.
+				</h1>
+
+				<p class="case-lede reveal" style="--i:3">
+					Thirteen products, thirteen front end stacks, and a component library nobody could reuse.
+					We rebuilt it on unstyled primitives and served it through an MCP server, so developers and
+					their AI tools pull the real component instead of reading a spec and guessing.
+				</p>
+
+				<dl class="glance reveal" style="--i:4">
+					<div>
+						<dt>Role</dt>
+						<dd>Head of design, hands on the system</dd>
+					</div>
+					<div>
+						<dt>Scope</dt>
+						<dd>13 products, one design function</dd>
+					</div>
+					<div>
+						<dt>Built on</dt>
+						<dd>MUI Base, tokens, MCP server</dd>
+					</div>
+					<div>
+						<dt>Status</dt>
+						<dd>In adoption</dd>
+					</div>
+				</dl>
+			</div>
+		</section>
+
+		<article class="case-body">
+
+			<!-- ======================================================= 01 -->
+			<section class="section" id="situation">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow"><span class="case-num">01</span> &middot; The situation</p>
+						<h2 class="section-title">Thirteen stacks, <span class="g">one library</span> nobody
+							reused.</h2>
+					</div>
+
+					<div class="prose reveal">
+						<p>The GRC portfolio grew by acquisition and by age. Thirteen products, each with its
+							own front end stack, its own release train, and its own idea of what a button is.
+							One design function covers all of them.</p>
+						<p>A design system existed on paper. The failure was not the components. It was the
+							delivery mechanism: a spec that a developer reads, interprets, and reimplements in
+							whatever framework their product runs. Every reimplementation is a fork, and every
+							fork drifts. We were correcting drift slower than we were creating it.</p>
+						<p>The usual fix is a styled component library. That fix assumes every consumer shares
+							a framework. Ours did not, and never would.</p>
+					</div>
+
+					<figure class="ev reveal">
+						<figcaption class="ev-title">Before: how a component reached production</figcaption>
+						<div class="flow-frame">
+							<div class="lane">
+								<p class="lane-label">Old path</p>
+								<ol class="lane-steps">
+									<li class="step"><b>Design</b><span>Component designed once</span></li>
+									<li class="step"><b>Spec</b><span>Written up in documentation</span></li>
+									<li class="step step-wait"><b>Read</b><span>Developer interprets the
+											spec</span></li>
+									<li class="step step-pain"><b>Reimplement</b><span>Per stack, thirteen
+											times</span></li>
+									<li class="step step-pain"><b>Drift</b><span>Each copy ages
+											separately</span></li>
+								</ol>
+							</div>
+							<p class="flow-out">
+								<b>The gap:</b> the spec is a description of a component, not the component.
+								Anything a human has to retype, a human will retype differently.
+							</p>
+						</div>
+					</figure>
+				</div>
+			</section>
+
+			<!-- ======================================================= 02 -->
+			<section class="section" id="scope">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow"><span class="case-num">02</span> &middot; What I took on, and what I
+							left alone</p>
+						<h2 class="section-title">A system that ships beats a system that <span class="g">looks
+								right</span>.</h2>
+					</div>
+
+					<div class="prose reveal">
+						<p>The tempting goal was visual consistency across all thirteen products. I did not
+							chase it. A system with no adoption mechanism is shelfware, however good it looks,
+							and unifying pixels across thirteen release trains would have consumed the whole
+							effort before a single team adopted anything.</p>
+					</div>
+
+					<div class="split reveal">
+						<div class="split-col took">
+							<h3>Took on</h3>
+							<ul>
+								<li><b>Behaviour and accessibility</b>The parts that are expensive to get right
+									and identical everywhere.</li>
+								<li><b>Tokens</b>One source for colour, spacing, type and radius.</li>
+								<li><b>Distribution</b>Getting the real component into the codebase, which is
+									where every previous attempt failed.</li>
+							</ul>
+						</div>
+						<div class="split-col left">
+							<h3>Deliberately left alone</h3>
+							<ul>
+								<li><b>Pixel parity across products</b>Thirteen products on different release
+									trains cannot converge at once, and forcing it would have stalled adoption.
+								</li>
+								<li><b>Rewriting legacy screens</b>New and changed surfaces adopt first. Old
+									screens migrate when they are touched anyway.</li>
+								<li><b>One framework for everything</b>A migration nobody asked for and no
+									roadmap had room for.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ======================================================= 03 -->
+			<section class="section" id="call">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow"><span class="case-num">03</span> &middot; The call</p>
+						<h2 class="section-title">Unstyled primitives, served <span class="g">as a
+								tool</span>.</h2>
+					</div>
+
+					<div class="prose reveal">
+						<p>Two decisions carry this project. Build on unstyled primitives so the system is
+							portable by construction, and distribute it through an MCP server so the component
+							arrives in the codebase rather than in a document.</p>
+						<p>The second one is the part that is genuinely new. Developers increasingly write code
+							with an AI assistant sitting next to them. That assistant is a consumer of the
+							design system, and it had no way to read ours. Serving the system over MCP makes
+							the assistant a first class consumer: it queries the real component and its rules,
+							so the code it suggests is the system rather than an approximation of it.</p>
+					</div>
+
+					<div class="decisions reveal">
+						<div class="decision">
+							<dl>
+								<dt>Decision</dt>
+								<dd class="d-call">Build on MUI Base, unstyled.</dd>
+								<dt>Because</dt>
+								<dd>Thirteen stacks cannot share styled components, but they can share
+									behaviour, state handling and accessibility, which is the expensive part.
+								</dd>
+								<dt>Rejected</dt>
+								<dd>A fully styled React library, which would have served the React products
+									and stranded the rest.</dd>
+								<dt>Cost</dt>
+								<dd class="d-cost">Every consuming team writes its own theme layer, so the
+									first adoption in each stack is slower.</dd>
+							</dl>
+						</div>
+
+						<div class="decision">
+							<dl>
+								<dt>Decision</dt>
+								<dd class="d-call">Serve the system through an MCP server.</dd>
+								<dt>Because</dt>
+								<dd>A spec has to be read and retyped. A tool call returns the component and
+									its constraints directly, to a developer or to the assistant writing
+									alongside them.</dd>
+								<dt>Rejected</dt>
+								<dd>Better documentation. We had already tried that. Documentation quality was
+									never the bottleneck, the retyping was.</dd>
+								<dt>Cost</dt>
+								<dd class="d-cost">The system now has runtime surface to maintain, not just a
+									package to publish.</dd>
+							</dl>
+						</div>
+
+						<div class="decision">
+							<dl>
+								<dt>Decision</dt>
+								<dd class="d-call">Tokens as the contract, components as the convenience.</dd>
+								<dt>Because</dt>
+								<dd>A product that cannot adopt a component this quarter can still adopt the
+									tokens, so it moves toward the system instead of away from it.</dd>
+								<dt>Rejected</dt>
+								<dd>All or nothing adoption, which in a thirteen product portfolio means
+									nothing.</dd>
+								<dt>Cost</dt>
+								<dd class="d-cost">Partial adoption is harder to measure and easier for a team
+									to declare finished too early.</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ======================================================= 04 -->
+			<section class="section" id="how">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow"><span class="case-num">04</span> &middot; How it works</p>
+						<h2 class="section-title">One source, <span class="g">many consumers</span>.</h2>
+					</div>
+
+					<figure class="ev reveal">
+						<figcaption class="ev-title">Operating model</figcaption>
+						<div class="model">
+							<div class="model-col">
+								<p class="model-label">Source of truth</p>
+								<div class="node node-key"><b>Tokens</b><span>Colour, type, spacing,
+										radius</span></div>
+								<div class="node node-key"><b>MUI Base primitives</b><span>Behaviour, state,
+										accessibility</span></div>
+								<div class="node"><b>Usage rules</b><span>When to use what, and when not
+										to</span></div>
+							</div>
+							<div class="model-col">
+								<p class="model-label">Distribution</p>
+								<div class="node node-key"><b>MCP server</b><span>Serves components and their
+										rules on request</span></div>
+								<div class="node"><b>Token packages</b><span>For teams adopting styling
+										first</span></div>
+							</div>
+							<div class="model-col">
+								<p class="model-label">Consumers</p>
+								<div class="node"><b>13 product stacks</b><span>Each themes the primitives it
+										pulls</span></div>
+								<div class="node node-key"><b>AI coding tools</b><span>Query the real component
+										instead of guessing</span></div>
+								<div class="node"><b>Designers</b><span>Same names in Figma and in code</span>
+								</div>
+							</div>
+						</div>
+						<p class="ev-note">The AI assistant is a first class consumer, not an afterthought.
+							That is the difference between a system that survives the way software is written
+							now and one that quietly drifts.</p>
+					</figure>
+
+					<figure class="ev reveal">
+						<figcaption class="ev-title">After: how a component reaches production now</figcaption>
+						<div class="flow-frame">
+							<div class="lane">
+								<p class="lane-label">New path</p>
+								<ol class="lane-steps">
+									<li class="step"><b>Design</b><span>Component designed once</span></li>
+									<li class="step"><b>Publish</b><span>Primitive and tokens, one
+											source</span></li>
+									<li class="step step-win"><b>Pull</b><span>Developer or AI tool requests it
+											over MCP</span></li>
+									<li class="step step-win"><b>Theme</b><span>Stack applies its own
+											skin</span></li>
+								</ol>
+							</div>
+							<p class="flow-out">
+								<b>What changed:</b> the reimplementation step is gone. Nobody retypes a
+								component from a description, so there is nothing to drift from.
+							</p>
+						</div>
+					</figure>
+				</div>
+			</section>
+
+			<!-- ======================================================= 05 -->
+			<section class="section" id="tradeoff">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow"><span class="case-num">05</span> &middot; The hard tradeoff</p>
+						<h2 class="section-title">Portability cost us <span class="g">polish</span>, up
+							front.</h2>
+					</div>
+
+					<div class="prose reveal">
+						<p>Unstyled primitives mean the system ships no opinion about how anything looks. Each
+							team writes a theme layer before it sees value, which is real friction at exactly
+							the moment adoption is most fragile. We accepted that because the alternative
+							served three products and abandoned ten.</p>
+					</div>
+
+					<figure class="ev reveal">
+						<figcaption class="ev-title">Options considered</figcaption>
+						<div class="matrix-scroll">
+							<table class="matrix">
+								<caption class="visually-hidden">Three approaches to serving components across
+									thirteen product stacks</caption>
+								<thead>
+									<tr>
+										<th scope="col">Option</th>
+										<th scope="col">Stacks served</th>
+										<th scope="col">Drift risk</th>
+										<th scope="col">Cost per team</th>
+										<th scope="col">Call</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Styled React library</th>
+										<td>Only the React products</td>
+										<td>Low where adopted, unchanged everywhere else</td>
+										<td>Low to start</td>
+										<td><span class="verdict verdict-no">Rejected</span></td>
+									</tr>
+									<tr>
+										<th scope="row">Per stack forks of one design</th>
+										<td>All thirteen</td>
+										<td>High, thirteen copies aging apart</td>
+										<td>Low each, unbounded in total</td>
+										<td><span class="verdict verdict-no">Rejected</span></td>
+									</tr>
+									<tr class="is-chosen">
+										<th scope="row">Unstyled primitives, served over MCP</th>
+										<td>All thirteen, plus AI tools</td>
+										<td>Low, one source and no retyping</td>
+										<td>Higher first adoption, a theme layer per stack</td>
+										<td><span class="verdict verdict-yes">Chosen</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</figure>
+				</div>
+			</section>
+
+			<!-- ======================================================= 06 -->
+			<section class="section" id="result">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow"><span class="case-num">06</span> &middot; Where it landed</p>
+						<h2 class="section-title">What is <span class="g">proven</span>, and what is not.</h2>
+					</div>
+
+					<div class="bands reveal">
+						<div class="band band-measured">
+							<p class="band-label">Measured</p>
+							<div>
+								<!-- TODO (Sujith): the only thing missing here is your numbers. Good
+								     candidates, each needing a baseline and a window:
+								       - products consuming tokens or components, out of 13
+								       - components in the system, and how many replaced a fork
+								       - time to build a screen before and after adoption
+								     Add a .metrics block here, and give every number a
+								     .metric-source line. A number with no method does not ship. -->
+								<p>Adoption is still rolling out across the portfolio, so there is no
+									defensible before and after number yet. Rather than publish a figure I
+									cannot show the method for, this stays empty until the first full quarter
+									of adoption data lands.</p>
+							</div>
+						</div>
+
+						<div class="band band-observed">
+							<p class="band-label">Observed</p>
+							<div>
+								<p>The reimplementation step is gone for teams that have adopted. A component
+									pulled over MCP is the component, so the class of bug where a product's
+									button behaves differently from the system's button no longer starts.</p>
+								<p>Design and engineering now argue about the same object. Previously a
+									disagreement about a component was really a disagreement about whose
+									interpretation of a spec was correct.</p>
+							</div>
+						</div>
+
+						<div class="band band-early">
+							<p class="band-label">Too early to claim</p>
+							<div>
+								<p>Whether portability actually reduces total maintenance across thirteen
+									stacks, or just relocates it into thirteen theme layers. The honest answer
+									arrives after the second or third product adopts, not the first.</p>
+								<p>Whether AI assisted development materially improves output quality when the
+									assistant can read the system. It is the bet behind the MCP work and it is
+									not yet settled.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- TODO (Sujith): two sections are drafted structurally but need your
+			     material, and I have left them out rather than invent them:
+
+			     07 What it took to land it
+			         Who resisted and why, what unblocked them, how many teams have
+			         adopted so far, over what period. This is the org-building
+			         evidence a Head of Design screen looks hardest for.
+
+			     08 What I would do differently
+			         One real concession. Not a humblebrag.
+
+			     Markup to paste, matching the sections above:
+
+			     <section class="section" id="landing">
+			         <div class="wrap">
+			             <div class="section-head reveal">
+			                 <p class="eyebrow"><span class="case-num">07</span> &middot; What it took to land it</p>
+			                 <h2 class="section-title">…</h2>
+			             </div>
+			             <div class="prose reveal"><p>…</p></div>
+			         </div>
+			     </section>
+			-->
+
+			<!-- ===================================================== Related -->
+			<section class="section related">
+				<div class="wrap">
+					<div class="section-head reveal">
+						<p class="eyebrow">More work</p>
+					</div>
+
+					<div class="work-grid">
+						<article class="work reveal" style="--i:0; --accent:var(--yellow-ink); --tint:var(--tint-yellow)">
+							<span class="work-tag">Leadership</span>
+							<h3>Building a 0 to 1 design practice</h3>
+							<p>Design was a UI delivery function with no research capability and no shared
+								standards, across thirteen products that had each evolved on their own.</p>
+							<p class="work-out"><span>Outcome</span>One to five designers, 60% faster design
+								cycles</p>
+						</article>
+
+						<article class="work reveal" style="--i:1; --accent:var(--red-ink); --tint:var(--tint-red)">
+							<span class="work-tag">Practice</span>
+							<h3>Designers who ship, not hand off</h3>
+							<p>Designers sit with customers, then fix the UI in the codebase and deploy it
+								themselves. No handoff, no ticket queue.</p>
+							<p class="work-out"><span>Outcome</span>Design engineering practice</p>
+						</article>
+					</div>
+
+					<p class="related-more reveal"><a href="index.html#work">All selected work</a></p>
+				</div>
+			</section>
+
+			</article>
+
+		<!-- ========================================================= Contact -->
+		<section class="contact" id="contact">
+			<div class="wrap reveal">
+				<h2>Let's <span class="g">talk</span>.</h2>
+				<p>Open to Head of Design roles. If you are building a design function, or rebuilding one,
+					let's talk through what it would take.</p>
+				<div class="contact-actions">
+					<a class="btn btn-primary" href="mailto:sujithanand96@gmail.com">
+						sujithanand96@gmail.com
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+					<a class="btn btn-ghost" href="https://www.linkedin.com/in/sujithanand/" target="_blank"
+						rel="noreferrer">LinkedIn</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<div class="wrap foot">
+			<span>&copy; 2026 Sujith Anand. Views are my own.</span>
+			<span>Hyderabad, India</span>
+		</div>
+	</footer>
+
+	<!-- ======================================================== Ask AI chat -->
+	<div class="chat-root" id="chat-root" hidden>
+		<div class="chat-scrim" data-chat-close></div>
+
+		<div class="chat-panel" role="dialog" aria-modal="true" aria-labelledby="chat-title" id="chat-panel">
+			<div class="chat-head">
+				<span class="chat-avatar" aria-hidden="true">
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+						<path
+							d="M12 2.5c.75 5.15 3.85 8.25 9 9-5.15.75-8.25 3.85-9 9-.75-5.15-3.85-8.25-9-9 5.15-.75 8.25-3.85 9-9Z"
+							fill="url(#chatSparkA)" />
+						<defs>
+							<linearGradient id="chatSparkA" x1="4" y1="3" x2="20" y2="20">
+								<stop stop-color="#1a73e8" />
+								<stop offset="0.5" stop-color="#9b72cb" />
+								<stop offset="1" stop-color="#d93025" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</span>
+
+				<div class="chat-head-title">
+					<h2 id="chat-title">Ask about my work</h2>
+					<p>Answers come from an AI assistant</p>
+				</div>
+
+				<button class="chat-icon-btn" type="button" id="chat-reset" title="New chat" aria-label="New chat">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M20 11a8 8 0 1 0-.6 4M20 5v6h-6" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</button>
+
+				<button class="chat-icon-btn" type="button" data-chat-close title="Close" aria-label="Close chat">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" />
+					</svg>
+				</button>
+			</div>
+
+			<div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-atomic="false"
+				aria-label="Conversation"></div>
+
+			<div class="chat-composer">
+				<form class="chat-field" id="chat-form">
+					<label class="visually-hidden" for="chat-input">Your message</label>
+					<textarea id="chat-input" rows="1" placeholder="Ask anything about my work"
+						maxlength="2000" autocomplete="off"></textarea>
+					<button class="chat-send" type="submit" id="chat-send" disabled aria-label="Send message">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</button>
+				</form>
+				<div class="chat-foot">
+					<span>AI can make mistakes. Verify anything that matters.</span>
+					<span class="chat-count" id="chat-count" aria-hidden="true"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/case.js" defer></script>
+	<script src="js/chat-config.js"></script>
+	<script src="js/chat.js" defer></script>
+</body>
+
+</html>
