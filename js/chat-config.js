@@ -23,6 +23,19 @@
                               GitHub Pages and the proxy lives elsewhere.
                               That host must allow this origin via CORS.
    ========================================================================== */
-window.CHAT_ENDPOINT = location.hostname === "localhost" || location.hostname === "127.0.0.1"
-	? "/api/ask"
-	: null;
+/* Hosts where the site is served as static files with no proxy behind it.
+   Ask AI removes itself there. Everywhere else it assumes a proxy on the same
+   origin, so it stays visible during local development however the page is
+   opened, and reports a useful message if the proxy is not running.
+
+   When a proxy is deployed for production, replace this whole block with:
+       window.CHAT_ENDPOINT = "https://your-proxy-host/api/ask";
+   and allow this origin via CORS on that host. */
+var STATIC_ONLY_HOSTS = [
+	"sujithanand.com",
+	"www.sujithanand.com",
+	"sujithanand.github.io"
+];
+
+window.CHAT_ENDPOINT =
+	STATIC_ONLY_HOSTS.indexOf(location.hostname) === -1 ? "/api/ask" : null;
