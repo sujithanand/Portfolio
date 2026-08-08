@@ -167,6 +167,25 @@ v1 pages out of the published site.
 Deep links: `#ask` opens the panel, `?ask=your+question` opens it and sends
 that question.
 
+## Regenerating the favicon
+
+`img/favicon.png` (180px), `img/favicon-512.png` and `img/apple-touch-icon.png`
+are rendered from `tools/favicon.html`, a white S on a black circle in Figtree:
+
+```sh
+python3 tools/dev-proxy.py            # Figtree loads over http, not file://
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --hide-scrollbars \
+  --default-background-color=00000000 --virtual-time-budget=8000 \
+  --screenshot=img/favicon-512.png --window-size=512,512 \
+  "http://localhost:8000/tools/favicon.html"
+cp img/favicon-512.png img/favicon.png && sips -Z 180 img/favicon.png
+cp img/favicon-512.png img/apple-touch-icon.png && sips -Z 180 img/apple-touch-icon.png
+```
+
+Serve it rather than opening the file directly, or the web font will not load
+and the S falls back to a system typeface.
+
 ## Regenerating the social card
 
 `img/og-cover.png` (1200×630) is rendered from `tools/og-cover.html`:

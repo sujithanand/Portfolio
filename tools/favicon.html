@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Favicon source</title>
+	<!-- Rendered to img/favicon.png with headless Chrome. See README.md.
+	     Square canvas, no padding: the circle is the icon, so it should meet
+	     the edges rather than sit inside a transparent margin. -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700&display=swap" rel="stylesheet">
+	<style>
+		html,
+		body {
+			margin: 0;
+			background: transparent;
+		}
+
+		.icon {
+			width: 512px;
+			height: 512px;
+			border-radius: 50%;
+			background: #1f1f1f;
+			display: grid;
+			place-items: center;
+		}
+
+		.icon span {
+			font-family: Figtree, "Google Sans", system-ui, sans-serif;
+			font-weight: 700;
+			font-size: 320px;
+			line-height: 1;
+			color: #fff;
+			/* Optical centring: the S sits slightly high on the baseline box. */
+			transform: translateY(-0.02em);
+			letter-spacing: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="icon"><span>S</span></div>
+</body>
+
+</html>
